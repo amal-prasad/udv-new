@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import { LOGO } from "@/lib/images";
+
 export function LoadingScreen({ onFinish }: { onFinish?: () => void }) {
   const [visible, setVisible] = useState(true);
 
@@ -38,7 +40,17 @@ export function LoadingScreen({ onFinish }: { onFinish?: () => void }) {
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Image src="/logo.png" alt="Untouch Destination" width={220} height={110} priority />
+              {/* Paper ground, so the colour mark. width/height are the
+                  asset's real bounding box — overriding only one of the two
+                  is what triggered next/image's aspect-ratio warning. */}
+              <Image
+                src={LOGO}
+                alt="Untouch Destination"
+                width={424}
+                height={190}
+                className="h-24 w-auto"
+                priority
+              />
             </motion.div>
             <div className="flex gap-1.5">
               {[0, 1, 2].map((i) => (

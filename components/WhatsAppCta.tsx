@@ -15,20 +15,24 @@ function whatsappHref() {
 
 export function WhatsAppCta() {
   return (
-    <section id="plan" className="w-full bg-pine px-4 py-[10vh]">
-      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl">
+    <section id="plan" className="relative w-full overflow-hidden bg-night px-4 py-[16vh]">
+      <div aria-hidden className="sun-wash pointer-events-none absolute inset-0" />
+
+      <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+        <h2 className="font-display text-4xl font-semibold tracking-tight text-paper md:text-6xl">
           Skip the form. Just message us.
         </h2>
-        <p className="max-w-xl text-base text-cloud md:text-lg">
+        <p className="max-w-md text-base text-cloud md:text-lg">
           Tell us the dates you're picturing — we'll reply with real trip
           options, not a PDF brochure.
         </p>
+        {/* The one CTA on the page that gets .sheen + shadow-glow — this is
+            the close, it should be unmissable. */}
         <a
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-2 rounded-full bg-ember px-8 py-4 text-base font-medium text-paper transition-opacity hover:opacity-90"
+          className="sheen mt-4 rounded-full bg-gradient-to-r from-alpenglow to-dawn px-10 py-5 text-base font-semibold text-summit shadow-glow transition-transform hover:scale-[1.03]"
         >
           Message us on WhatsApp →
         </a>

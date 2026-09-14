@@ -92,21 +92,31 @@ export const FEATURED_TRIPS: FeaturedTrip[] = [
   },
 ];
 
+// Photo scrim, not a flat fade: warm light entering top-right, cold and deep
+// pooling at the bottom — same light source as the rest of the page, applied
+// to a photograph instead of a flat ground.
+const PHOTO_SCRIM =
+  "linear-gradient(180deg, rgba(16,27,36,0) 0%, rgba(16,27,36,0.5) 55%, rgba(16,27,36,0.94) 100%)," +
+  "radial-gradient(120% 90% at 100% 0%, rgba(245,161,76,0.4) 0%, rgba(232,86,43,0.16) 42%, transparent 72%)," +
+  "radial-gradient(90% 70% at 0% 100%, rgba(127,176,205,0.22) 0%, rgba(16,27,36,0.4) 55%, transparent 80%)";
+
 export function FeaturedItineraries() {
   const [active, setActive] = useState<number>(0);
 
   return (
-    <section id="itineraries" className="w-full bg-paper px-4 py-[10vh]">
+    <section id="itineraries" className="w-full bg-paper px-4 pb-[8vh] pt-[14vh]">
       <div className="mx-auto max-w-5xl">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
-          Trips going out soon
-        </h2>
-        <p className="mt-3 max-w-xl text-sm text-ink/70 md:text-base">
-          Fixed departures filling up right now — hover a trip (or tap on
-          mobile) to see dates, pricing and seats left.
-        </p>
+        <div className="grid gap-4 md:grid-cols-[1.3fr_1fr] md:items-end md:gap-8">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
+            Trips going out soon
+          </h2>
+          <p className="max-w-sm text-sm text-slate md:text-right md:text-base md:justify-self-end">
+            Fixed departures filling up right now — hover a trip (or tap on
+            mobile) to see dates, pricing and seats left.
+          </p>
+        </div>
 
-        <ul className="mt-10 flex w-full flex-col gap-1.5">
+        <ul className="mt-10 flex w-full flex-col gap-2">
           {FEATURED_TRIPS.map((trip, index) => (
             <TripRow
               key={trip.slug}
@@ -118,6 +128,24 @@ export function FeaturedItineraries() {
         </ul>
       </div>
     </section>
+  );
+}
+
+function SeatsBadge({ seatsLeft, seatsTotal }: { seatsLeft: number; seatsTotal: number }) {
+  // Honest scarcity, not invented urgency: the badge only reads as "hot"
+  // when the real ratio is genuinely low. No countdowns, no fabricated
+  // numbers — just a styling threshold on the actual figures above.
+  const low = seatsLeft / seatsTotal <= 0.3;
+  return (
+    <span
+      className={cn(
+        "flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium",
+        low ? "bg-alpenglow text-summit shadow-lift" : "bg-paper/15 text-paper ring-1 ring-paper/30",
+      )}
+    >
+      <span aria-hidden className={cn("h-1.5 w-1.5 rounded-full", low ? "bg-summit" : "bg-cloud")} />
+      {seatsLeft} of {seatsTotal} seats left
+    </span>
   );
 }
 
@@ -133,22 +161,24 @@ function TripRow({
   return (
     <motion.li
       className={cn(
-        "group relative w-full list-none overflow-hidden rounded-3xl outline-none",
+        "group relative w-full list-none overflow-hidden rounded-3xl",
         "focus-within:ring-2 focus-within:ring-ember focus-within:ring-offset-2 focus-within:ring-offset-paper",
       )}
       initial={false}
-      animate={{ height: isActive ? "26rem" : "3.5rem" }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      animate={{ height: isActive ? "26rem" : "6.5rem" }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Keyboard users: focusing (Tab) or activating this control expands
           the panel just like hover/tap does. It sits behind the "View
           itinerary" link in DOM order so the link stays a plain, reachable
-          anchor rather than nesting interactive elements. */}
+          anchor rather than nesting interactive elements. Default outline is
+          suppressed here because the li's overflow-hidden clips it — the
+          focus-within ring above is the visible affordance instead. */}
       <button
         type="button"
-        className="absolute inset-0 z-0 h-full w-full cursor-pointer text-left"
+        className="absolute inset-0 z-0 h-full w-full cursor-pointer text-left outline-none"
         aria-expanded={isActive}
-        aria-label={`Expand ${trip.title}`}
+        aria-label={`${isActive ? "Collapse" : "Expand"} ${trip.title}`}
         onMouseEnter={onActivate}
         onFocus={onActivate}
         onClick={onActivate}
@@ -160,13 +190,23 @@ function TripRow({
           sizes="(min-width: 768px) 60vw, 100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
+        <div className="absolute inset-0" style={{ backgroundImage: PHOTO_SCRIM }} />
       </button>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-4 md:p-6">
-        <h3 className="font-display text-lg font-semibold text-paper md:text-2xl">
-          {trip.title}
-        </h3>
+        {/* Always-on row: legible at 6.5rem collapsed, not dependent on
+            hover/focus to communicate anything. */}
+        <div className="flex items-end justify-between gap-3">
+          <div className="min-w-0">
+            <h3 className="truncate font-display text-lg font-semibold text-paper md:text-2xl">
+              {trip.title}
+            </h3>
+            <p className="truncate text-xs text-cloud md:text-sm">
+              {trip.region} · {trip.duration} · from ₹{trip.priceFrom.toLocaleString("en-IN")}
+            </p>
+          </div>
+          <SeatsBadge seatsLeft={trip.seatsLeft} seatsTotal={trip.seatsTotal} />
+        </div>
 
         <AnimatePresence>
           {isActive && (
@@ -177,17 +217,6 @@ function TripRow({
               transition={{ duration: 0.25 }}
               className="pointer-events-auto flex flex-col gap-2"
             >
-              <p className="text-sm text-cloud">
-                {trip.region} · {trip.duration}
-              </p>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="w-fit rounded-full bg-ember px-3 py-1 text-xs font-medium text-paper">
-                  {trip.seatsLeft} of {trip.seatsTotal} left
-                </span>
-                <span className="text-sm font-medium text-paper">
-                  from ₹{trip.priceFrom.toLocaleString("en-IN")}
-                </span>
-              </div>
               <p className="text-xs text-cloud">
                 Next departure {trip.nextDeparture}
               </p>

@@ -1,24 +1,24 @@
 "use client";
 
 /**
- * Sprite-sheet crowd from Skiper39. Expects a sprite ATLAS: one image holding
- * rows x cols evenly-spaced cutouts of individual people, which it slices and
- * walks across the canvas.
- *
- * NOTE: the current /images/peeps/all-peeps.png is NOT such an atlas — it is a
- * single illustrated crowd scene (content only in the bottom band, no cell
- * gutters), so slicing it yields garbage rectangles. EscapeSection therefore
- * renders that artwork directly. Drop a real atlas at PEEPS_SPRITE and swap
- * EscapeSection's <CrowdBand /> back to <CrowdCanvas src={PEEPS_SPRITE} /> to
- * turn the walking animation on.
+ * Sprite-sheet crowd, ported from Skiper39/zadvorsky. Slices a grid atlas of
+ * individual people (PEEPS_SPRITE: 15 cols x 7 rows of 240x324 cutouts, see
+ * lib/images.ts) and walks them back and forth along the bottom of the
+ * canvas with GSAP timelines, driven by the shared gsap.ticker so it stays
+ * on the same clock as Lenis (components/SmoothScroll.tsx).
  */
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 
 interface CrowdCanvasProps {
   src: string;
-  rows?: number;
+  /** Cells across the sheet (columns). */
   cols?: number;
+  /** Cells down the sheet (rows). */
+  rows?: number;
+  /** Draw scale applied to each peep's cell — the sheet's 324px-tall cells
+   *  are giant against the band, this shrinks them to crowd size. */
+  scale?: number;
 }
 
 type Peep = {
@@ -35,7 +35,7 @@ type Peep = {
   render: (ctx: CanvasRenderingContext2D) => void;
 };
 
-export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
+export function CrowdCanvas({ src, cols = 15, rows = 7, scale = 0.55 }: CrowdCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const randomRange = (min: number, max: number) => min + Math.random() * (max - min);
     const randomIndex = (arr: unknown[]) => (randomRange(0, arr.length) | 0);
@@ -52,9 +52,11 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
     const removeRandomFromArray = <T,>(arr: T[]) => removeFromArray(arr, randomIndex(arr));
     const getRandomFromArray = <T,>(arr: T[]) => arr[randomIndex(arr)];
 
+    // Depth-jitter and bob are Y-axis quantities sized against the peep's
+    // own (scaled) height, so they stay proportional at any scale.
     const resetPeep = ({ stage, peep }: { stage: { width: number; height: number }; peep: Peep }) => {
       const direction = Math.random() > 0.5 ? 1 : -1;
-      const offsetY = 100 - 250 * gsap.parseEase("power2.in")(Math.random());
+      const offsetY = (100 - 250 * gsap.parseEase("power2.in")(Math.random())) * scale;
       const startY = stage.height - peep.height + offsetY;
       let startX: number;
       let endX: number;
@@ -80,7 +82,7 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
       const tl = gsap.timeline();
       tl.timeScale(randomRange(0.5, 1.5));
       tl.to(peep, { duration: xDuration, x: endX, ease: "none" }, 0);
-      tl.to(peep, { duration: yDuration, repeat: xDuration / yDuration, yoyo: true, y: startY - 10 }, 0);
+      tl.to(peep, { duration: yDuration, repeat: xDuration / yDuration, yoyo: true, y: startY - 10 * scale }, 0);
       return tl;
     };
 
@@ -97,8 +99,8 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
         walk: null,
         setRect(r) {
           peep.rect = r;
-          peep.width = r[2];
-          peep.height = r[3];
+          peep.width = r[2] * scale;
+          peep.height = r[3] * scale;
         },
         render(context) {
           context.save();
@@ -125,14 +127,14 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
 
     const createPeeps = () => {
       const { naturalWidth: width, naturalHeight: height } = img;
-      const total = rows * cols;
-      const rectWidth = width / rows;
-      const rectHeight = height / cols;
+      const total = cols * rows;
+      const rectWidth = width / cols;
+      const rectHeight = height / rows;
       for (let i = 0; i < total; i++) {
         allPeeps.push(
           createPeep({
             image: img,
-            rect: [(i % rows) * rectWidth, ((i / rows) | 0) * rectHeight, rectWidth, rectHeight],
+            rect: [(i % cols) * rectWidth, ((i / cols) | 0) * rectHeight, rectWidth, rectHeight],
           })
         );
       }
@@ -169,6 +171,24 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
       }
     };
 
+    // prefers-reduced-motion: stand a static crowd along the ground line and
+    // render one frame. No timelines, no ticker.
+    const placeStatic = () => {
+      crowd.length = 0;
+      availablePeeps.length = 0;
+      availablePeeps.push(...allPeeps);
+      const count = Math.min(allPeeps.length, window.innerWidth < 768 ? 6 : 12);
+      const slot = stage.width / count;
+      for (let i = 0; i < count; i++) {
+        const peep = removeRandomFromArray(availablePeeps);
+        peep.scaleX = Math.random() > 0.5 ? 1 : -1;
+        peep.x = slot * i + slot / 2 - peep.width / 2 + randomRange(-slot * 0.15, slot * 0.15);
+        peep.y = stage.height - peep.height;
+        peep.anchorY = peep.y;
+        crowd.push(peep);
+      }
+    };
+
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.save();
@@ -187,8 +207,17 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
       // Mobile browsers fire resize when the URL bar hides/shows on scroll —
       // that's a height-only change, not a real layout shift. Don't reset
       // the whole crowd for it, or the walk restarts every time someone
-      // scrolls the page.
-      if (!widthChanged && crowd.length) return;
+      // scrolls the page. The canvas backing store still needs a fresh
+      // frame though, since resizing it just wiped the bitmap.
+      if (!widthChanged && crowd.length) {
+        if (reducedMotion) render();
+        return;
+      }
+      if (reducedMotion) {
+        placeStatic();
+        render();
+        return;
+      }
       crowd.forEach((peep) => peep.walk?.kill());
       crowd.length = 0;
       availablePeeps.length = 0;
@@ -199,7 +228,12 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
     img.onload = () => {
       createPeeps();
       resize();
-      gsap.ticker.add(render);
+      if (!reducedMotion) gsap.ticker.add(render);
+    };
+    // A 404 or broken sprite must not leave the section stuck mid-setup —
+    // just leave the canvas empty instead of throwing.
+    img.onerror = () => {
+      console.error(`CrowdCanvas: failed to load sprite at ${src}`);
     };
     img.src = src;
 
@@ -209,7 +243,7 @@ export function CrowdCanvas({ src, rows = 15, cols = 7 }: CrowdCanvasProps) {
       gsap.ticker.remove(render);
       crowd.forEach((peep) => peep.walk?.kill());
     };
-  }, [src, rows, cols]);
+  }, [src, cols, rows, scale]);
 
   return <canvas ref={canvasRef} className="absolute bottom-0 h-full w-full" />;
 }

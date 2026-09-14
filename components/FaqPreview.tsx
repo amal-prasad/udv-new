@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 // Static — no JS accordion state. <details>/<summary> gives us expand/
 // collapse natively; only the marker styling and chevron rotation are CSS.
 
@@ -29,13 +27,14 @@ const FAQ_ITEMS: FaqItem[] = [
 
 export function FaqPreview() {
   return (
-    <section className="w-full bg-paper px-4 py-[10vh]">
-      <div className="mx-auto max-w-3xl">
+    <section id="faq" className="w-full bg-paper px-4 pb-[10vh] pt-[18vh] md:px-8">
+      {/* Narrow measure, lots of air above — the quiet moment before the ask. */}
+      <div className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
           Questions before you book?
         </h2>
 
-        <div className="mt-8 divide-y divide-mist border-y border-mist">
+        <div className="mt-10 divide-y divide-mist border-y border-mist text-left">
           {FAQ_ITEMS.map((item) => (
             <details key={item.question} className="group py-5 [&::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-medium text-ink">
@@ -44,17 +43,10 @@ export function FaqPreview() {
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm text-ink/70 md:text-base">{item.answer}</p>
+              <p className="mt-3 max-w-[62ch] text-sm text-slate md:text-base">{item.answer}</p>
             </details>
           ))}
         </div>
-
-        <Link
-          href="/faq"
-          className="mt-6 inline-block text-sm font-medium text-ink underline underline-offset-4"
-        >
-          Read all FAQs →
-        </Link>
       </div>
     </section>
   );

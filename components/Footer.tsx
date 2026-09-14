@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { LOGO } from "@/lib/images";
+import { LOGO_LIGHT } from "@/lib/images";
 import { WHATSAPP_NUMBER } from "@/components/WhatsAppCta";
 
+// app/page.tsx is the only route that exists, so every quick link is an
+// in-page anchor. /our-story and /faq were 404s.
 const QUICK_LINKS = [
   { label: "Trips", href: "/#itineraries" },
   { label: "Trip Types", href: "/#trip-types" },
-  { label: "Our Story", href: "/our-story" },
+  { label: "Our Story", href: "/#story" },
   { label: "Reviews", href: "/#reviews" },
-  { label: "FAQ", href: "/faq" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#plan" },
 ];
 
@@ -19,6 +21,8 @@ const CONTACT_EMAIL = "hello@untouchdestination.com";
 const INSTAGRAM_HANDLE = "@untouchdestination";
 const INSTAGRAM_URL = "https://instagram.com/untouchdestination";
 
+// TODO(client): these three routes do not exist yet and currently 404. The
+// copy has to come from the client — do not ship without them.
 const LEGAL_LINKS = [
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Cancellation Policy", href: "/cancellation-policy" },
@@ -30,12 +34,16 @@ export function Footer() {
     <footer className="w-full bg-ink px-4 pb-8 pt-[8vh] text-paper">
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="flex flex-col gap-3">
+          {/* LOGO_LIGHT is already knocked out to paper-white at the asset
+              level. `brightness-0 invert` would flatten the globe's internal
+              detail into one solid blob — and the intrinsic size must match
+              the asset's real 424x190 bounding box or next/image warns. */}
           <Image
-            src={LOGO}
+            src={LOGO_LIGHT}
             alt="Untouch Destination"
-            width={160}
-            height={80}
-            className="h-12 w-auto brightness-0 invert"
+            width={424}
+            height={190}
+            className="h-12 w-auto"
           />
           <p className="max-w-xs text-sm text-cloud">
             Small-group trips for people who'd rather show up solo than not

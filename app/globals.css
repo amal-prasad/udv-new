@@ -1,15 +1,46 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   ALPENGLOW — the visual world.
+
+   One rule governs every surface: light arrives warm from the top-right, the
+   way sun hits a ridge at dawn, and cold shadow pools at the bottom-left.
+   Gradients here are light sources, never decoration; if a gradient doesn't
+   describe where the sun is, it doesn't belong on the page.
+--------------------------------------------------------------------------- */
+
 @theme {
+  /* Anchors */
   --color-ink: #1e3140;
+  --color-night: #101b24;
   --color-paper: #edede7;
-  --color-pine: #3e5c46;
+  --color-summit: #ffffff;
+
+  /* Light */
+  --color-alpenglow: #e8562b;
   --color-ember: #b84b27;
+  --color-dawn: #f5a14c;
+  --color-glacier: #7fb0cd;
+  --color-pine: #3e5c46;
+
+  /* Neutrals */
   --color-mist: #c7c9c2;
   --color-cloud: #aeb8be;
+  --color-slate: #5b7183;
 
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Depth: every shadow has an offset and a soft blur, tinted with ink. */
+  --shadow-lift: 0 2px 4px -2px rgb(16 27 36 / 0.12), 0 12px 28px -8px rgb(16 27 36 / 0.18);
+  --shadow-deep: 0 8px 16px -8px rgb(16 27 36 / 0.24), 0 32px 64px -24px rgb(16 27 36 / 0.35);
+  --shadow-glow: 0 4px 10px -4px rgb(232 86 43 / 0.5), 0 18px 40px -16px rgb(232 86 43 / 0.45);
+
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.75rem;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -20,6 +51,17 @@ html {
 
 body {
   font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--color-alpenglow);
+  color: var(--color-summit);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-alpenglow);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Lenis: it sets its own scroll behaviour, native smooth scrolling fights it. */
@@ -34,6 +76,90 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* ---------------------------------------------------------------------------
+   Light
+--------------------------------------------------------------------------- */
+
+/* The sun on the ridge: warm wash entering top-right. Put it on a dark
+   surface as an ::before-style absolute layer, never on text. */
+.sun-wash {
+  background-image:
+    radial-gradient(
+      120% 90% at 88% -10%,
+      rgb(245 161 76 / 0.28) 0%,
+      rgb(232 86 43 / 0.14) 34%,
+      transparent 68%
+    ),
+    radial-gradient(90% 70% at 8% 108%, rgb(127 176 205 / 0.16) 0%, transparent 62%);
+}
+
+/* Same light, tuned for pale surfaces where the warm wash would grey out. */
+.sun-wash-light {
+  background-image:
+    radial-gradient(
+      100% 80% at 92% -12%,
+      rgb(245 161 76 / 0.5) 0%,
+      rgb(232 86 43 / 0.16) 38%,
+      transparent 70%
+    ),
+    radial-gradient(80% 60% at 4% 104%, rgb(127 176 205 / 0.28) 0%, transparent 60%);
+}
+
+/* Specular sweep. One authored moment — hover only, never looping. */
+.sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: -20% -60%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.42) 50%,
+    transparent 62%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.9s var(--ease-out-quint);
+}
+.sheen:hover::after,
+.sheen:focus-visible::after {
+  transform: translateX(100%);
+}
+
+/* Hairline that fades at both ends instead of stopping dead. */
+.rule-fade {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, currentColor 28%, transparent) 18%,
+    color-mix(in srgb, currentColor 28%, transparent) 82%,
+    transparent
+  );
+}
+
+/* Paper tooth. Kills the flat vector look on large light fields. */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------------
+   Motion
+--------------------------------------------------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -42,5 +168,8 @@ html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .sheen::after {
+    display: none;
   }
 }

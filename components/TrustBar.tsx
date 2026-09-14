@@ -1,3 +1,7 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+
 // Placeholder figures — swap for real numbers once the client confirms them.
 const STATS = [
   { value: "40+", label: "trips run" },
@@ -6,17 +10,30 @@ const STATS = [
   { value: "4.9★", label: "average rating" },
 ] as const;
 
+// A thin punctuation band between two big sections, not another section of
+// its own — dark, short, lit the same way the ink sections around it are.
 export function TrustBar() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="bg-paper">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-mist border border-mist md:grid-cols-4 md:divide-y-0">
+    <section className="relative overflow-hidden bg-ink">
+      <div className="sun-wash absolute inset-0" aria-hidden />
+      <motion.div
+        initial={reduceMotion ? undefined : { opacity: 0, y: 10 }}
+        whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 mx-auto flex max-w-5xl flex-wrap items-center justify-center divide-x divide-paper/15 px-6 py-10 text-center md:py-12"
+      >
         {STATS.map((stat) => (
-          <div key={stat.label} className="flex flex-col items-center justify-center gap-1 px-6 py-10 text-center">
-            <span className="font-display text-3xl font-semibold text-ink md:text-4xl">{stat.value}</span>
-            <span className="text-sm text-ink/70">{stat.label}</span>
+          <div key={stat.label} className="flex items-baseline gap-2 px-6 first:pl-0 last:pr-0">
+            <span className="font-display text-2xl font-semibold text-paper md:text-3xl">
+              {stat.value}
+            </span>
+            <span className="text-sm text-cloud">{stat.label}</span>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

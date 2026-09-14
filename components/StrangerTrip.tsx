@@ -38,30 +38,35 @@ export function StrangerTrip() {
       className="relative z-0 h-[300vh] w-full bg-ink text-paper motion-reduce:h-auto"
     >
       {/* Reduced-motion: plain static stacked copy, no pin/3D reveal. */}
-      <div className="mx-auto hidden max-w-4xl flex-col items-center gap-8 px-4 py-24 text-center motion-reduce:flex">
-        <h2 className="font-display text-4xl font-bold tracking-tight text-paper md:text-6xl">
-          {HEADLINE}
-        </h2>
-        <StrangerTripBody />
+      <div className="relative hidden overflow-hidden px-4 py-24 motion-reduce:block">
+        <div className="sun-wash absolute inset-0" aria-hidden />
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+          <h2 className="font-display text-4xl font-bold tracking-tight text-paper md:text-6xl">
+            {HEADLINE}
+          </h2>
+          <StrangerTripBody />
+        </div>
       </div>
 
       <div
         className="sticky top-0 mx-auto flex h-screen flex-col items-center justify-center gap-8 overflow-hidden bg-transparent px-4 py-20 motion-reduce:hidden"
         style={{ transformStyle: "preserve-3d", perspective: "200px" }}
       >
+        <div className="sun-wash absolute inset-0" aria-hidden />
+
         <motion.div
           ref={textRef}
           style={{ transformStyle: "preserve-3d", transform }}
-          className="w-full max-w-4xl text-center font-display text-4xl font-bold tracking-tight text-paper md:text-7xl lg:text-8xl"
+          className="relative z-10 w-full max-w-4xl text-center font-display text-4xl font-bold tracking-tight text-paper md:text-7xl lg:text-8xl"
         >
           {HEADLINE}
         </motion.div>
 
-        <div className="max-w-lg text-center text-base text-cloud md:text-lg">
+        <div className="relative z-10 max-w-2xl text-center text-base text-cloud md:text-lg">
           <StrangerTripBody />
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 left-0 h-[60vh] w-full bg-gradient-to-b from-transparent to-ink" />
+        <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-[60vh] w-full bg-gradient-to-b from-transparent to-ink" />
       </div>
     </section>
   );
@@ -73,7 +78,7 @@ function StrangerTripBody() {
       Most of our group trips fill up with people who signed up solo. That&apos;s
       the point. By day two you&apos;re not fifteen strangers in a Tempo
       Traveller — you&apos;re a group with{" "}
-      <span className="text-ember">inside jokes</span> already.
+      <span className="text-dawn">inside jokes</span> already.
     </p>
   );
 }
