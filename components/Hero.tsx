@@ -56,7 +56,7 @@ export function Hero() {
         className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 md:px-10 md:pb-32"
       >
         <h1 className="font-display text-6xl font-semibold leading-[0.92] tracking-[-0.04em] md:text-8xl lg:text-9xl">
-          <span className="text-[#2b445a]">Strangers get on the bus.</span>{" "}
+          <span className="text-[#2b445a] [-webkit-text-stroke:2px_var(--color-alpenglow)] [text-shadow:0_0_32px_var(--color-alpenglow)]">Strangers get on the bus.</span>{" "}
           <span className="text-summit">Friends get off.</span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
