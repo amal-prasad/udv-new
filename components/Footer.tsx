@@ -33,7 +33,7 @@ export function Footer() {
   return (
     <footer className="w-full bg-ink px-4 pb-8 pt-[8vh] text-paper">
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col items-start gap-3">
           {/* LOGO_LIGHT is already knocked out to paper-white at the asset
               level. `brightness-0 invert` would flatten the globe's internal
               detail into one solid blob — and the intrinsic size must match

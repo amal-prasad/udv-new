@@ -64,9 +64,9 @@ export function Hero() {
         initial={reduceMotion ? undefined : { opacity: 0, y: 28, filter: "blur(10px)" }}
         animate={reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 pt-24 md:px-10 md:pb-32"
+        className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 pt-32 [@media(max-height:700px)]:gap-4 [@media(max-height:700px)]:pb-14 [@media(max-height:700px)]:pt-20 md:px-10 md:pb-32"
       >
-        <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
+        <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight [@media(max-height:700px)]:text-4xl md:text-8xl lg:text-9xl">
           <span
             className="block bg-clip-text text-transparent"
             style={{
