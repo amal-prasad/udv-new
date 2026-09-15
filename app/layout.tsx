@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${bricolage.variable} ${inter.variable}`}>
-      <body className="bg-paper text-ink">
+      <body className="bg-night text-paper">
         <LoadingScreen />
         <SmoothScroll>
           <Navbar />

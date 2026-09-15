@@ -63,7 +63,8 @@ export function FloatingWhatsApp() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.6 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-ember shadow-lg transition-opacity hover:opacity-90"
+          className="fixed right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-ember shadow-lg transition-opacity hover:opacity-90"
+          style={{ bottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
         >
           <svg
             viewBox="0 0 24 24"

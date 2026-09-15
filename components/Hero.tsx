@@ -48,26 +48,47 @@ export function Hero() {
         />
       </motion.div>
       <div className="absolute inset-0" style={SCRIM_STYLE} />
-      {/* scrim: do the contrast work here, not on the text */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+      {/* scrim: do the contrast work here, not on the text. Darkest at the
+          very top (sky/cloud is the brightest, least predictable part of
+          the photo) and again at the very bottom (headline sits there);
+          lighter mid-band so the mountain silhouette still reads. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.8) 100%)",
+        }}
+      />
 
       <motion.div
         initial={reduceMotion ? undefined : { opacity: 0, y: 28, filter: "blur(10px)" }}
         animate={reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 md:px-10 md:pb-32"
+        className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 pt-24 md:px-10 md:pb-32"
       >
         <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
           <span
             className="block bg-clip-text text-transparent"
             style={{
               backgroundImage: "linear-gradient(105deg, var(--color-ink) 0%, var(--color-ink) 45%, var(--color-alpenglow) 100%)",
-              filter: "drop-shadow(0 3px 14px rgba(0,0,0,0.3))",
+              filter:
+                "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
+              // Ink is a dark navy — a dark shadow alone can't separate it
+              // from the darker mountain part of the photo. A faint pale
+              // rim gives the glyphs an edge against dark backdrop too,
+              // while staying invisible against the bright sky.
+              WebkitTextStroke: "1px rgba(255,255,255,0.3)",
             }}
           >
             Strangers get on the bus.
           </span>
-          <span className="block font-extrabold text-summit drop-shadow-[0_3px_18px_rgba(0,0,0,0.5)]">
+          <span
+            className="block font-extrabold text-summit"
+            style={{
+              filter:
+                "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
+            }}
+          >
             Friends get off.
           </span>
         </h1>

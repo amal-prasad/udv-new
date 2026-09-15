@@ -44,7 +44,10 @@
 }
 
 html {
-  background-color: var(--color-paper);
+  /* Root paint layer: near-black so iOS rubber-band overscroll (or any
+     mis-measured section height) reveals dark, not a cream flash — every
+     section sets its own background over this. */
+  background-color: var(--color-night);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   /* overflow-x:clip (not hidden) blocks the horizontal scroll caused by
