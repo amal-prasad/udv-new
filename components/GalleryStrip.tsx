@@ -4,7 +4,7 @@ import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-import { TRIP_PHOTOS } from "@/lib/images";
+import { blurFor, TRIP_PHOTOS } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 const COLUMN_COUNT = 4;
@@ -37,7 +37,15 @@ export function GalleryStrip() {
       <div className="grid grid-cols-2 gap-2 motion-safe:hidden md:grid-cols-4">
         {COLUMNS.flat().map((src, i) => (
           <div key={i} className="relative aspect-[3/4] overflow-hidden">
-            <Image src={src} alt="" fill sizes={IMAGE_SIZES} className="object-cover" />
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes={IMAGE_SIZES}
+              placeholder="blur"
+              blurDataURL={blurFor(src)}
+              className="object-cover"
+            />
           </div>
         ))}
       </div>
@@ -68,11 +76,21 @@ function ParallaxColumns() {
   // the `new Lenis()` + raf loop was stripped. A single Lenis instance
   // already runs at the app root (see SmoothScroll.tsx); a second instance
   // here would fight it and cause stutter.
+  //
+  // ponytail: measures the gallery element, NOT window.innerHeight. Mobile
+  // browsers collapse the address bar mid-scroll, which fires `resize` and
+  // changes innerHeight by ~60-100px — the parallax travel distance changed
+  // under the scroll and the columns jumped. The element is sized in `vh`,
+  // which the address bar does not touch, so ResizeObserver only fires on a
+  // real layout change (orientation, window resize).
   useEffect(() => {
-    const resize = () => setDimension({ height: window.innerHeight });
-    window.addEventListener("resize", resize);
-    resize();
-    return () => window.removeEventListener("resize", resize);
+    const el = gallery.current;
+    if (!el) return;
+    const measure = () => setDimension({ height: el.offsetHeight });
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   return (
@@ -98,7 +116,15 @@ function Column({
     <motion.div className={cn("flex h-full min-w-0 flex-col gap-2", className)} style={{ y }}>
       {images.map((src, i) => (
         <div key={i} className="relative h-full w-full flex-1 overflow-hidden">
-          <Image src={src} alt="" fill sizes={IMAGE_SIZES} className="object-cover" />
+          <Image
+              src={src}
+              alt=""
+              fill
+              sizes={IMAGE_SIZES}
+              placeholder="blur"
+              blurDataURL={blurFor(src)}
+              className="object-cover"
+            />
         </div>
       ))}
     </motion.div>

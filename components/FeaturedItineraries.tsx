@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { TRIP_PHOTOS } from "@/lib/images";
+import { blurFor, TRIP_PHOTOS } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 export type FeaturedTrip = {
@@ -188,6 +188,8 @@ function TripRow({
           alt={trip.title}
           fill
           sizes="(min-width: 768px) 60vw, 100vw"
+          placeholder="blur"
+          blurDataURL={blurFor(trip.photo)}
           className="object-cover"
         />
         <div className="absolute inset-0" style={{ backgroundImage: PHOTO_SCRIM }} />

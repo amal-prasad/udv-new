@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { HERO_IMAGE } from "@/lib/images";
+import { blurFor, HERO_IMAGE } from "@/lib/images";
 
 // Photo scrim: warm alpenglow entering top-right, deep cold ink pooling
 // bottom-left where the headline sits — same light rule as the rest of the
@@ -30,7 +30,7 @@ export function Hero() {
   const photoY = useTransform(scrollYProgress, [0, 1], [0, 140]);
 
   return (
-    <section ref={sectionRef} className="relative h-[100dvh] w-full overflow-hidden bg-night">
+    <section ref={sectionRef} className="relative h-[100svh] w-full overflow-hidden bg-night">
       <motion.div
         className="absolute inset-0"
         style={{ y: reduceMotion ? 0 : photoY }}
@@ -42,6 +42,8 @@ export function Hero() {
           priority
           quality={82}
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={blurFor(HERO_IMAGE)}
           className="scale-110 object-cover"
         />
       </motion.div>

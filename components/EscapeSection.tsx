@@ -41,7 +41,7 @@ export function EscapeSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-[88dvh] w-full flex-col overflow-hidden bg-summit"
+      className="relative isolate flex min-h-[88svh] w-full flex-col overflow-hidden bg-summit"
     >
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-5 px-6 pt-[18vh] text-center">
         {/* The authored moment: the headline wipes up from behind its own

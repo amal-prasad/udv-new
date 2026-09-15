@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { TRIP_PHOTOS } from "@/lib/images";
+import { blurFor, TRIP_PHOTOS } from "@/lib/images";
 
 export function StoryTeaser() {
   const reduceMotion = useReducedMotion();
@@ -25,6 +25,8 @@ export function StoryTeaser() {
             alt="An early trip that shaped how Untouch Destination travels"
             fill
             sizes="(min-width: 768px) 42vw, 100vw"
+            placeholder="blur"
+            blurDataURL={blurFor(TRIP_PHOTOS[0])}
             className="object-cover"
           />
         </motion.div>

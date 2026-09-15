@@ -1,35 +1,73 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import React, { useRef } from "react";
 
 export function StrangerTrip() {
-  return (
-    // ponytail: this was a 300vh pinned, scroll-linked 3D reveal. The transform
-    // threw the headline off both edges and `useScroll({target})` reported a
-    // non-monotonic progress that faded the copy back out halfway through the
-    // pin. Two sentences do not need two extra screens of scroll — a plain
-    // in-view reveal says the same thing and cannot desync.
-    <section className="relative z-0 flex min-h-[70vh] w-full items-center overflow-hidden bg-ink px-6 py-[14vh] text-paper">
-      <div className="sun-wash absolute inset-0" aria-hidden />
+  const targetRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end end"],
+  });
 
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.9, ease: EASE_OUT_EXPO }}
-        className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-7 text-center"
+  // Big text starts lower, in perspective, and moves up/flattens
+  const bigTextRotateX = useTransform(scrollYProgress, [0, 0.4], [60, 0]);
+  const bigTextY = useTransform(scrollYProgress, [0, 0.4], [250, 0]);
+  const bigTextOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const bigTextTransform = useMotionTemplate`rotateX(${bigTextRotateX}deg) translateY(${bigTextY}px)`;
+
+  // Small text fades in from blur and slightly below after big text
+  const smallTextBlur = useTransform(scrollYProgress, [0.4, 0.8], [20, 0]);
+  const smallTextOpacity = useTransform(scrollYProgress, [0.4, 0.8], [0, 1]);
+  const smallTextY = useTransform(scrollYProgress, [0.4, 0.8], [40, 0]);
+  const smallTextFilter = useMotionTemplate`blur(${smallTextBlur}px)`;
+
+  return (
+    <section
+      ref={targetRef}
+      className="relative z-0 h-[250vh] w-full bg-ink text-paper"
+    >
+      {/* Sticky container */}
+      <div
+        className="sticky top-0 mx-auto flex h-[100svh] w-full flex-col items-center justify-center bg-transparent px-6"
+        style={{
+          transformStyle: "preserve-3d",
+          perspective: "1000px",
+        }}
       >
-        <h2 className="font-display text-[clamp(2.25rem,5.5vw,5rem)] font-bold leading-[0.95] tracking-tight text-paper">
-          You don&apos;t need a travel buddy. You need a departure date.
-        </h2>
-        <p className="max-w-2xl text-base text-cloud md:text-lg">
-          Most of our group trips fill up with people who signed up solo. That&apos;s the point. By
-          day two you&apos;re not fifteen strangers in a Tempo Traveller — you&apos;re a group with{" "}
-          <span className="text-dawn">inside jokes</span> already.
-        </p>
-      </motion.div>
+        <motion.div
+          style={{
+            transformStyle: "preserve-3d",
+            transform: bigTextTransform,
+            opacity: bigTextOpacity,
+          }}
+          className="w-full max-w-4xl text-center"
+        >
+          <h2 className="font-display text-[clamp(2.25rem,5.5vw,5rem)] font-bold leading-[0.95] tracking-tight text-paper">
+            You don&apos;t need a travel buddy.<br className="hidden md:block" /> You need a departure date.
+          </h2>
+        </motion.div>
+
+        <motion.div
+          style={{
+            opacity: smallTextOpacity,
+            y: smallTextY,
+            filter: smallTextFilter,
+          }}
+          className="mt-8 max-w-2xl text-center text-base text-cloud md:text-lg"
+        >
+          <p>
+            Most of our group trips fill up with people who signed up solo. That&apos;s the point. By
+            day two you&apos;re not fifteen strangers in a Tempo Traveller — you&apos;re a group with{" "}
+            <span className="text-dawn">inside jokes</span> already.
+          </p>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-import { TRIP_PHOTOS } from "@/lib/images";
+import { blurFor, TRIP_PHOTOS } from "@/lib/images";
 
 type TripCard = {
   image: string;
@@ -92,6 +92,8 @@ function StaticCard({ card }: { card: TripCard }) {
         alt={card.name}
         fill
         sizes="(min-width: 768px) 60vw, 90vw"
+        placeholder="blur"
+        blurDataURL={blurFor(card.image)}
         className="object-cover"
       />
       <div className="pointer-events-none absolute inset-0" style={SCRIM_STYLE} />
@@ -154,6 +156,8 @@ function StickyTripCard({ card }: { card: TripCard }) {
             alt={card.name}
             fill
             sizes="(min-width: 768px) 60vw, 90vw"
+            placeholder="blur"
+            blurDataURL={blurFor(card.image)}
             className="object-cover"
           />
           <div className="pointer-events-none absolute inset-0" style={SCRIM_STYLE} />

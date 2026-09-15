@@ -7,3 +7,6 @@ next-env.d.ts
 
 # Browser-verification artifacts (Playwright MCP writes these into the repo)
 .playwright-mcp/
+
+# full-resolution camera masters, kept out of the bundle
+originals/
