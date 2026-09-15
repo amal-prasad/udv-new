@@ -47,18 +47,17 @@ html {
   background-color: var(--color-paper);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  /* Kills horizontal rubber-band AND the browser's swipe-back/forward page
-     nav gesture on mobile — a stray sideways drag was sliding the whole
-     page left instead of scrolling it. Vertical bounce (overscroll-behavior-y)
-     is untouched, Lenis already owns that axis. */
+  /* overscroll-behavior-x alone (no overflow-x here) kills horizontal
+     rubber-band AND the swipe-back/forward page nav gesture on mobile.
+     overflow-x:hidden on html/body forces overflow-y to compute as auto
+     (CSS spec: visible+non-visible pair resolves visible->auto), which
+     breaks every `position: sticky` section (TripTypes, StoryTeaser,
+     StrangerTrip, etc) — do not add it back here. */
   overscroll-behavior-x: none;
 }
 
 body {
   font-family: var(--font-sans);
-  overflow-x: hidden;
-  width: 100%;
 }
 
 ::selection {
