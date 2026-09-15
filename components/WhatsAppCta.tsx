@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 // Placeholder — the client hasn't supplied the real business WhatsApp number
 // yet. Swap this for the real one (country code, no "+", no spaces/dashes).
-export const WHATSAPP_NUMBER = "918800888589";
+export const WHATSAPP_NUMBER = "919999999999";
 
 const PREFILLED_MESSAGE = "Hi! I'm interested in a trip — can you share more details?";
 

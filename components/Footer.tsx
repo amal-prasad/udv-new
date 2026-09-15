@@ -17,7 +17,7 @@ const QUICK_LINKS = [
 
 // Placeholder contact details — real email/Instagram handle pending from the
 // client.
-const CONTACT_EMAIL = "untouchdestination001@gmail.com";
+const CONTACT_EMAIL = "hello@untouchdestination.com";
 const INSTAGRAM_HANDLE = "@untouchdestination";
 const INSTAGRAM_URL = "https://instagram.com/untouchdestination";
 
