@@ -108,6 +108,11 @@ html.lenis body {
 /* Specular sweep. One authored moment — hover only, never looping. */
 .sheen {
   position: relative;
+  /* Must be a block box: `overflow: hidden` is ignored on an inline box, and
+     the swept ::after is parked a full width to the LEFT, so an inline .sheen
+     paints a bright ghost of itself ~280px away. Flex items blockify this back
+     to `block` on their own, so the flex-row CTAs are unaffected. */
+  display: inline-block;
   overflow: hidden;
   isolation: isolate;
 }

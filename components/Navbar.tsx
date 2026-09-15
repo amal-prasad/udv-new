@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
-// Anchors point at sections owned by other components — check `id=` there if
 // Every link here is an in-page anchor on purpose: app/page.tsx is the only
 // route this site has, so /our-story and /faq would both 404.
 const NAV_LINKS = [
@@ -69,7 +68,10 @@ export function Navbar() {
             dark surface — not a flat colour fill. */}
         <motion.div
           aria-hidden
-          className="sun-wash absolute inset-0 bg-ink backdrop-blur-md"
+          // Blur only while the bar is actually opaque. A backdrop-filter
+          // element stays a live backdrop root even at opacity 0, so leaving it
+          // on makes the compositor re-blur the hero on every frame for nothing.
+          className={cn("sun-wash absolute inset-0 bg-ink", scrolled && "backdrop-blur-md")}
           initial={false}
           animate={{ opacity: scrolled ? 1 : 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
