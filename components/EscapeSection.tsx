@@ -57,7 +57,7 @@ export function EscapeSection() {
           transition={hidden ? { duration: 0 } : { duration: 0.9, ease: EASE_OUT_EXPO }}
           className="font-display text-[clamp(2.5rem,8vw,5rem)] font-semibold leading-[0.95] tracking-tight text-ink"
         >
-          Tired of the same four walls?
+          Tired of the daily grind?
         </motion.h2>
 
         <motion.p

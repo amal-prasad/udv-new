@@ -55,8 +55,9 @@ export function Hero() {
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 md:px-10 md:pb-32"
       >
-        <h1 className="font-display text-6xl font-semibold leading-[0.92] tracking-[-0.04em] text-paper md:text-8xl lg:text-9xl">
-          Strangers get on the bus. Friends get off.
+        <h1 className="font-display text-6xl font-semibold leading-[0.92] tracking-[-0.04em] md:text-8xl lg:text-9xl">
+          <span className="text-[#2b445a]">Strangers get on the bus.</span>{" "}
+          <span className="text-summit">Friends get off.</span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
           Small-group and custom trips across Himachal, Uttarakhand and the roads less mapped — for people who&apos;d
