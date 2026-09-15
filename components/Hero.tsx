@@ -48,6 +48,8 @@ export function Hero() {
         />
       </motion.div>
       <div className="absolute inset-0" style={SCRIM_STYLE} />
+      {/* scrim: do the contrast work here, not on the text */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
 
       <motion.div
         initial={reduceMotion ? undefined : { opacity: 0, y: 28, filter: "blur(10px)" }}
@@ -55,9 +57,19 @@ export function Hero() {
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 md:px-10 md:pb-32"
       >
-        <h1 className="font-display text-6xl font-semibold leading-[0.92] tracking-[-0.04em] md:text-8xl lg:text-9xl">
-          <span className="text-[#2b445a] [-webkit-text-stroke:2px_var(--color-alpenglow)] [text-shadow:0_0_32px_var(--color-alpenglow)]">Strangers get on the bus.</span>{" "}
-          <span className="text-summit">Friends get off.</span>
+        <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
+          <span
+            className="block bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(105deg, var(--color-ink) 0%, var(--color-ink) 45%, var(--color-alpenglow) 100%)",
+              filter: "drop-shadow(0 3px 14px rgba(0,0,0,0.3))",
+            }}
+          >
+            Strangers get on the bus.
+          </span>
+          <span className="block font-extrabold text-summit drop-shadow-[0_3px_18px_rgba(0,0,0,0.5)]">
+            Friends get off.
+          </span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
           Small-group and custom trips across Himachal, Uttarakhand and the roads less mapped — for people who&apos;d
