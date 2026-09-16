@@ -1,96 +1,16 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { blurFor, TRIP_PHOTOS } from "@/lib/images";
+import { BlurHighlight } from "@/components/BlurHighlight";
+import { Globe } from "@/components/Globe";
+import { WHATSAPP_NUMBER } from "@/components/WhatsAppCta";
+import { blurFor } from "@/lib/images";
+import { ITINERARIES, type Itinerary } from "@/lib/itineraries";
 import { cn } from "@/lib/utils";
-
-export type FeaturedTrip = {
-  slug: string;
-  title: string;
-  region: string;
-  duration: string;
-  priceFrom: number;
-  nextDeparture: string;
-  seatsLeft: number;
-  seatsTotal: number;
-  photo: string;
-};
-
-// Placeholder trip data — real itineraries are awaiting the client and will
-// replace this const. Keep the shape (slug/title/region/duration/price/
-// departure/seats/photo) so swapping in real trips is a data-only change.
-export const FEATURED_TRIPS: FeaturedTrip[] = [
-  {
-    slug: "spiti-valley-circuit",
-    title: "Spiti Valley circuit",
-    region: "Himachal Pradesh",
-    duration: "7 days",
-    priceFrom: 18999,
-    nextDeparture: "12 Oct 2026",
-    seatsLeft: 4,
-    seatsTotal: 12,
-    photo: TRIP_PHOTOS[0],
-  },
-  {
-    slug: "kedarkantha-winter-trek",
-    title: "Kedarkantha winter trek",
-    region: "Uttarakhand",
-    duration: "5 days",
-    priceFrom: 9499,
-    nextDeparture: "20 Dec 2026",
-    seatsLeft: 6,
-    seatsTotal: 15,
-    photo: TRIP_PHOTOS[1],
-  },
-  {
-    slug: "ladakh-monasteries-road-trip",
-    title: "Ladakh monasteries road trip",
-    region: "Ladakh",
-    duration: "9 days",
-    priceFrom: 27999,
-    nextDeparture: "3 Jul 2026",
-    seatsLeft: 2,
-    seatsTotal: 10,
-    photo: TRIP_PHOTOS[2],
-  },
-  {
-    slug: "meghalaya-living-roots",
-    title: "Meghalaya living roots",
-    region: "Meghalaya",
-    duration: "6 days",
-    priceFrom: 15999,
-    nextDeparture: "8 Nov 2026",
-    seatsLeft: 9,
-    seatsTotal: 12,
-    photo: TRIP_PHOTOS[3],
-  },
-  {
-    slug: "hampi-heritage-cycling",
-    title: "Hampi heritage cycling",
-    region: "Karnataka",
-    duration: "4 days",
-    priceFrom: 11499,
-    nextDeparture: "15 Jan 2027",
-    seatsLeft: 5,
-    seatsTotal: 12,
-    photo: TRIP_PHOTOS[4],
-  },
-  {
-    slug: "chopta-tungnath-getaway",
-    title: "Chopta Tungnath getaway",
-    region: "Uttarakhand",
-    duration: "3 days",
-    priceFrom: 6999,
-    nextDeparture: "28 Oct 2026",
-    seatsLeft: 7,
-    seatsTotal: 14,
-    photo: TRIP_PHOTOS[5],
-  },
-];
 
 // Photo scrim, not a flat fade: warm light entering top-right, cold and deep
 // pooling at the bottom — same light source as the rest of the page, applied
@@ -100,138 +20,229 @@ const PHOTO_SCRIM =
   "radial-gradient(120% 90% at 100% 0%, rgba(245,161,76,0.4) 0%, rgba(232,86,43,0.16) 42%, transparent 72%)," +
   "radial-gradient(90% 70% at 0% 100%, rgba(127,176,205,0.22) 0%, rgba(16,27,36,0.4) 55%, transparent 80%)";
 
+function tripWhatsAppHref(trip: Itinerary) {
+  const message = `Hi! I'd like details on the ${trip.title} trip (${trip.duration}).`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
 export function FeaturedItineraries() {
-  const [active, setActive] = useState<number>(0);
+  const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const open = ITINERARIES.find((t) => t.slug === openSlug) ?? null;
 
   return (
-    <section id="itineraries" className="w-full bg-paper px-4 pb-[8vh] pt-[14vh]">
-      <div className="mx-auto max-w-5xl">
-        <div className="grid gap-4 md:grid-cols-[1.3fr_1fr] md:items-end md:gap-8">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-5xl">
-            Trips going out soon
+    <section id="itineraries" className="relative w-full overflow-hidden bg-night px-4 pb-[10vh] pt-[14vh]">
+      {/* Every trip on this page leaves from Delhi and lands somewhere in the
+          Himalaya — the globe draws exactly those arcs, so the background is
+          the section's content rather than decoration. */}
+      <Globe className="pointer-events-none absolute -right-[22%] top-[6%] h-[38rem] w-[38rem] opacity-40 md:-right-[8%] md:h-[46rem] md:w-[46rem] md:opacity-55" />
+      <div aria-hidden className="sun-wash pointer-events-none absolute inset-0" />
+
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <div className="grid gap-4 md:grid-cols-[1.25fr_1fr] md:items-end md:gap-8">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl">
+            Every trip we run
           </h2>
-          <p className="max-w-sm text-sm text-slate md:text-right md:text-base md:justify-self-end">
-            Fixed departures filling up right now — hover a trip (or tap on
-            mobile) to see dates, pricing and seats left.
-          </p>
+          <BlurHighlight
+            className="max-w-sm text-sm text-cloud md:justify-self-end md:text-right md:text-base"
+            text="Nine fixed departures, all of them leaving Delhi by night and ending somewhere most itineraries never reach. Open any trip for the full day-by-day."
+            highlight={["leaving Delhi by night", "day-by-day"]}
+          />
         </div>
 
-        <ul className="mt-10 flex w-full flex-col gap-2">
-          {FEATURED_TRIPS.map((trip, index) => (
-            <TripRow
-              key={trip.slug}
-              trip={trip}
-              isActive={active === index}
-              onActivate={() => setActive(index)}
-            />
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {ITINERARIES.map((trip) => (
+            <TripCard key={trip.slug} trip={trip} onOpen={() => setOpenSlug(trip.slug)} />
           ))}
         </ul>
       </div>
+
+      <ItineraryPanel trip={open} onClose={() => setOpenSlug(null)} />
     </section>
   );
 }
 
-function SeatsBadge({ seatsLeft, seatsTotal }: { seatsLeft: number; seatsTotal: number }) {
-  // Honest scarcity, not invented urgency: the badge only reads as "hot"
-  // when the real ratio is genuinely low. No countdowns, no fabricated
-  // numbers — just a styling threshold on the actual figures above.
-  const low = seatsLeft / seatsTotal <= 0.3;
+function TripCard({ trip, onOpen }: { trip: Itinerary; onOpen: () => void }) {
   return (
-    <span
-      className={cn(
-        "flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium",
-        low ? "bg-alpenglow text-summit shadow-lift" : "bg-paper/15 text-paper ring-1 ring-paper/30",
-      )}
-    >
-      <span aria-hidden className={cn("h-1.5 w-1.5 rounded-full", low ? "bg-summit" : "bg-cloud")} />
-      {seatsLeft} of {seatsTotal} seats left
-    </span>
-  );
-}
-
-function TripRow({
-  trip,
-  isActive,
-  onActivate,
-}: {
-  trip: FeaturedTrip;
-  isActive: boolean;
-  onActivate: () => void;
-}) {
-  return (
-    <motion.li
-      className={cn(
-        "group relative w-full list-none overflow-hidden rounded-3xl",
-        "focus-within:ring-2 focus-within:ring-ember focus-within:ring-offset-2 focus-within:ring-offset-paper",
-      )}
-      initial={false}
-      animate={{ height: isActive ? "26rem" : "6.5rem" }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {/* Keyboard users: focusing (Tab) or activating this control expands
-          the panel just like hover/tap does. It sits behind the "View
-          itinerary" link in DOM order so the link stays a plain, reachable
-          anchor rather than nesting interactive elements. Default outline is
-          suppressed here because the li's overflow-hidden clips it — the
-          focus-within ring above is the visible affordance instead. */}
+    <li className="list-none">
       <button
         type="button"
-        className="absolute inset-0 z-0 h-full w-full cursor-pointer text-left outline-none"
-        aria-expanded={isActive}
-        aria-label={`${isActive ? "Collapse" : "Expand"} ${trip.title}`}
-        onMouseEnter={onActivate}
-        onFocus={onActivate}
-        onClick={onActivate}
+        onClick={onOpen}
+        aria-label={`Open the ${trip.title} itinerary`}
+        className={cn(
+          "group relative flex h-72 w-full flex-col justify-end overflow-hidden rounded-3xl text-left",
+          "ring-1 ring-paper/10 transition-transform duration-500 ease-out-expo hover:-translate-y-1 hover:shadow-deep",
+          "focus-visible:ring-2 focus-visible:ring-alpenglow",
+        )}
       >
         <Image
           src={trip.photo}
-          alt={trip.title}
+          alt=""
           fill
-          sizes="(min-width: 768px) 60vw, 100vw"
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           placeholder="blur"
           blurDataURL={blurFor(trip.photo)}
-          className="object-cover"
+          className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
         />
         <div className="absolute inset-0" style={{ backgroundImage: PHOTO_SCRIM }} />
-      </button>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-4 md:p-6">
-        {/* Always-on row: legible at 6.5rem collapsed, not dependent on
-            hover/focus to communicate anything. */}
-        <div className="flex items-end justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="truncate font-display text-lg font-semibold text-paper md:text-2xl">
-              {trip.title}
-            </h3>
-            <p className="truncate text-xs text-cloud md:text-sm">
-              {trip.region} · {trip.duration} · from ₹{trip.priceFrom.toLocaleString("en-IN")}
-            </p>
-          </div>
-          <SeatsBadge seatsLeft={trip.seatsLeft} seatsTotal={trip.seatsTotal} />
+        <div className="relative z-10 flex flex-col gap-1.5 p-5">
+          <p className="text-[0.7rem] uppercase tracking-[0.18em] text-dawn">
+            {trip.region} · {trip.duration}
+          </p>
+          <h3 className="font-display text-xl font-semibold leading-tight text-paper">
+            {trip.title}
+          </h3>
+          <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-paper">
+            Details
+            <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
         </div>
+      </button>
+    </li>
+  );
+}
 
-        <AnimatePresence>
-          {isActive && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.25 }}
-              className="pointer-events-auto flex flex-col gap-2"
-            >
-              <p className="text-xs text-cloud">
-                Next departure {trip.nextDeparture}
-              </p>
-              <Link
-                href={`/itineraries/${trip.slug}`}
-                className="mt-1 w-fit text-sm font-medium text-paper underline underline-offset-4 transition-opacity hover:opacity-80"
+function ItineraryPanel({ trip, onClose }: { trip: Itinerary | null; onClose: () => void }) {
+  const lenis = useLenis();
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // Lenis owns the scroll; plain `overflow: hidden` on body doesn't stop it,
+  // so the panel has to tell the one root instance to pause.
+  useEffect(() => {
+    if (!trip) return;
+    lenis?.stop();
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      lenis?.start();
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [trip, lenis, onClose]);
+
+  return (
+    <AnimatePresence>
+      {trip && (
+        <>
+          <motion.div
+            className="fixed inset-0 z-40 bg-night/70 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={onClose}
+          />
+
+          <motion.aside
+            key={trip.slug}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${trip.title} itinerary`}
+            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-xl flex-col overflow-y-auto overscroll-contain bg-paper shadow-deep"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <header className="relative h-64 shrink-0 md:h-72">
+              <Image
+                src={trip.photo}
+                alt=""
+                fill
+                sizes="(min-width: 768px) 36rem, 100vw"
+                placeholder="blur"
+                blurDataURL={blurFor(trip.photo)}
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0" style={{ backgroundImage: PHOTO_SCRIM }} />
+
+              <button
+                ref={closeRef}
+                type="button"
+                onClick={onClose}
+                aria-label="Close itinerary"
+                className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-night/50 text-paper ring-1 ring-paper/25 backdrop-blur transition-colors hover:bg-night/75"
               >
-                View itinerary →
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.li>
+                <span aria-hidden className="text-lg leading-none">×</span>
+              </button>
+
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <p className="text-[0.7rem] uppercase tracking-[0.18em] text-dawn">
+                  {trip.region} · {trip.duration}
+                </p>
+                <h2 className="mt-1 font-display text-3xl font-semibold leading-tight text-paper">
+                  {trip.title}
+                </h2>
+              </div>
+            </header>
+
+            <div className="flex flex-col gap-8 p-6 md:p-8">
+              <BlurHighlight
+                className="text-base leading-relaxed text-ink"
+                text={trip.blurb}
+                highlight={trip.highlight}
+              />
+
+              <div>
+                <h3 className="text-[0.7rem] uppercase tracking-[0.18em] text-slate">Route</h3>
+                <p className="mt-2 font-display text-sm leading-relaxed text-ink">{trip.route}</p>
+              </div>
+
+              <div>
+                <h3 className="text-[0.7rem] uppercase tracking-[0.18em] text-slate">
+                  Day by day
+                </h3>
+                {/* Left rule + dot per day reads as a timeline without a
+                    library: the rule is the <ol> border, the dot is ::before
+                    positioned onto it. */}
+                <ol className="mt-4 flex flex-col gap-6 border-l border-mist pl-6">
+                  {trip.days.map((day) => (
+                    <li key={day.label + day.title} className="relative">
+                      <span
+                        aria-hidden
+                        className="absolute -left-[1.9rem] top-1.5 h-2.5 w-2.5 rounded-full bg-alpenglow ring-4 ring-paper"
+                      />
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ember">
+                        {day.label}
+                      </p>
+                      <p className="mt-1 font-display text-base font-semibold text-ink">
+                        {day.title}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-slate">{day.detail}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className="rounded-4xl bg-ink/5 p-5 ring-1 ring-ink/10">
+                <h3 className="text-[0.7rem] uppercase tracking-[0.18em] text-slate">
+                  Payment terms
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink">
+                  <span className="font-semibold">{trip.advancePct}%</span> as the booking
+                  advance, the remaining{" "}
+                  <span className="font-semibold">{100 - trip.advancePct}%</span>{" "}
+                  {trip.balanceDue}.
+                </p>
+              </div>
+
+              <a
+                href={tripWhatsAppHref(trip)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sheen w-fit rounded-full bg-gradient-to-r from-alpenglow to-dawn px-8 py-4 text-sm font-semibold text-summit shadow-glow transition-transform hover:scale-[1.03]"
+              >
+                Ask about this trip on WhatsApp
+              </a>
+            </div>
+          </motion.aside>
+        </>
+      )}
+    </AnimatePresence>
   );
 }
