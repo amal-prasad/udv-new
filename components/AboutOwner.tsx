@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Globe } from "@/components/Globe";
 import { HyperText } from "@/components/HyperText";
 
 const BEATS = [
@@ -29,7 +28,6 @@ export function AboutOwner() {
 
   return (
     <section id="about" className="relative overflow-hidden bg-ink px-6 py-20 md:px-10 md:py-28">
-      <Globe className="pointer-events-none absolute -right-[22%] top-[6%] h-[38rem] w-[38rem] opacity-40 md:-right-[8%] md:h-[46rem] md:w-[46rem] md:opacity-55" />
       <div className="sun-wash pointer-events-none absolute inset-0" aria-hidden />
       <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-12 md:items-start md:gap-8">
         <div className="flex flex-col gap-6 md:col-span-7">

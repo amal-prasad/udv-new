@@ -3,8 +3,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { Globe } from "@/components/Globe";
-
 // Placeholder — the client hasn't supplied the real business WhatsApp number
 // yet. Swap this for the real one (country code, no "+", no spaces/dashes).
 export const WHATSAPP_NUMBER = "918800888489";
@@ -18,7 +16,6 @@ function whatsappHref() {
 export function WhatsAppCta() {
   return (
     <section id="plan" className="relative w-full overflow-hidden bg-night px-4 py-[16vh]">
-      <Globe className="pointer-events-none absolute -right-[22%] top-[6%] h-[38rem] w-[38rem] opacity-40 md:-right-[8%] md:h-[46rem] md:w-[46rem] md:opacity-55" />
       <div aria-hidden className="sun-wash pointer-events-none absolute inset-0" />
 
       <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
