@@ -110,7 +110,7 @@ export function Footer() {
         </div>
         <p>
           {/* [City] is a placeholder — real base city pending from the client. */}
-          © 2026 Untouch Destination. Based in [City], with trips across
+          © 2026 Untouch Destination. Based in Chandigarh, with trips across
           Himachal, Uttarakhand & beyond.
         </p>
       </div>
