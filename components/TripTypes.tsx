@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { blurFor, TRIP_PHOTOS } from "@/lib/images";
+import { cn } from "@/lib/utils";
 
 type TripCard = {
   image: string;
@@ -66,14 +67,25 @@ export function TripTypes() {
         </h2>
 
         <div>
-          {/* Reduced-motion: plain stacked cards, no pin/scale mechanic. */}
-          <div className="flex flex-col gap-8 motion-safe:hidden">
+          {/* Below md: horizontal snap carousel, at every viewport height —
+              the sticky-pin mechanic needs the ~175vh runway below to scale
+              against, which is why it was making the section five phone
+              screens tall. Carousel replaces it entirely on mobile, motion
+              preference or not (see MobileTripCarousel for how reduced
+              motion is handled inside it). */}
+          <div className="md:hidden">
+            <MobileTripCarousel cards={CARDS} />
+          </div>
+
+          {/* md and up, reduced motion: plain stacked cards, no pin/scale. */}
+          <div className="hidden md:motion-reduce:flex md:flex-col md:gap-8">
             {CARDS.map((card) => (
               <StaticCard key={card.name} card={card} />
             ))}
           </div>
 
-          <div className="hidden flex-col motion-safe:flex">
+          {/* md and up, motion-safe: the sticky-scale-blur mechanic, untouched. */}
+          <div className="hidden md:motion-safe:flex md:flex-col">
             {CARDS.map((card) => (
               <StickyTripCard key={card.name} card={card} />
             ))}
@@ -103,6 +115,8 @@ function StaticCard({ card }: { card: TripCard }) {
 }
 
 function CardCopy({ card }: { card: TripCard }) {
+  // Only rendered at md and up now — the mobile carousel builds its own
+  // title-on-photo / copy-below-photo split inline.
   return (
     <div className="absolute inset-0 flex flex-col justify-end gap-3 p-6 md:p-10">
       <h3 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl">
@@ -117,6 +131,127 @@ function CardCopy({ card }: { card: TripCard }) {
       >
         {card.ctaLabel}
       </Link>
+    </div>
+  );
+}
+
+// Peeking snap carousel. Native CSS scroll-snap does the scrolling (touch,
+// trackpad, and — via tabIndex on the track — arrow keys, all for free); the
+// only JS is an IntersectionObserver that watches which card is centred so
+// we know which one to scale up. Cheaper and simpler than an embla/shadcn
+// carousel dependency for what's a three-item strip.
+function MobileTripCarousel({ cards }: { cards: TripCard[] }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    // threshold: 0.6 means a card only "wins" once it's most of the way
+    // centred, so the active card doesn't flicker between two neighbours
+    // mid-swipe.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const index = cardRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1) setActiveIndex(index);
+        }
+      },
+      { root: track, threshold: 0.6 },
+    );
+
+    for (const card of cardRefs.current) {
+      if (card) observer.observe(card);
+    }
+    return () => observer.disconnect();
+  }, [cards.length]);
+
+  return (
+    <div>
+      <div
+        ref={trackRef}
+        role="region"
+        aria-label="Trip types"
+        tabIndex={0}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-[6vw] pb-2 [scrollbar-width:none] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-alpenglow [&::-webkit-scrollbar]:hidden"
+      >
+        {cards.map((card, index) => (
+          <div
+            key={card.name}
+            ref={(el) => {
+              cardRefs.current[index] = el;
+            }}
+            className={cn(
+              "w-full shrink-0 basis-[86%] snap-center",
+              "motion-safe:transition-[transform,opacity] motion-safe:duration-500",
+              index === activeIndex
+                ? "scale-100 opacity-100"
+                : "motion-safe:scale-[0.92] motion-safe:opacity-70",
+            )}
+          >
+            {/* Only the title sits on the photo, where the scrim's dark pool
+                actually is. The description is a full paragraph — overlaid on
+                a ~260px-wide card it covered the whole frame and ran across
+                the bright sky at roughly 2:1 contrast. Below the image, on
+                paper, it reads at the same contrast as the rest of the page. */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-4xl bg-ink shadow-deep">
+              <Image
+                src={card.image}
+                alt={card.name}
+                fill
+                sizes="86vw"
+                placeholder="blur"
+                blurDataURL={blurFor(card.image)}
+                className="object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0" style={SCRIM_STYLE} />
+              <h3 className="absolute inset-x-0 bottom-0 p-5 font-display text-2xl font-semibold tracking-tight text-paper">
+                {card.name}
+              </h3>
+            </div>
+            <div className="flex flex-col items-start gap-3 px-1 pt-4">
+              <p className="text-sm text-slate">{card.description}</p>
+              <Link
+                href={card.ctaHref}
+                className="rounded-sm text-sm font-medium text-ink underline underline-offset-4 transition-colors hover:text-alpenglow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpenglow focus-visible:ring-offset-2"
+              >
+                {card.ctaLabel}
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators: each button gets a 44px hit area even though the
+          visible dot is much smaller, so it stays tappable on a phone. */}
+      <div className="mt-4 flex justify-center gap-1">
+        {cards.map((card, index) => (
+          <button
+            key={card.name}
+            type="button"
+            aria-label={`Show ${card.name}`}
+            aria-current={index === activeIndex ? true : undefined}
+            onClick={() =>
+              cardRefs.current[index]?.scrollIntoView({
+                behavior: "smooth",
+                inline: "center",
+                block: "nearest",
+              })
+            }
+            className="flex h-11 w-11 items-center justify-center"
+          >
+            <span
+              className={cn(
+                "h-1.5 w-1.5 rounded-full transition-colors",
+                index === activeIndex ? "bg-ink" : "bg-ink/30",
+              )}
+            />
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

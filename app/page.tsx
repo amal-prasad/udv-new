@@ -6,6 +6,7 @@ import { TrustBar } from "@/components/TrustBar";
 import { StrangerTrip } from "@/components/StrangerTrip";
 import { GalleryStrip } from "@/components/GalleryStrip";
 import { StoryTeaser } from "@/components/StoryTeaser";
+import { AboutOwner } from "@/components/AboutOwner";
 import { Reviews } from "@/components/Reviews";
 import { FaqPreview } from "@/components/FaqPreview";
 import { WhatsAppCta, FloatingWhatsApp } from "@/components/WhatsAppCta";
@@ -33,6 +34,7 @@ export default function Home() {
         <StrangerTrip />
         <GalleryStrip />
         <StoryTeaser />
+        <AboutOwner />
         <Reviews />
         <FaqPreview />
         <WhatsAppCta />

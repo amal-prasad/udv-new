@@ -30,7 +30,7 @@ export function Hero() {
   const photoY = useTransform(scrollYProgress, [0, 1], [0, 140]);
 
   return (
-    <section ref={sectionRef} className="relative h-[100svh] w-full overflow-hidden bg-night">
+    <section ref={sectionRef} className="relative min-h-[100svh] w-full overflow-hidden bg-night">
       <motion.div
         className="absolute inset-0"
         style={{ y: reduceMotion ? 0 : photoY }}
@@ -64,20 +64,20 @@ export function Hero() {
         initial={reduceMotion ? undefined : { opacity: 0, y: 28, filter: "blur(10px)" }}
         animate={reduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 flex h-full max-w-5xl flex-col justify-end gap-7 px-6 pb-28 pt-32 [@media(max-height:700px)]:gap-4 [@media(max-height:700px)]:pb-14 [@media(max-height:700px)]:pt-20 md:px-10 md:pb-32"
+        className="relative z-10 flex min-h-[100svh] max-w-5xl flex-col justify-end gap-7 px-6 pb-16 pt-24 md:px-10 md:pb-32"
       >
-        <h1 className="font-display text-6xl font-semibold leading-[0.95] tracking-tight [@media(max-height:700px)]:text-4xl md:text-8xl lg:text-9xl">
+        <h1 className="font-display text-[clamp(2.5rem,11vw,3.75rem)] font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
           <span
             className="block bg-clip-text text-transparent"
             style={{
-              backgroundImage: "linear-gradient(105deg, var(--color-ink) 0%, var(--color-ink) 45%, var(--color-alpenglow) 100%)",
+              // Line 1 sits on the darkest, least predictable part of the
+              // photo (sky/mountain) — the fill has to stay light to read,
+              // so this runs between light values (paper/summit into dawn)
+              // instead of ink. Drop-shadows alone give it enough edge; no
+              // stroke hack needed once the fill itself is light.
+              backgroundImage: "linear-gradient(105deg, var(--color-paper) 0%, var(--color-summit) 45%, var(--color-dawn) 100%)",
               filter:
                 "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
-              // Ink is a dark navy — a dark shadow alone can't separate it
-              // from the darker mountain part of the photo. A faint pale
-              // rim gives the glyphs an edge against dark backdrop too,
-              // while staying invisible against the bright sky.
-              WebkitTextStroke: "1px rgba(255,255,255,0.3)",
             }}
           >
             Strangers get on the bus.
