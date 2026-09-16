@@ -108,11 +108,12 @@ function ItineraryPanel({ trip, onClose }: { trip: Itinerary | null; onClose: ()
   const lenis = useLenis();
   const closeRef = useRef<HTMLButtonElement>(null);
 
-  // Lenis owns the scroll; plain `overflow: hidden` on body doesn't stop it,
-  // so the panel has to tell the one root instance to pause.
+  // Lenis owns the smooth scroll, but native scroll can still happen when it's stopped,
+  // so we must pause Lenis AND hide the body overflow.
   useEffect(() => {
     if (!trip) return;
     lenis?.stop();
+    document.body.style.overflow = "hidden";
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -120,6 +121,7 @@ function ItineraryPanel({ trip, onClose }: { trip: Itinerary | null; onClose: ()
     window.addEventListener("keydown", onKey);
     return () => {
       lenis?.start();
+      document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
   }, [trip, lenis, onClose]);
@@ -139,6 +141,7 @@ function ItineraryPanel({ trip, onClose }: { trip: Itinerary | null; onClose: ()
 
           <motion.aside
             key={trip.slug}
+            data-lenis-prevent
             role="dialog"
             aria-modal="true"
             aria-label={`${trip.title} itinerary`}
