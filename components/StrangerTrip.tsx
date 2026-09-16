@@ -8,6 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import React, { useRef } from "react";
+import { Globe } from "@/components/Globe";
 
 export function StrangerTrip() {
   const targetRef = useRef<HTMLDivElement | null>(null);
@@ -45,6 +46,7 @@ export function StrangerTrip() {
           perspective: "700px",
         }}
       >
+        <Globe className="pointer-events-none absolute -right-[22%] top-[6%] h-[38rem] w-[38rem] opacity-40 md:-right-[8%] md:h-[46rem] md:w-[46rem] md:opacity-55" />
         <motion.div
           style={
             shouldReduceMotion
