@@ -81,7 +81,7 @@ export function WhereUntouchFits() {
           </h2>
         </motion.div>
 
-        <div className="mt-14 flex flex-col gap-10 md:mt-20 md:columns-2 md:gap-x-16 md:[column-fill:balance]">
+        <div className="mt-14 md:mt-20 flex flex-col gap-6 md:gap-8">
           {PARAGRAPHS.map((paragraph, pIdx) => (
             <motion.div
               key={pIdx}
@@ -89,7 +89,7 @@ export function WhereUntouchFits() {
               whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-10 break-inside-avoid"
+              className="break-inside-avoid"
             >
               {paragraph.text === "⸻" ? (
                 <div className="my-2 text-center text-2xl text-ink/20" aria-hidden>

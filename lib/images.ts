@@ -9,13 +9,6 @@ export const HERO_IMAGE = "/images/hero.JPEG";
 export const LOGO = "/logo-mark.png"; // colour, for pale surfaces
 export const LOGO_LIGHT = "/logo-mark-light.png"; // knocked out to paper-white, for ink surfaces
 
-// Real Open Peeps sprite atlas: 15 columns x 7 rows of 240x324 cutouts,
-// transparent background. CrowdCanvas slices this. (all-peeps.png, still in
-// the same folder, is a single flat crowd scene — not sliceable.)
-export const PEEPS_SPRITE = "/images/peeps/open-peeps-sheet.png";
-export const PEEPS_COLS = 15;
-export const PEEPS_ROWS = 7;
-
 export const TRIP_PHOTOS = [
   "/images/1.JPEG",
   "/images/14.JPEG",

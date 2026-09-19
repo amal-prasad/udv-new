@@ -80,7 +80,16 @@ export function Navbar() {
           aria-label="Primary"
           className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:px-10"
         >
-          <Link href="/" className="relative z-10 shrink-0">
+          <Link
+            href="/"
+            aria-label="Untouch Destination — home"
+            onClick={(e) => {
+              e.preventDefault();
+              if (open) closeMenu();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="relative z-10 shrink-0 transition-opacity hover:opacity-80"
+          >
             <Image
               src={LOGO_LIGHT}
               alt="Untouch Destination"

@@ -271,7 +271,7 @@ export const ITINERARIES: Itinerary[] = [
     duration: "4 days / 3 nights",
     route: "Delhi → Naggar → Parashar Lake → Delhi",
     blurb:
-      "A Roerich art gallery, a castle, and sunset over Parashar Lake. Ends on an authentic Himachali thali at Jana Waterfall.",
+      "A castle and sunset over Parashar Lake. Ends on an authentic Himachali thali at Jana Waterfall.",
     highlight: ["sunset over Parashar Lake", "Himachali thali"],
     advancePct: 35,
     balanceDue: "on the day of departure, before boarding",
@@ -286,7 +286,7 @@ export const ITINERARIES: Itinerary[] = [
         label: "Day 1",
         title: "Arrival in Naggar & local exploration",
         detail:
-          "Check in at Naggar. Naggar Castle, the Nicholas Roerich Art Gallery, Tripura Sundari Temple and the German Bakery.",
+          "Check in at Naggar. Naggar Castle, Tripura Sundari Temple and the German Bakery.",
       },
       {
         label: "Day 2",

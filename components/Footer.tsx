@@ -29,11 +29,15 @@ const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
+// Size stays at the call site — the legal row is text-xs, the columns text-sm.
+const FOOTER_LINK_CLASS =
+  "text-cloud underline-offset-4 transition-colors hover:text-dawn hover:underline focus-visible:underline focus-visible:text-dawn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dawn/60 rounded-sm";
+
 export function Footer() {
   return (
     <footer className="w-full bg-ink px-4 pb-8 pt-[8vh] text-paper">
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-        <div className="flex flex-col items-start gap-3">
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           {/* LOGO_LIGHT is already knocked out to paper-white at the asset
               level. `brightness-0 invert` would flatten the globe's internal
               detail into one solid blob — and the intrinsic size must match
@@ -51,14 +55,14 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <h3 className="font-display text-sm font-semibold text-paper">
             Quick links
           </h3>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col items-center gap-2 md:items-start">
             {QUICK_LINKS.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="text-sm text-cloud hover:text-paper">
+                <Link href={link.href} className={`text-sm ${FOOTER_LINK_CLASS}`}>
                   {link.label}
                 </Link>
               </li>
@@ -66,23 +70,23 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <h3 className="font-display text-sm font-semibold text-paper">
             Get in touch
           </h3>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col items-center gap-2 md:items-start">
             <li>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-cloud hover:text-paper"
+                className={`text-sm ${FOOTER_LINK_CLASS}`}
               >
                 WhatsApp
               </a>
             </li>
             <li>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm text-cloud hover:text-paper">
+              <a href={`mailto:${CONTACT_EMAIL}`} className={`text-sm ${FOOTER_LINK_CLASS}`}>
                 {CONTACT_EMAIL}
               </a>
             </li>
@@ -91,7 +95,7 @@ export function Footer() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-cloud hover:text-paper"
+                className={`text-sm ${FOOTER_LINK_CLASS}`}
               >
                 {INSTAGRAM_HANDLE}
               </a>
@@ -100,10 +104,10 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 flex max-w-5xl flex-col gap-6 border-t border-mist/20 pt-6 text-xs text-cloud md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
+      <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-6 border-t border-mist/20 pt-6 text-center text-xs text-cloud md:flex-row md:items-center md:justify-between md:text-left">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-start">
           {LEGAL_LINKS.map((link) => (
-            <Link key={link.label} href={link.href} className="hover:text-paper">
+            <Link key={link.label} href={link.href} className={FOOTER_LINK_CLASS}>
               {link.label}
             </Link>
           ))}

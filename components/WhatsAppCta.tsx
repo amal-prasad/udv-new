@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import { HyperText } from "@/components/HyperText";
+
 // Placeholder — the client hasn't supplied the real business WhatsApp number
 // yet. Swap this for the real one (country code, no "+", no spaces/dashes).
 export const WHATSAPP_NUMBER = "918800888489";
@@ -20,7 +22,7 @@ export function WhatsAppCta() {
 
       <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
         <h2 className="font-display text-4xl font-semibold tracking-tight text-paper md:text-6xl">
-          Skip the form. Just message us.
+          Skip the form. <HyperText>Just message us.</HyperText>
         </h2>
         <p className="max-w-md text-base text-cloud md:text-lg">
           Tell us the dates you're picturing — we'll reply with real trip

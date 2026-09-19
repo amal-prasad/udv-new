@@ -1,7 +1,7 @@
 "use client";
 
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import './CircularGallery.css';
 
@@ -641,6 +641,8 @@ class App {
 export default function CircularGallery({
   items,
   bend = 3,
+  // ponytail: mobile arch is flatter than desktop's `bend`; tune this value if the curve still looks off on narrow screens
+  mobileBend = 1.75,
   textColor = '#ffffff',
   borderRadius = 0.05,
   font = 'bold 30px Figtree',
@@ -649,7 +651,22 @@ export default function CircularGallery({
   scrollEase = 0.05
 }: any) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+  // Init from matchMedia synchronously (not in an effect) so the first client render
+  // already reflects the viewport, avoiding a flash of the wrong bend on mobile.
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+  );
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 767px)');
+    const onChange = () => setIsMobile(mql.matches);
+    onChange();
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, []);
+
+  const effectiveBend = isMobile ? mobileBend : bend;
+
   useEffect(() => {
     if (!containerRef.current) return;
     let app: any;
@@ -658,7 +675,7 @@ export default function CircularGallery({
       if (!isMounted || !containerRef.current) return;
       app = new App(containerRef.current, {
         items,
-        bend,
+        bend: effectiveBend,
         textColor,
         borderRadius,
         font: resolvedFont,
@@ -671,7 +688,7 @@ export default function CircularGallery({
       isMounted = false;
       if (app) app.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase]);
+  }, [items, effectiveBend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase]);
   
   return (
     <div
