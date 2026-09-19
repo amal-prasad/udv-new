@@ -7,6 +7,7 @@ import { TrustBar } from "@/components/TrustBar";
 import { GalleryStrip } from "@/components/GalleryStrip";
 import { ResponsibleTraveling } from "@/components/ResponsibleTraveling";
 import { AboutOwner } from "@/components/AboutOwner";
+import { WhereUntouchFits } from "@/components/WhereUntouchFits";
 import { Reviews } from "@/components/Reviews";
 import { FaqPreview } from "@/components/FaqPreview";
 import { WhatsAppCta, FloatingWhatsApp } from "@/components/WhatsAppCta";
@@ -54,6 +55,7 @@ export default function Home() {
         <GalleryStrip />
         <ResponsibleTraveling />
         <AboutOwner />
+        <WhereUntouchFits />
         <Reviews />
         <FaqPreview />
         <WhatsAppCta />
