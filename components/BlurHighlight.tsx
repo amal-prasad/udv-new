@@ -62,9 +62,8 @@ function splitByHighlight(text: string, phrases: string[]): Chunk[] {
   return chunks;
 }
 
-// Whitespace is kept as its own token so spacing round-trips exactly — the
-// words themselves become inline-block (required to animate transform), which
-// would otherwise swallow the gaps.
+// Whitespace is kept as its own token so spacing round-trips exactly: each
+// word needs its own element to carry its own stagger delay.
 function tokenize(chunk: string): Token[] {
   return chunk
     .split(/(\s+)/)
@@ -137,11 +136,14 @@ export function BlurHighlight({
     );
   }
 
+  // No transform here on purpose: a transform needs inline-block, and an
+  // inline-block word is an atomic inline, so the browser is allowed to break
+  // the line between a chip and the comma right after it. Plain inline words
+  // break only at spaces, which is what prose wants.
   const wordVariants: Variants = {
-    hidden: { opacity: 0, y: 8, filter: "blur(10px)" },
+    hidden: { opacity: 0, filter: "blur(10px)" },
     visible: (i: number) => ({
       opacity: 1,
-      y: 0,
       filter: "blur(0px)",
       transition: { duration: BLUR_DURATION, ease: EASE_OUT_EXPO, delay: delay + i * stagger },
     }),
@@ -150,7 +152,7 @@ export function BlurHighlight({
   // Sweep timing keys off the LAST word of the phrase, so the marker never
   // overtakes text that hasn't resolved yet.
   const chipVariants: Variants = {
-    hidden: { backgroundSize: "0% 100%", color: "currentColor" },
+    hidden: { backgroundSize: "0% 100%" },
     visible: (i: number) => ({
       backgroundSize: "100% 100%",
       color: "var(--color-summit)",
@@ -175,8 +177,7 @@ export function BlurHighlight({
             return (
               <motion.span
                 key={i}
-                className="inline-block"
-                style={{ willChange: "filter, opacity, transform" }}
+                style={{ willChange: "filter, opacity" }}
                 custom={wordIndex}
                 initial="hidden"
                 whileInView="visible"

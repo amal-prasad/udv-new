@@ -40,7 +40,7 @@ export function FeaturedItineraries() {
       <div className="relative z-10 mx-auto max-w-5xl">
         <div className="grid gap-4 md:grid-cols-[1.25fr_1fr] md:items-end md:gap-8">
           <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl">
-            Every trip we run
+            Group Departures
           </h2>
           <BlurHighlight
             className="max-w-sm text-sm text-cloud md:justify-self-end md:text-right md:text-base"
@@ -78,7 +78,7 @@ function TripCard({ trip, onOpen }: { trip: Itinerary; onOpen: () => void }) {
           src={trip.photo}
           alt=""
           fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          sizes="(min-width: 768px) 36rem, 100vw"
           placeholder="blur"
           blurDataURL={blurFor(trip.photo)}
           className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"

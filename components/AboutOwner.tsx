@@ -1,78 +1,108 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { BlurHighlight } from "@/components/BlurHighlight";
 import { HyperText } from "@/components/HyperText";
 
-const BEATS = [
+const PARAGRAPHS = [
   {
-    name: "Why “Untouch”",
-    body: "The places we keep going back to are usually the ones mass tourism hasn't reached — still themselves, not built for a bus tour. That's the name, and it's why how we travel there matters as much as where.",
+    text: "Untouchdestination started with a curiosity about the world that demanded to be explored. Our founder, Ravi, who spent his childhood split between the modern metropolis of Delhi and his familial village in rural Haryana, witnessed from a young age the vast diversity and multitude of manifestations of our world.",
+    highlight: ["curiosity about the world"],
   },
   {
-    name: "Sustainable, not just scenic",
-    body: "Conscious, intentional travel that leaves as little behind as possible — but staying away isn't the answer either. Done right, tourism brings real income to the places we visit, which is why trust with the communities we work with comes first.",
+    text: "As he grew into adulthood, his yearning to learn more about the world developed into a profound connection to travel. Ravi found that as he travelled, not only did he learn about the world, but he learned about himself. He discovered his ability to make connections with people wherever he went, and to appreciate nature. With this ability, the world opened up to him.",
+    highlight: ["profound connection to travel"],
   },
   {
-    name: "Leave no waste",
-    body: "Every trip runs on a leave-no-waste policy. Most environmental harm comes from feeling disconnected from nature, so the trips are built to close that gap — once you've slept under it, you look after it.",
+    text: "Having discovered this, Ravi felt compelled to start a travel community—to share the wonders that the world has to offer and extend connections from east to west and north to south.",
+    highlight: ["start a travel community"],
   },
-] as const;
+  {
+    text: "⸻",
+    highlight: [],
+  },
+  {
+    text: "Untouchdestination is born out of a love for learning, adventure, and connection. These are at the core of each of our trips. Our trips are curated through personal connections members of the Untouch community have had with people or places they feel a desire to share with others.",
+    highlight: ["love for learning, adventure, and connection", "personal connections"],
+  },
+  {
+    text: "Usually, these connections are made through our members embarking on new adventures to quench their curiosity. Along the way, not all experiences will be remarkable, but those that are, we know we have to share with those who haven’t yet walked that path.",
+    highlight: [],
+  },
+  {
+    text: "So each of our destinations means something personal to us.",
+    highlight: ["each of our destinations means something personal to us"],
+  },
+  {
+    text: "The experiences that charm us range from questioning yourself when faced with the towering might of a Himalayan mountain, to sitting quietly with a local who has never been outside their village, to tasting the bursting flavours of a local dish you’ve never heard of before, to dancing at a festival thousands of years old.",
+    highlight: [],
+  },
+  {
+    text: "The list is endless—but each has broadened our perspective into the depth and brilliance of our world.",
+    highlight: ["depth and brilliance of our world"],
+  },
+];
 
-// Ground: ink, matching Reviews right after it. StoryTeaser (paper) precedes
-// both, so this keeps the paper -> ink hinge in one place instead of
-// flipping back to paper and immediately back to ink for Reviews. TrustBar
-// -> StrangerTrip already run two ink sections back to back elsewhere on
-// this page, so the repeat isn't a new pattern.
 export function AboutOwner() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="about" className="relative overflow-hidden bg-ink px-6 py-20 md:px-10 md:py-28">
-      <div className="sun-wash pointer-events-none absolute inset-0" aria-hidden />
-      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-12 md:items-start md:gap-8">
-        <div className="flex flex-col gap-6 md:col-span-7">
+    <section id="about" className="relative overflow-hidden bg-paper px-6 py-20 md:px-10 md:py-28 grain">
+
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-12 md:items-start md:gap-8">
+        
+        {/* Text Column */}
+        <div className="flex flex-col gap-10 md:col-span-7">
           <motion.h2
             initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl"
+            className="font-display text-4xl font-semibold tracking-tight text-ink md:text-5xl lg:text-6xl"
           >
-            It started with one traveller&apos;s curiosity: <HyperText>Ravi</HyperText>.
+            About <HyperText>Untouchdestination</HyperText>
           </motion.h2>
 
-          <p className="max-w-[62ch] text-base text-cloud md:text-lg">
-            Ravi grew up split between Delhi and his family&apos;s village in rural Haryana — a front-row seat
-            to how differently people live. Travel taught him as much about himself as it did about the world: he
-            found he could connect with almost anyone, wherever he landed, and that opened everything up. So he
-            started a travel community to share it — connecting east to west, north to south, built on
-            curiosity, adventure and the relationships members bring back with them.
-          </p>
-          {/* ponytail: no "Read the full story" link here — same reason as
-              StoryTeaser.tsx, there's no /our-story route to send it to. */}
-
-          <dl className="mt-4 flex flex-col">
-            {BEATS.map((beat, i) => (
-              <div key={beat.name} className={i === 0 ? "flex flex-col gap-2 py-5" : "flex flex-col gap-2 border-t border-paper/15 py-5"}>
-                <dt className="font-display text-lg font-semibold text-paper">{beat.name}</dt>
-                <dd className="max-w-[60ch] text-sm text-cloud md:text-base">{beat.body}</dd>
-              </div>
+          <div className="flex flex-col gap-10">
+            {PARAGRAPHS.map((paragraph, pIdx) => (
+              <motion.div
+                key={pIdx}
+                initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                className="flex flex-col gap-4"
+              >
+                {paragraph.text === "⸻" ? (
+                  <div className="my-2 text-ink/20 text-center text-2xl" aria-hidden>
+                    ⸻
+                  </div>
+                ) : (
+                  <BlurHighlight
+                    as="p"
+                    text={paragraph.text}
+                    highlight={paragraph.highlight}
+                    className="max-w-[62ch] text-base text-slate md:text-lg leading-relaxed"
+                  />
+                )}
+              </motion.div>
             ))}
-          </dl>
+          </div>
         </div>
 
+        {/* Image Column */}
         <motion.div
           initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: reduceMotion ? 0 : 0.1 }}
-          className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-lift md:col-span-5 md:col-start-8"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: reduceMotion ? 0 : 0.2 }}
+          className="sticky top-24 relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-lift md:col-span-5 md:col-start-8"
         >
           {/* TODO(client): placeholder — drop the real photo of Ravi into
               /public/images and add it to TRIP_PHOTOS or a new named export
               in lib/images.ts (see how StoryTeaser.tsx sources TRIP_PHOTOS[0]),
               then swap this div for a next/image using that export. */}
-          <div className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-paper/30 bg-night text-cloud">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-ink/30 bg-ink/5 text-slate">
             <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-10 w-10">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" />

@@ -52,7 +52,17 @@ const BLUR: Record<string, string> = {
   "/images/12.png": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAgCdASoJAAwAA4BaJbACdAYtp2whzNbElwAA/sp7MB8wDmHC7Z6pOGvAcDtiTybqaH1SCjCwnWmsWaaDOB120qpkcez29MQR9oP0ZgWuId7kz9/stX5s+eGkAA==",
   "/images/13.png": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoIAAwAA4BaJYgCdAEOtX00AAD98Hik0OdWhkDwl/Cs2/NOL1AW89z12zTnKIAA",
   "/images/14.JPEG": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IEYAAAAQAgCdASoMAAgAA4BaJZQC7AI0hT9YAAJ/M9B/P15bGy7aJk0x88G6bUvS2+15f0/S09gBfG0291xW/M7/r5tC12j378q216KAA",
+  "/Jibhi & Shangarh.png": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoMAAcAA4BaJYwCdAEUoxp+YAD337U8gmtfA7rIen9m8tdGQFDJpkh+DFavAbuGkAA=",
+  "/Kasardevi.png": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAwAgCdASoMAAgAA4BaJYgCdAEQXNROCaOGAAD5QrdETtl3pGihAlI4xJgzbsYycGzrhpzP8LV+b5H+fEwWJQgS68owfAXUZ7NWJ0fTpwAAAA==",
+  "/Chandratal.jpg": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoKAAwAA4BaJZACdAEOzBOk4AD+6hf3YWktwb7EaMckL23P2Yee4vou9ExiK0By63xF8AAA",
+  "/Zanskar.png": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAQAgCdASoMAAYAA4BaJYgCdH8AE73zwbqgAP7zMHGbaj8/zQXZhx0ByrtkhIIQ7v57rNJ1AhZZggAA",
+  "/darma.png": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoMAAYAA4BaJbACdADx+e1QAAD+7SgKWIvczkbJTVt/XxfyN9OqKxOSliBs1spHk++vkZ+O2lUuQnNkAAA=",
+  "/naggar.png": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoLAAwAA4BaJZACdAEf3P+5nrxAAP7Q1PXCXTbIMgyFMPYFdbD1CJ037119GdjMktvNIunUZ6cryykRAAA=",
+  "/sangla-chitkul.png": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACwAQCdASoMAAYAA4BaJZQAAu0U29pQAP5Yh2SgbDHFXNvVM9t87VK6v/mi4F+pstRB95rq1ehUeoOAAAA=",
+  "/spiti.png": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoMAAoAA4BaJYwCdADbUrmoAAD+YOkoACdfMFV8E4yoF6i/l3XCd6dyQW+LpnHFUGlAdMo1uUagnXSxAAA=",
+  "/zanskar-padum.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAgCdASoMAAgAA4BaJZACdGuAAqxjikSUAAD9rth9h1UfMscSkNJm1NRLqFo1L8syy15lHLFsHdp8SSAAAA==",
 };
+
 
 /** blurDataURL for a /public/images photo, or undefined if we have none. */
 export const blurFor = (src: string) => BLUR[src];

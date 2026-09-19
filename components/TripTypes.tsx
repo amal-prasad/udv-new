@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -18,27 +18,35 @@ type TripCard = {
 
 const CARDS: TripCard[] = [
   {
-    image: TRIP_PHOTOS[1],
-    name: "Group departures",
+    image: TRIP_PHOTOS[7],
+    name: "Slow travel",
     description:
-      "Fixed dates, fixed price, a capped group. You book a seat, not the whole trip. Every departure is confirmed once the minimum group size hits — no surprise cancellations two days out.",
-    ctaLabel: "View departures →",
+      "Not a checklist, a pause. Our retreats are built around actually resting — long mornings, one place, no rush to squeeze in 'one more thing' before checkout.",
+    ctaLabel: "See retreats →",
+    ctaHref: "#itineraries",
+  },
+  {
+    image: TRIP_PHOTOS[9],
+    name: "Travel without a map",
+    description:
+      "No hour-by-hour itinerary. We pick the direction, the road decides the rest. For people who'd rather wander somewhere than tick it off a list.",
+    ctaLabel: "Go off the plan →",
     ctaHref: "#itineraries",
   },
   {
     image: TRIP_PHOTOS[4],
-    name: "Customised trips",
+    name: "Adventure",
     description:
-      "Tell us your dates, your budget and the shape of the trip you want. We build the route, the stays, the pace. Everything from the vehicle to the last homestay picked for your group, not shared with strangers.",
-    ctaLabel: "Start planning →",
-    ctaHref: "#plan",
+      "Rafting, trekking, the stuff that gets your heart rate up. Built for people who want the trip to hurt a little, in the best way.",
+    ctaLabel: "Get moving →",
+    ctaHref: "#itineraries",
   },
   {
-    image: TRIP_PHOTOS[7],
-    name: "Experience trips",
+    image: TRIP_PHOTOS[1],
+    name: "Group trips",
     description:
-      "Built around one focus instead of covering ground — trekking-only routes, festival-timed trips, photography-led itineraries, food and village-stay trails. Deeper, slower, usually smaller.",
-    ctaLabel: "See experiences →",
+      "Fixed dates, fixed price, a capped group — every Friday. Book your spot, we take care of the rest. Every departure is confirmed once we hit the minimum group size, so no last-minute surprises. Come as strangers, leave as friends.",
+    ctaLabel: "View departures →",
     ctaHref: "#itineraries",
   },
 ];
@@ -62,9 +70,14 @@ export function TripTypes() {
       <div className="mx-auto grid max-w-6xl gap-x-12 gap-y-8 md:grid-cols-[280px_1fr] md:items-start">
         {/* Set against the opposite column, per DESIGN.md's rhythm rule —
             not another centred h2 over a grid. */}
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:sticky md:top-[14vh] md:text-4xl">
-          Three ways to travel with us.
-        </h2>
+        <div className="md:sticky md:top-[14vh]">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+            Experience trips
+          </h2>
+          <p className="mt-4 max-w-[42ch] text-sm text-slate md:text-base">
+            Some trips are about how many places you can cover. Ours are about how deeply you can experience one. Trek a route, lose yourself in a festival, follow a camera through the mountains, or stay awhile in a village kitchen. Smaller, slower, and built around what you'll actually remember.
+          </p>
+        </div>
 
         <div>
           {/* Below md: horizontal snap carousel, at every viewport height —
@@ -125,12 +138,6 @@ function CardCopy({ card }: { card: TripCard }) {
       <p className="max-w-[60ch] text-sm text-cloud md:text-base">
         {card.description}
       </p>
-      <Link
-        href={card.ctaHref}
-        className="mt-2 w-fit rounded-sm text-sm font-medium text-paper underline underline-offset-4 transition-colors hover:text-dawn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpenglow focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-      >
-        {card.ctaLabel}
-      </Link>
     </div>
   );
 }
@@ -214,12 +221,6 @@ function MobileTripCarousel({ cards }: { cards: TripCard[] }) {
             </div>
             <div className="flex flex-col items-start gap-3 px-1 pt-4">
               <p className="text-sm text-slate">{card.description}</p>
-              <Link
-                href={card.ctaHref}
-                className="rounded-sm text-sm font-medium text-ink underline underline-offset-4 transition-colors hover:text-alpenglow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alpenglow focus-visible:ring-offset-2"
-              >
-                {card.ctaLabel}
-              </Link>
             </div>
           </div>
         ))}

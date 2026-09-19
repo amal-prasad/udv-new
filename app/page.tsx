@@ -3,9 +3,9 @@ import { EscapeSection } from "@/components/EscapeSection";
 import { TripTypes } from "@/components/TripTypes";
 import { FeaturedItineraries } from "@/components/FeaturedItineraries";
 import { TrustBar } from "@/components/TrustBar";
-import { StrangerTrip } from "@/components/StrangerTrip";
+
 import { GalleryStrip } from "@/components/GalleryStrip";
-import { StoryTeaser } from "@/components/StoryTeaser";
+import { ResponsibleTraveling } from "@/components/ResponsibleTraveling";
 import { AboutOwner } from "@/components/AboutOwner";
 import { Reviews } from "@/components/Reviews";
 import { FaqPreview } from "@/components/FaqPreview";
@@ -50,9 +50,9 @@ export default function Home() {
         <TripTypes />
         <FeaturedItineraries />
         <TrustBar />
-        <StrangerTrip />
+
         <GalleryStrip />
-        <StoryTeaser />
+        <ResponsibleTraveling />
         <AboutOwner />
         <Reviews />
         <FaqPreview />
