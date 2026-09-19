@@ -12,8 +12,8 @@ import { TRIP_PHOTOS } from "@/lib/images";
  */
 export function EscapeSection() {
   return (
-    <section className="relative isolate flex min-h-[88svh] w-full flex-col overflow-hidden bg-summit">
-      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-5 px-6 pt-[18vh] text-center">
+    <section className="relative isolate flex w-full flex-col overflow-hidden bg-summit">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center gap-5 px-6 pt-[18vh] pb-24 text-center">
         {/* The headline is cut out of a trip photo — on this paper-white
             section the photo IS the colour. Darkened and saturated so the
             letterforms still read as type against the white. */}

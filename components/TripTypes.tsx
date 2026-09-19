@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { blurFor, TRIP_PHOTOS } from "@/lib/images";
 import { cn } from "@/lib/utils";
+import { HyperText } from "@/components/HyperText";
 
 type TripCard = {
   image: string;
@@ -72,7 +73,7 @@ export function TripTypes() {
             not another centred h2 over a grid. */}
         <div className="md:sticky md:top-[14vh]">
           <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-            Experience trips
+            <HyperText>Experience trips</HyperText>
           </h2>
           <p className="mt-4 max-w-[42ch] text-sm text-slate md:text-base">
             Some trips are about how many places you can cover. Ours are about how deeply you can experience one. Trek a route, lose yourself in a festival, follow a camera through the mountains, or stay awhile in a village kitchen. Smaller, slower, and built around what you'll actually remember.
