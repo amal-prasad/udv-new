@@ -1,29 +1,43 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { BlurHighlight } from "@/components/BlurHighlight";
 import { HyperText } from "@/components/HyperText";
+import { blurFor } from "@/lib/images";
 
 const PARAGRAPHS = [
   {
-    text: "Our founder, Ravi, spent his childhood split between the modern metropolis of Delhi and his familial village in rural Haryana. From a young age he witnessed the vast diversity and multitude manifestations of our world.",
-    highlight: ["vast diversity and multitude manifestations"],
+    text: "Untouchdestination started with a curiosity about the world that demanded to be explored and is born out of a love for adventure, discovery and connection.",
+    highlight: ["love for adventure, discovery and connection"],
   },
   {
-    text: "As he grew into adulthood, his yearning to learn more about the world developed into a profound connection to travel. Ravi found that as he travelled, not only did he learn about the world, but he learned about himself. He discovered his ability to make connections with people and nature wherever he went. With this ability, the world opened up to him.",
-    highlight: ["profound connection to travel", "make connections with people and nature"],
+    text: "We bring these essential values into each of our trips which are lovingly curated through connections that members of the Untouch community make with people or places as they travel.",
+    highlight: ["lovingly curated through connections"],
   },
   {
-    text: "Having discovered this, Ravi felt compelled to start a travel community. He wanted to share the wonders of the world and help people to come into connection from all corners of the earth.",
-    highlight: ["start a travel community"],
+    text: "So each of our destinations means something personal to us.",
+    highlight: ["something personal to us"],
+  },
+  {
+    text: "We love travel because it never fails to take us outside of our comfort zone and pushes us to experience the world and ourselves beyond our wildest dreams.",
+    highlight: ["take us outside of our comfort zone", "beyond our wildest dreams"],
+  },
+  {
+    text: "The experiences that charm us range from questioning yourself when faced with the towering might of a Himalayan mountain, to sitting quietly with a local who has never been outside their village, to tasting the bursting flavours of a local dish you’ve never heard of before, to dancing at a festival thousands of years old.",
+    highlight: ["towering might of a Himalayan mountain", "festival thousands of years old"],
+  },
+  {
+    text: "The list is endless, but each experience has broadened our perspective into the depth and brilliance of our world and untouchdestination is our way of sharing it with you.",
+    highlight: ["depth and brilliance of our world"],
   },
 ];
 
-export function AboutOwner() {
+export function AboutUntouch() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="about" className="relative overflow-hidden bg-paper px-6 py-20 md:px-10 md:py-28 grain">
+    <section id="about-untouch" className="relative overflow-hidden bg-paper px-6 py-20 md:px-10 md:py-28 grain">
 
       <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-12 md:items-start md:gap-8">
 
@@ -36,7 +50,7 @@ export function AboutOwner() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-4xl font-semibold tracking-tight text-ink md:text-5xl lg:text-6xl"
           >
-            About <HyperText>Ravi</HyperText>
+            About <HyperText>UntouchDestination</HyperText>
           </motion.h2>
 
           <div className="flex flex-col gap-10">
@@ -74,17 +88,15 @@ export function AboutOwner() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: reduceMotion ? 0 : 0.2 }}
           className="sticky top-24 relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-lift md:col-span-5 md:col-start-8"
         >
-          {/* TODO(client): placeholder — drop the real photo of Ravi into
-              /public/images and add it to TRIP_PHOTOS or a new named export
-              in lib/images.ts (see how StoryTeaser.tsx sources TRIP_PHOTOS[0]),
-              then swap this div for a next/image using that export. */}
-          <div className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-ink/30 bg-ink/5 text-slate">
-            <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-10 w-10">
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" />
-            </svg>
-            <span className="text-sm">Photo of Ravi — coming soon</span>
-          </div>
+          <Image
+            src="/images/14.JPEG"
+            alt="About UntouchDestination"
+            fill
+            sizes="(min-width: 768px) 42vw, 100vw"
+            placeholder="blur"
+            blurDataURL={blurFor("/images/14.JPEG")}
+            className="object-cover"
+          />
         </motion.div>
       </div>
     </section>
