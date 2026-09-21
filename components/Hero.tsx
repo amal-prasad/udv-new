@@ -66,7 +66,7 @@ export function Hero() {
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex min-h-[100svh] max-w-5xl flex-col justify-end gap-7 px-6 pb-16 pt-24 md:px-10 md:pb-32"
       >
-        <h1 className="font-display text-[clamp(2.5rem,11vw,3.75rem)] font-semibold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl">
+        <h1 className="font-display text-[clamp(2.25rem,8vw,3.25rem)] font-semibold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
           <span
             className="block bg-clip-text text-transparent"
             style={{
@@ -80,21 +80,11 @@ export function Hero() {
                 "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
             }}
           >
-            Strangers get on the bus.
-          </span>
-          <span
-            className="block font-extrabold text-summit"
-            style={{
-              filter:
-                "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
-            }}
-          >
-            Friends get off.
+            Open your heart to the world as we embark on a journey into the wilderness
           </span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
-          Small-group and custom trips across Himachal, Uttarakhand and the roads less mapped — for people who&apos;d
-          rather travel real than travel comfortable.
+          Small group and custom trips across India along roads less travelled. For those who are seeking authentic connection through adventure and ready embrace the journey, whatever it may bring.
         </p>
         <div className="flex flex-wrap items-center gap-4 pt-2">
           <Link
