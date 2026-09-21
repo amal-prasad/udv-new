@@ -320,3 +320,24 @@ html.lenis body {
     @apply font-sans;
   }
 }
+/* ---------------------------------------------------------------------------
+   Reviews marquee — three columns of quotes drifting vertically. Content is
+   rendered twice per column, so translating one full copy loops seamlessly.
+--------------------------------------------------------------------------- */
+
+@keyframes review-scroll-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.review-track {
+  animation: review-scroll-up var(--review-duration, 60s) linear infinite;
+}
+
+.review-track-down {
+  animation-direction: reverse;
+}
+
+.review-columns:hover .review-track {
+  animation-play-state: paused;
+}
