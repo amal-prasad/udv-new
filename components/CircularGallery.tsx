@@ -411,6 +411,7 @@ class Media {
 class App {
   container: any;
   scrollSpeed: any;
+  autoScrollSpeed: any;
   scroll: any;
   onCheckDebounce: any;
   renderer: any;
@@ -441,12 +442,14 @@ class App {
       borderRadius = 0,
       font = 'bold 30px Figtree',
       scrollSpeed = 2,
-      scrollEase = 0.05
+      scrollEase = 0.05,
+      autoScrollSpeed = 2
     }: any = {}
   ) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
+    this.autoScrollSpeed = autoScrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
     this.createRenderer();
@@ -588,6 +591,9 @@ class App {
     }
   }
   update() {
+    if (!this.isDown && this.autoScrollSpeed) {
+      this.scroll.target += this.autoScrollSpeed * 0.01;
+    }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -648,7 +654,8 @@ export default function CircularGallery({
   font = 'bold 30px Figtree',
   fontUrl,
   scrollSpeed = 2,
-  scrollEase = 0.05
+  scrollEase = 0.05,
+  autoScrollSpeed = 2
 }: any) {
   const containerRef = useRef<HTMLDivElement>(null);
   // Init from matchMedia synchronously (not in an effect) so the first client render
@@ -680,7 +687,8 @@ export default function CircularGallery({
         borderRadius,
         font: resolvedFont,
         scrollSpeed,
-        scrollEase
+        scrollEase,
+        autoScrollSpeed
       });
     });
 
@@ -688,15 +696,22 @@ export default function CircularGallery({
       isMounted = false;
       if (app) app.destroy();
     };
-  }, [items, effectiveBend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase]);
-  
+  }, [items, effectiveBend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, autoScrollSpeed]);
+
   return (
-    <div
-      className="circular-gallery"
-      ref={containerRef}
-      tabIndex={0}
-      role="region"
-      aria-label="Circular image gallery. Use left and right arrow keys to navigate."
-    />
+    <div className="circular-gallery-wrap">
+      <div className="circular-gallery-hint">
+        <span className="circular-gallery-arrow circular-gallery-arrow-left" aria-hidden="true">←</span>
+        <span className="circular-gallery-hint-text">Drag to explore</span>
+        <span className="circular-gallery-arrow circular-gallery-arrow-right" aria-hidden="true">→</span>
+      </div>
+      <div
+        className="circular-gallery"
+        ref={containerRef}
+        tabIndex={0}
+        role="region"
+        aria-label="Circular image gallery. Use left and right arrow keys to navigate."
+      />
+    </div>
   );
 }

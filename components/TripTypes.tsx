@@ -42,14 +42,6 @@ const CARDS: TripCard[] = [
     ctaLabel: "Get moving →",
     ctaHref: "#itineraries",
   },
-  {
-    image: TRIP_PHOTOS[1],
-    name: "Group trips",
-    description:
-      "Fixed dates, fixed price, a capped group — every Friday. Book your spot, we take care of the rest. Every departure is confirmed once we hit the minimum group size, so no last-minute surprises. Come as strangers, leave as friends.",
-    ctaLabel: "View departures →",
-    ctaHref: "#itineraries",
-  },
 ];
 
 // Alpenglow scrim: warm light entering top-right, cooling to deep ink at the

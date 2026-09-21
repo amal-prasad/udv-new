@@ -1,3 +1,43 @@
+.circular-gallery-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.circular-gallery-hint {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.circular-gallery-arrow {
+  font-size: 18px;
+  animation: circular-gallery-bounce 1.6s ease-in-out infinite;
+}
+
+.circular-gallery-arrow-left {
+  animation-direction: alternate;
+}
+
+.circular-gallery-arrow-right {
+  animation-direction: alternate-reverse;
+}
+
+@keyframes circular-gallery-bounce {
+  0% { transform: translateX(0); opacity: 0.5; }
+  100% { transform: translateX(-6px); opacity: 1; }
+}
+
 .circular-gallery {
   width: 100%;
   height: 100%;
