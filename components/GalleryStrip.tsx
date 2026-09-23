@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { blurFor, TRIP_PHOTOS } from "@/lib/images";
+import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 
 const COLUMN_COUNT = 4;
@@ -22,6 +23,8 @@ const COLUMNS = Array.from({ length: COLUMN_COUNT }, (_, col) =>
 const IMAGE_SIZES = "(min-width: 768px) 25vw, 50vw";
 
 export function GalleryStrip() {
+  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)");
+
   return (
     <section className="relative w-full overflow-hidden bg-paper py-[8vh]">
       {/* Not a boxed heading — a caption sitting on the photographs
@@ -34,25 +37,29 @@ export function GalleryStrip() {
       </div>
 
       {/* Reduced motion: static grid, no scroll-linked movement. */}
-      <div className="grid grid-cols-2 gap-2 motion-safe:hidden md:grid-cols-4">
-        {COLUMNS.flat().map((src, i) => (
-          <div key={i} className="relative aspect-[3/4] overflow-hidden">
-            <Image
-              src={src}
-              alt=""
-              fill
-              sizes={IMAGE_SIZES}
-              placeholder="blur"
-              blurDataURL={blurFor(src)}
-              className="object-cover"
-            />
-          </div>
-        ))}
-      </div>
+      {reduce !== false && (
+        <div className="grid grid-cols-2 gap-2 motion-safe:hidden md:grid-cols-4">
+          {COLUMNS.flat().map((src, i) => (
+            <div key={i} className="relative aspect-[3/4] overflow-hidden">
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes={IMAGE_SIZES}
+                placeholder="blur"
+                blurDataURL={blurFor(src)}
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      )}
 
-      <div className="hidden motion-safe:block">
-        <ParallaxColumns />
-      </div>
+      {reduce !== true && (
+        <div className="hidden motion-safe:block">
+          <ParallaxColumns />
+        </div>
+      )}
     </section>
   );
 }

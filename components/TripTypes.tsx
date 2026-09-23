@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import { blurFor, TRIP_PHOTOS } from "@/lib/images";
+import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 import { HyperText } from "@/components/HyperText";
 
@@ -55,6 +56,10 @@ const SCRIM_STYLE: React.CSSProperties = {
 };
 
 export function TripTypes() {
+  // null until hydrated: SSR keeps all three variants, client keeps one.
+  const isMd = useMediaQuery("(min-width: 768px)");
+  const reduce = useMediaQuery("(prefers-reduced-motion: reduce)");
+
   return (
     <section
       id="trip-types"
@@ -79,23 +84,29 @@ export function TripTypes() {
               screens tall. Carousel replaces it entirely on mobile, motion
               preference or not (see MobileTripCarousel for how reduced
               motion is handled inside it). */}
-          <div className="md:hidden">
-            <MobileTripCarousel cards={CARDS} />
-          </div>
+          {isMd !== true && (
+            <div className="md:hidden">
+              <MobileTripCarousel cards={CARDS} />
+            </div>
+          )}
 
           {/* md and up, reduced motion: plain stacked cards, no pin/scale. */}
-          <div className="hidden md:motion-reduce:flex md:flex-col md:gap-8">
-            {CARDS.map((card) => (
-              <StaticCard key={card.name} card={card} />
-            ))}
-          </div>
+          {isMd !== false && reduce !== false && (
+            <div className="hidden md:motion-reduce:flex md:flex-col md:gap-8">
+              {CARDS.map((card) => (
+                <StaticCard key={card.name} card={card} />
+              ))}
+            </div>
+          )}
 
           {/* md and up, motion-safe: the sticky-scale-blur mechanic, untouched. */}
-          <div className="hidden md:motion-safe:flex md:flex-col">
-            {CARDS.map((card) => (
-              <StickyTripCard key={card.name} card={card} />
-            ))}
-          </div>
+          {isMd !== false && reduce !== true && (
+            <div className="hidden md:motion-safe:flex md:flex-col">
+              {CARDS.map((card) => (
+                <StickyTripCard key={card.name} card={card} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
