@@ -2,18 +2,13 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-// Placeholder figures — swap for real numbers once the client confirms them.
-const STATS = [
-  { value: "40+", label: "trips run" },
-  { value: "600+", label: "travellers" },
-  { value: "5 years", label: "on the road" },
-  { value: "4.9★", label: "average rating" },
-] as const;
+import { STATS } from "@/lib/social-proof";
 
 // A thin punctuation band between two big sections, not another section of
 // its own — dark, short, lit the same way the ink sections around it are.
 export function TrustBar() {
   const reduceMotion = useReducedMotion();
+  if (STATS.length === 0) return null;
 
   return (
     <section className="relative overflow-hidden bg-ink">

@@ -1,75 +1,11 @@
-type Review = {
-  quote: string;
-  name: string;
-  trip: string;
-};
-
-// Placeholder quotes in the brand voice, awaiting real traveller reviews
-// from the client. Same shape (quote/name/trip) so swapping in real
-// testimonials later is a data-only change.
-const REVIEWS: Review[] = [
-  {
-    quote:
-      "Booked solo, left with a group chat I still use. The itinerary had just enough plan and just enough nothing planned.",
-    name: "Ananya",
-    trip: "Spiti Valley circuit",
-  },
-  {
-    quote:
-      "No brochure PDFs, no runaround — just a WhatsApp reply within the hour and a trip that actually matched it.",
-    name: "Rohit",
-    trip: "Kedarkantha winter trek",
-  },
-  {
-    quote:
-      "Went in expecting a standard tour group, got a small crew and a guide who clearly loved the route more than the job.",
-    name: "Meera",
-    trip: "Ladakh monasteries road trip",
-  },
-  {
-    quote:
-      "The homestay night wasn't on any brochure. We ate what the family ate, and that's the evening everyone still talks about.",
-    name: "Devika",
-    trip: "Kinnaur slow route",
-  },
-  {
-    quote:
-      "First high-altitude trek and I was quietly terrified. Nobody rushed me, nobody made it a thing. I walked up at my own pace and made it.",
-    name: "Sameer",
-    trip: "Hampta Pass crossing",
-  },
-  {
-    quote:
-      "Weather turned on day three and the whole plan changed by evening. It changed well — we ended up somewhere better than the original stop.",
-    name: "Tanvi",
-    trip: "Zanskar winter run",
-  },
-  {
-    quote:
-      "I'd stopped expecting travel companies to be honest about what a trip actually costs. These folks were, down to the last add-on.",
-    name: "Arjun",
-    trip: "Meghalaya living roots",
-  },
-  {
-    quote:
-      "Came back and realised I hadn't opened work email in nine days. Didn't even decide to — there was just never a moment I wanted to.",
-    name: "Nikhil",
-    trip: "Spiti Valley circuit",
-  },
-  {
-    quote:
-      "They kept the group small enough that by day two we were splitting snacks and finishing each other's sentences. That's the whole thing, really.",
-    name: "Priya",
-    trip: "Sandakphu ridge walk",
-  },
-];
+import { REVIEWS, type Review } from "@/lib/social-proof";
 
 // Three columns, each a seamless vertical loop. Middle column runs the other
 // way so the wall never reads as one block sliding.
 const COLUMNS: { items: Review[]; duration: string; reverse: boolean }[] = [
-  { items: [REVIEWS[0], REVIEWS[3], REVIEWS[6]], duration: "34s", reverse: false },
-  { items: [REVIEWS[1], REVIEWS[4], REVIEWS[7]], duration: "42s", reverse: true },
-  { items: [REVIEWS[2], REVIEWS[5], REVIEWS[8]], duration: "38s", reverse: false },
+  { items: REVIEWS.filter((_, i) => i % 3 === 0), duration: "34s", reverse: false },
+  { items: REVIEWS.filter((_, i) => i % 3 === 1), duration: "42s", reverse: true },
+  { items: REVIEWS.filter((_, i) => i % 3 === 2), duration: "38s", reverse: false },
 ];
 
 function QuoteCard({ review }: { review: Review }) {
@@ -87,6 +23,8 @@ function QuoteCard({ review }: { review: Review }) {
 }
 
 export function Reviews() {
+  if (REVIEWS.length === 0) return null;
+
   return (
     // Ink, not paper: GalleryStrip, StoryTeaser and FaqPreview are all pale,
     // and four pale sections in a row is exactly the flat rhythm the brief
@@ -122,10 +60,16 @@ export function Reviews() {
               }`}
               style={{ ["--review-duration" as string]: column.duration }}
             >
-              {/* Rendered twice — the loop translates exactly one copy. */}
-              {[...column.items, ...column.items].map((review, i) => (
+              {column.items.map((review, i) => (
                 <QuoteCard key={`${review.name}-${i}`} review={review} />
               ))}
+              {/* Loop copy — the animation translates exactly one set. Hidden
+                  from crawlers and assistive tech so each quote reads once. */}
+              <div aria-hidden inert className="flex flex-col gap-5 md:gap-6">
+                {column.items.map((review, i) => (
+                  <QuoteCard key={`${review.name}-copy-${i}`} review={review} />
+                ))}
+              </div>
             </div>
           ))}
         </div>

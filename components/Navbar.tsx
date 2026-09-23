@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { label: "Trips", href: "#itineraries" },
   { label: "Trip Types", href: "#trip-types" },
   { label: "Our Story", href: "#story" },
-  { label: "Reviews", href: "#reviews" },
+  // Reviews link returns with real reviews (lib/social-proof.ts).
   { label: "FAQ", href: "#faq" },
 ];
 
