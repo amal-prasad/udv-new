@@ -14,7 +14,14 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<LenisRef>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Reduced motion: hand the wheel back to the browser. Lenis stays mounted
+    // (other code reads the root instance), but the raf loop must keep running
+    // — skipping it left Lenis swallowing wheel events and the page couldn't
+    // scroll at all.
+    const lenis = lenisRef.current?.lenis;
+    if (lenis && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      lenis.options.smoothWheel = false;
+    }
 
     const update = (time: number) => lenisRef.current?.lenis?.raf(time * 1000);
     gsap.ticker.add(update);
@@ -25,7 +32,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <ReactLenis root ref={lenisRef} options={{ autoRaf: false }}>
+    <ReactLenis root ref={lenisRef} options={{ autoRaf: false, respectReducedMotion: true }}>
       {children}
     </ReactLenis>
   );
