@@ -14,16 +14,17 @@
 - [x] Clusters: spiti valley trip / himachal group trip / uttarakhand offbeat trip
 - [x] `docs/seo/01-strategy.md`
 - [x] `docs/seo/keyword-map.md` + final slugs
-- [ ] CHECKPOINT 2 approved
+- [x] CHECKPOINT 2 approved (owner: proceed, questions in docs/owner-todo.md)
 
 ## Phase 3 — Live bugs
-- [ ] 3.1 `lib/site-config.ts`, fix footer WhatsApp
-- [ ] 3.2 MaskedHeading readable text
-- [ ] 3.3 Single SSR set, client-side clones `aria-hidden` + `inert`
-- [ ] 3.4 Reviews/stats data file with `verified` flag (ask client)
-- [ ] 3.5 Keyword H1, tagline demoted
-- [ ] 3.6 Image rename/convert, alt text, sizes, single priority
-- [ ] 3.7 Brand name, typos, hide Ravi placeholder, address TODO
+- [x] 3.1 `lib/site-config.ts`, fix footer WhatsApp
+- [x] 3.2 MaskedHeading readable text
+- [x] 3.3 Single SSR set, client-side clones `aria-hidden` + `inert`
+- [x] 3.4 Reviews/stats data file with `verified` flag (ask client)
+- [x] 3.5 Keyword H1, tagline demoted
+- [x] 3.6 Image rename/convert, alt text, sizes, single priority
+- [x] 3.7 Brand name, typos, hide Ravi placeholder, address TODO
+- [x] Footer legal links hidden until pages exist
 - [ ] Redeploy; CHECKPOINT 3
 
 ## Phase 4 — Technical foundation
