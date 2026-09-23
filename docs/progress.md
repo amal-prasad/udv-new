@@ -32,3 +32,12 @@
 - Footer legal links hidden until client sends copy (a9007e2).
 - `next build` passes. Local smoke: WhatsApp href correct, no camera filenames in HTML.
 - Unused files left in `public/` (`images/all-peeps.png`, `images/jibhi.png`, `images/logo.png`, `images/peeps/`): not referenced, delete when convenient.
+- Redeployed Phase 3 (132cd77). Live Lighthouse mobile: perf 47, SEO 100, a11y 92; LCP 6.9 → 5.8 s, CLS 0, TBT 1.35 s.
+
+## 2026-09-23 — Phase 4: technical foundation
+- `app/robots.ts` + `app/sitemap.ts` from `SITE.url` (02a7ba0).
+- Root metadata: `metadataBase`, title template, keyword title/description, OG/Twitter, default `app/opengraph-image.jpg`; canonical on `/` only (7182d69).
+- `components/JsonLd.tsx` + TravelAgency (no address, no ratings) in layout (c8e4d01). FAQPage deferred: FAQ answers are placeholders.
+- CircularGallery: WebGL init via IntersectionObserver, 1080px optimizer textures (5ce6333).
+- Bug: with prefers-reduced-motion the page could not wheel-scroll (Lenis swallowed wheel, raf never ran). Fixed (d91f748), verified in Chrome both modes.
+- LCP blocked on design call (loader + hero fade) → owner-todo.

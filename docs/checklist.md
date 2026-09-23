@@ -28,13 +28,16 @@
 - [ ] Redeploy; CHECKPOINT 3
 
 ## Phase 4 — Technical foundation
-- [ ] Root metadata (metadataBase, template, OG, twitter, canonical)
-- [ ] Per-route titles/descriptions
-- [ ] `opengraph-image.tsx` per trip
-- [ ] `app/sitemap.ts`, `app/robots.ts`
-- [ ] `<JsonLd>`: TravelAgency/Organization, TouristTrip, FAQPage, BreadcrumbList
-- [ ] No CLS, SSR copy, Lenis anchors/back-forward, reduced motion
-- [ ] LCP < 2.5 s, CLS < 0.1, INP < 200 ms
+- [x] Root metadata (metadataBase, template, OG, twitter, canonical)
+- [ ] Per-route titles/descriptions (with Phase 5 routes)
+- [x] Default `app/opengraph-image.jpg`
+- [ ] OG image per trip (with Phase 5 routes)
+- [x] `app/sitemap.ts`, `app/robots.ts`
+- [x] `<JsonLd>` + TravelAgency
+- [ ] TouristTrip, BreadcrumbList (Phase 5 routes)
+- [ ] FAQPage (blocked: FAQ copy approval, owner-todo)
+- [x] CLS 0; reduced-motion scroll bug fixed; WebGL gallery lazy-init
+- [ ] LCP < 2.5 s (5.8 s now; loader + hero fade need owner OK), TBT 1.35 s (JS weight: gsap + framer + ogl + lenis)
 
 ## Phase 5 — Pages
 - [ ] `data/trips.ts`

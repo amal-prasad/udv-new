@@ -40,6 +40,9 @@ Work continues without these. Anything missing stays `TODO:` in code and is left
 ## FAQ copy
 - [ ] Approve or correct the 3 homepage FAQ answers (they're placeholders). Two need facts: "a large share of our groups are solo women" (true?) and "every itinerary lists a difficulty level" (we don't show one yet — give a level per trip, or drop the line). FAQ schema goes live after approval.
 
+## Design decision (speed)
+- [ ] The 1.6 s logo loading screen and the hero text fade-in are the main reason the page's main content shows at ~5.8 s on mobile (Google wants < 2.5 s). OK to (a) shorten the loader to ~0.5 s or show it only on first visit, and (b) show the hero headline immediately (photo still fades/parallaxes)? Nothing else about the look changes.
+
 ## Photos
 - [ ] Any trip photos you own that should replace current ones (best: 1 landscape per trip, 1600px+).
 
