@@ -15,13 +15,11 @@ const QUICK_LINKS = [
   { label: "Contact", href: "/#plan" },
 ];
 
-// TODO(client): these three routes do not exist yet and currently 404. The
-// copy has to come from the client — do not ship without them.
-const LEGAL_LINKS = [
-  { label: "Terms & Conditions", href: "/terms" },
-  { label: "Cancellation Policy", href: "/cancellation-policy" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-];
+// TODO(client): Terms & Conditions (/terms), Cancellation Policy
+// (/cancellation-policy) and Privacy Policy (/privacy-policy) go back here once
+// the client sends the copy (docs/owner-todo.md). Linking to 404s until then
+// only hurts crawl quality.
+const LEGAL_LINKS: { label: string; href: string }[] = [];
 
 // Size stays at the call site — the legal row is text-xs, the columns text-sm.
 const FOOTER_LINK_CLASS =
@@ -107,7 +105,6 @@ export function Footer() {
           ))}
         </div>
         <p>
-          {/* [City] is a placeholder — real base city pending from the client. */}
           © 2026 Untouch Destination. Based in Chandigarh, with trips across
           Himachal, Uttarakhand & beyond.
         </p>
