@@ -80,7 +80,7 @@ export function Hero() {
                 "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
             }}
           >
-            Open your heart to the world as we embark on a journey into the wilderness
+            Small-group trips across Himachal &amp; Uttarakhand for solo travellers
           </span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
