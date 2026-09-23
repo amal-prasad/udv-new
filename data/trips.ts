@@ -1,5 +1,3 @@
-import { TRIP_PHOTOS } from "@/lib/images";
-
 export type ItineraryDay = {
   /** "Day 0", "Day 1", "Night before" — printed as-is. */
   label: string;
@@ -8,7 +6,12 @@ export type ItineraryDay = {
 };
 
 export type Itinerary = {
+  /** URL segment: /trips/[slug]. Keyword-bearing, see docs/seo/keyword-map.md. */
   slug: string;
+  /** <title> text (the layout template appends the brand). */
+  seoTitle: string;
+  /** Meta description, max 160 chars. */
+  description: string;
   title: string;
   region: string;
   duration: string;
@@ -25,12 +28,17 @@ export type Itinerary = {
   photo: string;
 };
 
-// Source of truth: untouch_destination_itineraries.md, as supplied by the
+// Single source of truth for trip facts: homepage cards, /trips pages,
+// destination hubs, sitemap and schema all read from here.
+// Content source: untouch_destination_itineraries.md, as supplied by the
 // client. No prices and no seat counts here on purpose — those were invented
 // placeholders in the old list and the real sheet quotes neither.
 export const ITINERARIES: Itinerary[] = [
   {
-    slug: "jibhi-shangarh",
+    slug: "jibhi-shangarh-trip-from-delhi",
+    seoTitle: "Jibhi & Shangarh Trip from Delhi",
+    description:
+      "Jibhi trip from Delhi: 4 days of Jibhi Waterfall, a sunset trek to Raghupur Fort, camping at Jalori Pass and the meadows of Shangarh.",
     title: "Jibhi & Shangarh",
     region: "Himachal Pradesh",
     duration: "4 days",
@@ -74,7 +82,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "kasar-devi-munsiyari-khaliya-top",
+    slug: "kasar-devi-munsiyari-khaliya-top-trip",
+    seoTitle: "Munsiyari & Kasar Devi Trip from Delhi",
+    description:
+      "Munsiyari trip from Delhi: 4 days from Kasar Devi to Munsiyari and a camp at Khaliya Top, with Panchachuli right in front of you.",
     title: "Kasar Devi · Munsiyari · Khaliya Top",
     region: "Uttarakhand",
     duration: "3 nights / 4 days",
@@ -118,7 +129,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "manali-chandratal",
+    slug: "manali-chandratal-trip",
+    seoTitle: "Manali Chandratal Trip from Delhi",
+    description:
+      "Manali Chandratal trip from Delhi: 3 days through the Atal Tunnel to Chandratal Lake at 4,300 m, with lakeside camping and stargazing.",
     title: "Manali & Chandratal",
     region: "Himachal Pradesh",
     duration: "3 days / 2 nights",
@@ -156,7 +170,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "manali-to-zanskar",
+    slug: "manali-to-zanskar-expedition",
+    seoTitle: "Manali to Zanskar Expedition",
+    description:
+      "Manali to Zanskar expedition from Delhi: over Shinku La (16,580 ft) to camp at Gumbok Rangan and trek to the cliffside Phuktal Monastery.",
     title: "A Himalayan Expedition: Manali to Zanskar",
     region: "Himachal & Ladakh",
     duration: "4 days / 3 nights",
@@ -206,7 +223,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "untouched-himalayas-darma-darchula",
+    slug: "darma-valley-darchula-trip",
+    seoTitle: "Darma Valley Trip from Delhi",
+    description:
+      "Darma Valley trip from Delhi: 7 days via Kasar Devi, Munsiyari and Khaliya Top into the remote Darma Valley and the border town of Darchula.",
     title: "Into the Untouched Himalayas",
     region: "Uttarakhand",
     duration: "7 days / 6 nights",
@@ -265,7 +285,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "naggar-parashar",
+    slug: "naggar-parashar-lake-trip",
+    seoTitle: "Naggar & Parashar Lake Trip from Delhi",
+    description:
+      "Naggar and Parashar Lake trip from Delhi: 4 days with Naggar Castle, sunset at the Parashar Rishi Temple lake and a Himachali thali at Jana Waterfall.",
     title: "Naggar & Parashar",
     region: "Himachal Pradesh",
     duration: "4 days / 3 nights",
@@ -303,7 +326,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "sangla-chitkul-kalpa",
+    slug: "sangla-chitkul-kalpa-trip",
+    seoTitle: "Sangla Chitkul Kalpa Trip from Delhi",
+    description:
+      "Sangla, Chitkul and Kalpa trip from Delhi: 4 days in Kinnaur, from the last village on the Indo-Tibetan border to sunrise over Kinner Kailash.",
     title: "Sangla · Chitkul · Kalpa",
     region: "Kinnaur, Himachal",
     duration: "3 nights / 4 days",
@@ -352,7 +378,10 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
   {
-    slug: "spiti-circuit",
+    slug: "spiti-valley-circuit-group-trip",
+    seoTitle: "Spiti Valley Trip from Delhi: 7-Day Circuit",
+    description:
+      "Spiti Valley trip from Delhi: a 7-day small-group circuit via Kalpa, Tabo, Kaza, Hikkim, Komik, Langza, Nako and Chitkul. Full day-by-day plan.",
     title: "Spiti Circuit",
     region: "Spiti, Himachal",
     duration: "6 nights / 7 days",
@@ -413,6 +442,9 @@ export const ITINERARIES: Itinerary[] = [
   },
   {
     slug: "zanskar-padum-circuit",
+    seoTitle: "Zanskar Padum Circuit: 6-Day Trip",
+    description:
+      "Zanskar Padum circuit from Delhi: 6 days via Shinku La to Padum, Sani, Pensi La and the Drang Drung Glacier, ending at Phuktal Monastery.",
     title: "Zanskar Padum Circuit",
     region: "Ladakh & Himachal",
     duration: "6 days / 5 nights",
@@ -472,3 +504,5 @@ export const ITINERARIES: Itinerary[] = [
     ],
   },
 ];
+
+export const tripBySlug = (slug: string) => ITINERARIES.find((t) => t.slug === slug);
