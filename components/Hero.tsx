@@ -84,7 +84,7 @@ export function Hero() {
           </span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
-          Small group and custom trips across India along roads less travelled. For those who are seeking authentic connection through adventure and ready embrace the journey, whatever it may bring.
+          Small group and custom trips across India along roads less travelled. For those who are seeking authentic connection through adventure and ready to embrace the journey, whatever it may bring.
         </p>
         <div className="flex flex-wrap items-center gap-4 pt-2">
           <Link

@@ -78,12 +78,11 @@ export function AboutOwner() {
               /public/images and add it to TRIP_PHOTOS or a new named export
               in lib/images.ts (see how StoryTeaser.tsx sources TRIP_PHOTOS[0]),
               then swap this div for a next/image using that export. */}
-          <div className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-ink/30 bg-ink/5 text-slate">
+          <div aria-hidden className="flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-ink/30 bg-ink/5 text-slate">
             <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="h-10 w-10">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8" />
             </svg>
-            <span className="text-sm">Photo of Ravi — coming soon</span>
           </div>
         </motion.div>
       </div>

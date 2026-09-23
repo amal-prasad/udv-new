@@ -8,7 +8,7 @@ import { blurFor } from "@/lib/images";
 
 const PARAGRAPHS = [
   {
-    text: "Untouchdestination started with a curiosity about the world that demanded to be explored and is born out of a love for adventure, discovery and connection.",
+    text: "Untouch Destination started with a curiosity about the world that demanded to be explored and is born out of a love for adventure, discovery and connection.",
     highlight: ["love for adventure, discovery and connection"],
   },
   {
@@ -50,7 +50,7 @@ export function AboutUntouch() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-4xl font-semibold tracking-tight text-ink md:text-5xl lg:text-6xl"
           >
-            About <HyperText>UntouchDestination</HyperText>
+            About <HyperText>Untouch Destination</HyperText>
           </motion.h2>
 
           <div className="flex flex-col gap-10">
@@ -90,7 +90,7 @@ export function AboutUntouch() {
         >
           <Image
             src="/images/14.JPEG"
-            alt="About UntouchDestination"
+            alt="About Untouch Destination"
             fill
             sizes="(min-width: 768px) 42vw, 100vw"
             placeholder="blur"
