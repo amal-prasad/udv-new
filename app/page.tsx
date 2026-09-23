@@ -35,7 +35,9 @@ const galleryItems = [
   { image: "/images/group-art-session-forest.jpg", text: "Reconnect" },
   { image: "/images/group-selfie-prayer-flags.jpg", text: "Adventures" },
   { image: "/images/snow-peaks-pine-valley.jpg", text: "Memories" },
-];
+  // WebGL textures load via plain Image(), so size them through the image
+  // optimizer by hand instead of pulling the 2048px originals.
+].map((item) => ({ ...item, image: `/_next/image?url=${encodeURIComponent(item.image)}&w=1080&q=75` }));
 
 /**
  * Section order is the argument the page makes, in order:

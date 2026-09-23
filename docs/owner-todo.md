@@ -37,6 +37,9 @@ Work continues without these. Anything missing stays `TODO:` in code and is left
 - [ ] Real reviews: name (or initials), trip, month/year, text, and where it came from (Google, Instagram DM, WhatsApp). Only verifiable ones.
 - [ ] Real stats: trips run, travellers hosted, years operating — numbers you can stand behind.
 
+## FAQ copy
+- [ ] Approve or correct the 3 homepage FAQ answers (they're placeholders). Two need facts: "a large share of our groups are solo women" (true?) and "every itinerary lists a difficulty level" (we don't show one yet — give a level per trip, or drop the line). FAQ schema goes live after approval.
+
 ## Photos
 - [ ] Any trip photos you own that should replace current ones (best: 1 landscape per trip, 1600px+).
 

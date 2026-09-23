@@ -678,22 +678,33 @@ export default function CircularGallery({
     if (!containerRef.current) return;
     let app: any;
     let isMounted = true;
-    resolveFont(font, fontUrl).then(resolvedFont => {
-      if (!isMounted || !containerRef.current) return;
-      app = new App(containerRef.current, {
-        items,
-        bend: effectiveBend,
-        textColor,
-        borderRadius,
-        font: resolvedFont,
-        scrollSpeed,
-        scrollEase,
-        autoScrollSpeed
-      });
-    });
+    // WebGL setup + 15 textures is heavy; don't pay for it until the gallery
+    // is about to scroll into view.
+    const io = new IntersectionObserver(
+      entries => {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        resolveFont(font, fontUrl).then(resolvedFont => {
+          if (!isMounted || !containerRef.current) return;
+          app = new App(containerRef.current, {
+            items,
+            bend: effectiveBend,
+            textColor,
+            borderRadius,
+            font: resolvedFont,
+            scrollSpeed,
+            scrollEase,
+            autoScrollSpeed
+          });
+        });
+      },
+      { rootMargin: '600px 0px' }
+    );
+    io.observe(containerRef.current);
 
     return () => {
       isMounted = false;
+      io.disconnect();
       if (app) app.destroy();
     };
   }, [items, effectiveBend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase, autoScrollSpeed]);
