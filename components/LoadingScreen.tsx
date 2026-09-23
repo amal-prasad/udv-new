@@ -49,7 +49,7 @@ export function LoadingScreen({ onFinish }: { onFinish?: () => void }) {
                 width={424}
                 height={190}
                 className="h-24 w-auto"
-                priority
+                loading="eager"
               />
             </motion.div>
             <div className="flex gap-1.5">

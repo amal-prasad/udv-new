@@ -302,7 +302,7 @@ const MaskedHeading = ({
               <video className="masked-heading__source" src={src} poster={poster} autoPlay muted loop playsInline />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img className="masked-heading__source" src={src} alt="" draggable={false} />
+              <img className="masked-heading__source" src={src} alt="" loading="lazy" draggable={false} />
             )}
           </span>
         </span>

@@ -39,7 +39,7 @@ export function Hero() {
           src={HERO_IMAGE}
           alt="Snow-capped Himalayan peaks above a pine-forested valley"
           fill
-          priority
+          preload
           quality={82}
           sizes="100vw"
           placeholder="blur"

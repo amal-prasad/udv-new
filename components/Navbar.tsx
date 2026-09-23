@@ -96,7 +96,7 @@ export function Navbar() {
               width={424}
               height={190}
               className="h-10 w-auto"
-              priority
+              loading="eager"
             />
           </Link>
 
