@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { BlurHighlight } from "@/components/BlurHighlight";
 import { Globe } from "@/components/Globe";
-import { WHATSAPP_NUMBER } from "@/components/WhatsAppCta";
+import { SITE } from "@/lib/site-config";
 import { blurFor } from "@/lib/images";
 import { ITINERARIES, type Itinerary } from "@/lib/itineraries";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,7 @@ const PHOTO_SCRIM =
 
 function tripWhatsAppHref(trip: Itinerary) {
   const message = `Hi! I'd like details on the ${trip.title} trip (${trip.duration}).`;
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
 export function FeaturedItineraries() {

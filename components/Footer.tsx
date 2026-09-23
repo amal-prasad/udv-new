@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { LOGO_LIGHT } from "@/lib/images";
-import { WHATSAPP_NUMBER } from "@/components/WhatsAppCta";
+import { SITE } from "@/lib/site-config";
 
 // app/page.tsx is the only route that exists, so every quick link is an
 // in-page anchor. /our-story and /faq were 404s.
@@ -14,12 +14,6 @@ const QUICK_LINKS = [
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#plan" },
 ];
-
-// Placeholder contact details — real email/Instagram handle pending from the
-// client.
-const CONTACT_EMAIL = "untouchdestination001@gmail.com";
-const INSTAGRAM_HANDLE = "@untouchdestination";
-const INSTAGRAM_URL = "https://instagram.com/untouchdestination";
 
 // TODO(client): these three routes do not exist yet and currently 404. The
 // copy has to come from the client — do not ship without them.
@@ -77,7 +71,7 @@ export function Footer() {
           <ul className="flex flex-col items-center gap-2 md:items-start">
             <li>
               <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                href={`https://wa.me/${SITE.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`text-sm ${FOOTER_LINK_CLASS}`}
@@ -86,18 +80,18 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a href={`mailto:${CONTACT_EMAIL}`} className={`text-sm ${FOOTER_LINK_CLASS}`}>
-                {CONTACT_EMAIL}
+              <a href={`mailto:${SITE.email}`} className={`text-sm ${FOOTER_LINK_CLASS}`}>
+                {SITE.email}
               </a>
             </li>
             <li>
               <a
-                href={INSTAGRAM_URL}
+                href={SITE.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`text-sm ${FOOTER_LINK_CLASS}`}
               >
-                {INSTAGRAM_HANDLE}
+                {SITE.instagramHandle}
               </a>
             </li>
           </ul>

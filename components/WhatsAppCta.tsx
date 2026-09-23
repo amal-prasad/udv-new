@@ -4,15 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { HyperText } from "@/components/HyperText";
-
-// Placeholder — the client hasn't supplied the real business WhatsApp number
-// yet. Swap this for the real one (country code, no "+", no spaces/dashes).
-export const WHATSAPP_NUMBER = "918800888489";
+import { SITE } from "@/lib/site-config";
 
 const PREFILLED_MESSAGE = "Hi! I'm interested in a trip — can you share more details?";
 
 function whatsappHref() {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(PREFILLED_MESSAGE)}`;
+  return `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(PREFILLED_MESSAGE)}`;
 }
 
 export function WhatsAppCta() {
