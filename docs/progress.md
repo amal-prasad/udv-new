@@ -41,3 +41,12 @@
 - CircularGallery: WebGL init via IntersectionObserver, 1080px optimizer textures (5ce6333).
 - Bug: with prefers-reduced-motion the page could not wheel-scroll (Lenis swallowed wheel, raf never ran). Fixed (d91f748), verified in Chrome both modes.
 - LCP blocked on design call (loader + hero fade) → owner-todo.
+
+## 2026-09-23 — Phase 5: pages
+- `lib/itineraries.ts` → `data/trips.ts` (single source; keyword-map slugs, `seoTitle`, `description`); `data/destinations.ts` 5 hubs (061b87f).
+- `PageHero`, `Breadcrumbs` (visible + BreadcrumbList), `TripCard`, `lib/seo.ts` `pageMetadata` (canonical + full OG incl. default image, since child `openGraph` replaces the root one) (0a03bfc).
+- `/trips` + 9 SSG `/trips/[slug]`: day-by-day in HTML, TouristTrip (no price/dates), related trips (10128a5).
+- `/destinations` + 5 hubs, TouristDestination, 389–457 words in `<main>`, all from trip data (c9b3f8c).
+- `/about`, `/private-trips`, `/group-trips-for-solo-travellers` (1413daa).
+- Homepage modal → links to trip pages; nav/footer → routes; hero "Plan a custom trip" → `/private-trips` (ee47fb8). Sign-off asked in owner-todo.
+- Sitemap 20 URLs (2259d58). `next build` green, 26 static pages; og:image on every page.

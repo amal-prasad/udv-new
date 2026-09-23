@@ -29,24 +29,24 @@
 
 ## Phase 4 — Technical foundation
 - [x] Root metadata (metadataBase, template, OG, twitter, canonical)
-- [ ] Per-route titles/descriptions (with Phase 5 routes)
+- [x] Per-route titles/descriptions (with Phase 5 routes)
 - [x] Default `app/opengraph-image.jpg`
-- [ ] OG image per trip (with Phase 5 routes)
+- [x] OG image per trip (with Phase 5 routes)
 - [x] `app/sitemap.ts`, `app/robots.ts`
 - [x] `<JsonLd>` + TravelAgency
-- [ ] TouristTrip, BreadcrumbList (Phase 5 routes)
+- [x] TouristTrip, BreadcrumbList (Phase 5 routes)
 - [ ] FAQPage (blocked: FAQ copy approval, owner-todo)
 - [x] CLS 0; reduced-motion scroll bug fixed; WebGL gallery lazy-init
 - [ ] LCP < 2.5 s (5.8 s now; loader + hero fade need owner OK), TBT 1.35 s (JS weight: gsap + framer + ogl + lenis)
 
 ## Phase 5 — Pages
-- [ ] `data/trips.ts`
-- [ ] `/trips`, `/trips/[slug]`
-- [ ] `/destinations/[slug]`
-- [ ] `/group-trips-for-solo-travellers`
-- [ ] `/private-trips`, `/about`
-- [ ] Homepage cards → `<Link>`, nav → routes
-- [ ] Content briefs, TODOs for missing facts
+- [x] `data/trips.ts`
+- [x] `/trips`, `/trips/[slug]`
+- [x] `/destinations/[slug]`
+- [x] `/group-trips-for-solo-travellers`
+- [x] `/private-trips`, `/about`
+- [x] Homepage cards → `<Link>`, nav → routes
+- [x] TODOs for missing facts (briefs = `docs/seo/keyword-map.md`; copy uses only trip-data facts)
 - [ ] `/seo geo` on two trip pages
 
 ## Phase 6 — Verify
