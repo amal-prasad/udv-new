@@ -259,7 +259,8 @@ const MaskedHeading = ({
       style={{ textAlign: align, fontWeight: weight, letterSpacing: `${tracking}em`, lineHeight, ...style }}
       {...rest}
     >
-      <span ref={measureRef} className="masked-heading__measure">
+      <span className="sr-only">{text}</span>
+      <span ref={measureRef} className="masked-heading__measure" aria-hidden="true">
         {words.map((word, i) => (
           <span
             key={`${word}-${i}`}
