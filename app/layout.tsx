@@ -6,6 +6,7 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import { SITE } from "@/lib/site-config";
+import { JsonLd } from "@/components/JsonLd";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -42,6 +43,24 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+// TODO: add `address` once the client sends it (docs/owner-todo.md).
+const TRAVEL_AGENCY = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "@id": `${SITE.url}/#organization`,
+  name: SITE.name,
+  url: SITE.url,
+  logo: `${SITE.url}/logo.png`,
+  image: `${SITE.url}/opengraph-image.jpg`,
+  email: SITE.email,
+  telephone: `+${SITE.whatsappNumber}`,
+  sameAs: [SITE.instagramUrl],
+  areaServed: [
+    { "@type": "State", name: "Himachal Pradesh" },
+    { "@type": "State", name: "Uttarakhand" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -50,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(bricolage.variable, inter.variable, "font-sans", geist.variable)}>
       <body className="bg-night text-paper">
+        <JsonLd data={TRAVEL_AGENCY} />
         <LoadingScreen />
         <SmoothScroll>
           <Navbar />
