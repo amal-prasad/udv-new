@@ -89,12 +89,12 @@ export function AboutUntouch() {
           className="sticky top-24 relative aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-lift md:col-span-5 md:col-start-8"
         >
           <Image
-            src="/images/14.JPEG"
-            alt="About Untouch Destination"
+            src="/images/group-selfie-prayer-flags.jpg"
+            alt="An Untouch Destination group selfie under prayer flags in the mountains"
             fill
             sizes="(min-width: 768px) 42vw, 100vw"
             placeholder="blur"
-            blurDataURL={blurFor("/images/14.JPEG")}
+            blurDataURL={blurFor("/images/group-selfie-prayer-flags.jpg")}
             className="object-cover"
           />
         </motion.div>

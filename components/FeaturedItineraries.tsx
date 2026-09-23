@@ -160,7 +160,6 @@ function ItineraryPanel({ trip, onClose }: { trip: Itinerary | null; onClose: ()
                 placeholder="blur"
                 blurDataURL={blurFor(trip.photo)}
                 className="object-cover"
-                priority
               />
               <div className="absolute inset-0" style={{ backgroundImage: PHOTO_SCRIM }} />
 

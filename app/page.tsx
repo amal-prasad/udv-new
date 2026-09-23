@@ -15,21 +15,21 @@ import { Footer } from "@/components/Footer";
 import CircularGallery from "@/components/CircularGallery";
 
 const galleryItems = [
-  { image: "/images/1.JPEG", text: "Journey" },
-  { image: "/images/2.JPEG", text: "Explore" },
-  { image: "/images/3.JPEG", text: "Discover" },
-  { image: "/images/4.JPEG", text: "Wander" },
-  { image: "/images/5.JPG", text: "Escape" },
-  { image: "/images/6.JPEG", text: "Adventure" },
-  { image: "/images/7.JPG", text: "Memories" },
-  { image: "/images/8.JPEG", text: "Views" },
-  { image: "/images/9.JPEG", text: "Scenery" },
-  { image: "/images/10.JPEG", text: "Vistas" },
-  { image: "/images/11.png", text: "Unload" },
-  { image: "/images/12.png", text: "Moments" },
-  { image: "/images/13.png", text: "Reconnect" },
-  { image: "/images/14.JPEG", text: "Adventures" },
-  { image: "/images/hero.JPEG", text: "Memories" },
+  { image: "/images/himalayan-valley-river.jpg", text: "Journey" },
+  { image: "/images/monastery-prayer-flags.jpg", text: "Explore" },
+  { image: "/images/village-children-smiling.jpg", text: "Discover" },
+  { image: "/images/hillside-village-temple.jpg", text: "Wander" },
+  { image: "/images/craft-workshop-table.jpg", text: "Escape" },
+  { image: "/images/temple-below-mountain-wall.jpg", text: "Adventure" },
+  { image: "/images/traveller-craft-workshop.jpg", text: "Memories" },
+  { image: "/images/traveller-himachali-cap.jpg", text: "Views" },
+  { image: "/images/traveller-mountain-view.jpg", text: "Scenery" },
+  { image: "/images/village-snow-peaks-view.jpg", text: "Vistas" },
+  { image: "/images/painting-in-the-forest.jpg", text: "Unload" },
+  { image: "/images/painting-session-by-river.jpg", text: "Moments" },
+  { image: "/images/group-art-session-forest.jpg", text: "Reconnect" },
+  { image: "/images/group-selfie-prayer-flags.jpg", text: "Adventures" },
+  { image: "/images/snow-peaks-pine-valley.jpg", text: "Memories" },
 ];
 
 /**

@@ -20,7 +20,9 @@ export function EscapeSection() {
         <MaskedHeading
           tag="h2"
           text="Tired of the daily grind?"
-          src={TRIP_PHOTOS[0]}
+          // Raw <img> inside the mask, so route it through the image optimizer
+          // by hand for a sized WebP/AVIF instead of the full-size JPEG.
+          src={`/_next/image?url=${encodeURIComponent(TRIP_PHOTOS[0])}&w=1920&q=75`}
           className="w-full font-display"
           // ponytail: textScale/brightness tuned by eye to land near the old
           // clamp(2.5rem,8vw,5rem). Nudge these, not the CSS.

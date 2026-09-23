@@ -6,7 +6,11 @@ const sharp = require("sharp");
 const fs = require("fs");
 
 const src = fs.readFileSync("lib/images.ts", "utf8");
-const files = [...new Set(src.match(/\/images\/[\w.]+\.(?:JPEG|JPG)/g) ?? [])];
+const files = fs
+  .readdirSync("public/images", { recursive: true })
+  .filter((f) => f.endsWith(".jpg"))
+  .map((f) => "/images/" + f.replaceAll("\\", "/"))
+  .sort();
 
 (async () => {
   const entries = [];

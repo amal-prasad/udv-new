@@ -37,7 +37,7 @@ export function Hero() {
       >
         <Image
           src={HERO_IMAGE}
-          alt="A group trekking through the Himalayan hills at golden hour"
+          alt="Snow-capped Himalayan peaks above a pine-forested valley"
           fill
           priority
           quality={82}

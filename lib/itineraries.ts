@@ -40,7 +40,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["trek up for sunset", "Camping at Jalori Pass"],
     advancePct: 30,
     balanceDue: "on arrival",
-    photo: "/Jibhi & Shangarh.png",
+    photo: "/images/trips/jibhi-shangarh.jpg",
     days: [
       {
         label: "Day 0",
@@ -84,7 +84,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["camp at Khaliya Top", "Panchachuli"],
     advancePct: 35,
     balanceDue: "on arrival",
-    photo: "/Kasardevi.png",
+    photo: "/images/trips/kasar-devi-munsiyari-khaliya-top.jpg",
     days: [
       {
         label: "Day 0",
@@ -128,7 +128,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["a lake at 4,300 metres", "stargazing"],
     advancePct: 35,
     balanceDue: "on the day of departure, before boarding",
-    photo: "/Chandratal.jpg",
+    photo: "/images/trips/manali-chandratal.jpg",
     days: [
       {
         label: "Night before",
@@ -167,7 +167,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["16,580 ft", "built into a cliff face"],
     advancePct: 35,
     balanceDue: "on departure",
-    photo: "/Zanskar.png",
+    photo: "/images/trips/manali-to-zanskar.jpg",
     days: [
       {
         label: "Day 0",
@@ -217,7 +217,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["remote Darma Valley", "border town of Darchula"],
     advancePct: 35,
     balanceDue: "on arrival",
-    photo: "/darma.png",
+    photo: "/images/trips/darma-valley-darchula.jpg",
     days: [
       {
         label: "Day 0",
@@ -275,7 +275,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["sunset over Parashar Lake", "Himachali thali"],
     advancePct: 35,
     balanceDue: "on the day of departure, before boarding",
-    photo: "/naggar.png",
+    photo: "/images/trips/naggar-parashar.jpg",
     days: [
       {
         label: "Day 0",
@@ -313,7 +313,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["last inhabited village", "sunrise over Kinner Kailash"],
     advancePct: 35,
     balanceDue: "on arrival",
-    photo: "/sangla-chitkul.png",
+    photo: "/images/trips/sangla-chitkul-kalpa.jpg",
     days: [
       {
         label: "Day 0",
@@ -363,7 +363,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["world's highest post office", "highest motorable village"],
     advancePct: 35,
     balanceDue: "on arrival",
-    photo: "/spiti.png",
+    photo: "/images/trips/spiti-circuit.jpg",
     days: [
       {
         label: "Day 0",
@@ -422,7 +422,7 @@ export const ITINERARIES: Itinerary[] = [
     highlight: ["Drang Drung Glacier", "cliffside Phuktal"],
     advancePct: 35,
     balanceDue: "on the day of departure",
-    photo: "/zanskar-padum.jpg",
+    photo: "/images/trips/zanskar-padum-circuit.jpg",
     days: [
       {
         label: "Night before",

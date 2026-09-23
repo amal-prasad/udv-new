@@ -1,7 +1,7 @@
-// Single source of truth for the photos in /public/images. Filenames come
-// straight off the camera — alias them here so components never hardcode
-// "DSC01003.JPEG".
-export const HERO_IMAGE = "/images/hero.JPEG";
+// Single source of truth for the photos in /public/images. Files are
+// lowercase kebab-case JPEGs (max 2048px); camera originals live in the
+// git-ignored /originals folder.
+export const HERO_IMAGE = "/images/snow-peaks-pine-valley.jpg";
 
 // logo.png ships with ~40% transparent padding baked in, which makes any
 // height-constrained <Image> render a tiny, visually off-centre mark. These
@@ -10,50 +10,50 @@ export const LOGO = "/logo-mark.png"; // colour, for pale surfaces
 export const LOGO_LIGHT = "/logo-mark-light.png"; // knocked out to paper-white, for ink surfaces
 
 export const TRIP_PHOTOS = [
-  "/images/1.JPEG",
-  "/images/14.JPEG",
-  "/images/2.JPEG",
-  "/images/3.JPEG",
-  "/images/4.JPEG",
-  "/images/5.JPG",
-  "/images/6.JPEG",
-  "/images/7.JPG",
-  "/images/8.JPEG",
-  "/images/9.JPEG",
-  "/images/10.JPEG",
-  "/images/11.png",
-  "/images/12.png",
-  "/images/13.png"
+  "/images/himalayan-valley-river.jpg",
+  "/images/group-selfie-prayer-flags.jpg",
+  "/images/monastery-prayer-flags.jpg",
+  "/images/village-children-smiling.jpg",
+  "/images/hillside-village-temple.jpg",
+  "/images/craft-workshop-table.jpg",
+  "/images/temple-below-mountain-wall.jpg",
+  "/images/traveller-craft-workshop.jpg",
+  "/images/traveller-himachali-cap.jpg",
+  "/images/traveller-mountain-view.jpg",
+  "/images/village-snow-peaks-view.jpg",
+  "/images/painting-in-the-forest.jpg",
+  "/images/painting-session-by-river.jpg",
+  "/images/group-art-session-forest.jpg"
 ];
 
 // 12px WebP thumbnails, inlined so next/image can paint a blurred stand-in on
 // the very first frame instead of a grey box. Regenerate with
 // scripts/gen-blur.js whenever a photo in /public/images is replaced.
 const BLUR: Record<string, string> = {
-  "/images/hero.JPEG": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADQAQCdASoMAAkAA4BaJYgCdAELKPMiAAD+64wC1oBpTdbCi8LAwJIuemBNxbwOM1p1FBj5daXLntZ5p6Lm7oAA",
-  "/images/1.JPEG": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoJAAwAA4BaJQBOgB6XcVyWE6AA/u3sd2xaIjeW0ZbjSO2xbf19gzGdquhL3QC8GqcTLMWluGb2nYLwfoSAAA==",
-  "/images/2.JPEG": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAQCdASoMAAgAA4BaJZQC7ADZoU6IAMr2/E98HY3PW05bFSiTaeT4TRkPpoHIT4XT0MK9IFnOLNo/4IpMUzNgAAA=",
-  "/images/3.JPEG": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAQCdASoMAAgAA4BaJYwCdAENeeY4KgAA/u7wF2vKWxfoj8mjtGolh5byMO3ZinXIwh/+PLehvgAA",
-  "/images/4.JPEG": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACwAQCdASoMAAgAA4BaJQBOgCP+zAtQAP7lzU4QJSmjJoGV6qD9TJSrSKvuz4YwAAA=",
-  "/images/5.JPG": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoIAAwAA4BaJYgCdAEOtX00AAD98Hik0OdWhkDwl/Cs2/NOL1AW89z12zTnKIAA",
-  "/images/6.JPEG": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQAgCdASoMAAkAA4BaJYwCdAD1fT9AebMAAP7N9EpOjuLOVSKZ5XicL8ho3VZibgmO6S4JU7cMIi+mcXWT5sPaPpwJjsjsjAqg8AAA",
-  "/images/7.JPG": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAgCdASoJAAwAA4BaJbACdAYtp2whzNbElwAA/sp7MB8wDmHC7Z6pOGvAcDtiTybqaH1SCjCwnWmsWaaDOB120qpkcez29MQR9oP0ZgWuId7kz9/stX5s+eGkAA==",
-  "/images/8.JPEG": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoMAAkAA4BaJQBOgBdYMNEAAP7oh2r8REIJekz9oBDZLwAm0zCFvfdHPzInmTI/2QiP3GWkZVOnSYeWivAAAA==",
-  "/images/9.JPEG": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoMAAkAA4BaJYgCdAEDe9f2K0AA/urGJQWxmrXK/+yH91THFlki0kUFZJnq+Lza3Z5Cc+kdAczeiHAA",
-  "/images/10.JPEG": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADQAQCdASoMAAkAA4BaJQBOgB+FmSG9gAD+7/IaE7brgXtYpWIte7n/am0HDUEejkZf5UmQsBdEsfTvDlsdMAAA",
-  "/images/11.png": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQAgCdASoMAAkAA4BaJYwCdAD1fT9AebMAAP7N9EpOjuLOVSKZ5XicL8ho3VZibgmO6S4JU7cMIi+mcXWT5sPaPpwJjsjsjAqg8AAA",
-  "/images/12.png": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAgCdASoJAAwAA4BaJbACdAYtp2whzNbElwAA/sp7MB8wDmHC7Z6pOGvAcDtiTybqaH1SCjCwnWmsWaaDOB120qpkcez29MQR9oP0ZgWuId7kz9/stX5s+eGkAA==",
-  "/images/13.png": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoIAAwAA4BaJYgCdAEOtX00AAD98Hik0OdWhkDwl/Cs2/NOL1AW89z12zTnKIAA",
-  "/images/14.JPEG": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IEYAAAAQAgCdASoMAAgAA4BaJZQC7AI0hT9YAAJ/M9B/P15bGy7aJk0x88G6bUvS2+15f0/S09gBfG0291xW/M7/r5tC12j378q216KAA",
-  "/Jibhi & Shangarh.png": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoMAAcAA4BaJYwCdAEUoxp+YAD337U8gmtfA7rIen9m8tdGQFDJpkh+DFavAbuGkAA=",
-  "/Kasardevi.png": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAwAgCdASoMAAgAA4BaJYgCdAEQXNROCaOGAAD5QrdETtl3pGihAlI4xJgzbsYycGzrhpzP8LV+b5H+fEwWJQgS68owfAXUZ7NWJ0fTpwAAAA==",
-  "/Chandratal.jpg": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADQAQCdASoKAAwAA4BaJZACdAEOzBOk4AD+6hf3YWktwb7EaMckL23P2Yee4vou9ExiK0By63xF8AAA",
-  "/Zanskar.png": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAQAgCdASoMAAYAA4BaJYgCdH8AE73zwbqgAP7zMHGbaj8/zQXZhx0ByrtkhIIQ7v57rNJ1AhZZggAA",
-  "/darma.png": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoMAAYAA4BaJbACdADx+e1QAAD+7SgKWIvczkbJTVt/XxfyN9OqKxOSliBs1spHk++vkZ+O2lUuQnNkAAA=",
-  "/naggar.png": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoLAAwAA4BaJZACdAEf3P+5nrxAAP7Q1PXCXTbIMgyFMPYFdbD1CJ037119GdjMktvNIunUZ6cryykRAAA=",
-  "/sangla-chitkul.png": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACwAQCdASoMAAYAA4BaJZQAAu0U29pQAP5Yh2SgbDHFXNvVM9t87VK6v/mi4F+pstRB95rq1ehUeoOAAAA=",
-  "/spiti.png": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADQAQCdASoMAAoAA4BaJYwCdADbUrmoAAD+YOkoACdfMFV8E4yoF6i/l3XCd6dyQW+LpnHFUGlAdMo1uUagnXSxAAA=",
-  "/zanskar-padum.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAwAgCdASoMAAgAA4BaJZACdGuAAqxjikSUAAD9rth9h1UfMscSkNJm1NRLqFo1L8syy15lHLFsHdp8SSAAAA==",
+  "/images/craft-workshop-table.jpg": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAQCdASoMAAkAA4BaJQBOgB6P3AKj4AD+zfRKTpQvrzS7dMARMxqeYEVvWc115oTAoYP0nzNBwX5WzlYEqTJsnCCFmWbJW6JPhgAA",
+  "/images/group-art-session-forest.jpg": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoHAAwAA4BaJZgAAppr+JgAAPv6PNIvgh3Si1C1EkQOqeq9dZoVznf3W+Bs/pYLfqN/cCNW/92nhJteyAoAAA==",
+  "/images/group-selfie-prayer-flags.jpg": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABwAgCdASoMAAkAA4BaJZgCdIE5/+BYTNWSidYAAP6Jy2Vhm7nYKPTWX3tOA8NGlV/Y6PxtmpjIza8Ei6acrwCloN22pA07CD0u7ZKAAAA=",
+  "/images/hillside-village-temple.jpg": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAACwAQCdASoMAAgAA4BaJQBOgCP+zAtQAP7lzU4QJSmjJHD9lqzRmSZ+Oxv+201FSfAAAA==",
+  "/images/himalayan-valley-river.jpg": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoJAAwAA4BaJQBOgB6XcWxG1gAA/u3sd2xaIjeW0ZbjSO2xdIfk42IHKCmuaK0iAB5oVMSmp+luGb2nYLwfoSAA",
+  "/images/monastery-prayer-flags.jpg": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACwAQCdASoMAAgAA4BaJZQC7ADW0nIAAMr2/E98HY3PW05bFSiTaeT4TRkPpoHIy/C6e0uzFldzqigPDtxHAzHkAC5QAA==",
+  "/images/painting-in-the-forest.jpg": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoMAAcAA4BaJYwCdADcXJ6PZkAA/u6pko/5nNurL0bHwZxKnFXxFcCYB1bytQdLlv85wT/0mwtZ/kT3yEUAAA==",
+  "/images/painting-session-by-river.jpg": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAACwAQCdASoHAAwAA4BaJQBOgB5t5WAAAOJ9IU49/J7pdvMCvRDAWBm/ZXGJKJcynMBOiPkv/j278jQmu9RPXH987g156n8YPIAAAA==",
+  "/images/snow-peaks-pine-valley.jpg": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADQAQCdASoMAAkAA4BaJYgCdAELKPMiAAD+64wC1oBpTdbCi8M26yr1FkB+2OJC+oMPq/9zd+sGHN5WQpErigAA",
+  "/images/temple-below-mountain-wall.jpg": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADwAQCdASoIAAwAA4BaJYgCdAEO1DdZDAAA/fB4pNDnVoYdsk9AHj+swEtK9IIdlis/TJAA",
+  "/images/traveller-craft-workshop.jpg": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAQCdASoJAAwAA4BaJbACdAEfaPdYAAD+yns11YPlJ/Y5WS8sQZq4jmwlirya0c+dCndS3sbx8RSwJ5uR2WXMtg7KKNvaOqdCXSCMiFi7S1F8+K9mopBBUdeHEAAA",
+  "/images/traveller-himachali-cap.jpg": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACQAQCdASoMAAkAA4BaJQBOgBHmlAAA/uiHavxEQgl6TP2gENkvACbTkfEVwz9cUWLHVY8l/mLyeeJaR+7TRMPLRXgAAA==",
+  "/images/traveller-mountain-view.jpg": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoMAAkAA4BaJYgCdAC3DYdgAAD+6sYlBa6PYiRyLLE80rtODHlKBYE3gZGT4UcMMyfhs4+ZGex3UBE9TxVKAAAA",
+  "/images/trips/darma-valley-darchula.jpg": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADQAQCdASoMAAYAA4BaJbACdAD0Qyzm4AD+7ShALEXuci2QDkuUcCAlPDpbC1GrO9uJDIUlAelplqaktGNTcoAA",
+  "/images/trips/jibhi-shangarh.jpg": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoMAAcAA4BaJYwCdAEUoxqBIAD337U8gmtfA7rIen9m8tdGQFDJpkh+DFavAbuGkAA=",
+  "/images/trips/kasar-devi-munsiyari-khaliya-top.jpg": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoMAAgAA4BaJYgCdAEQW/lBzeAA+UK3RE7Z1xo84DA+D3PYaYAgKUzuzJKrTnN9t/ZUVIUwW4CNziCERZF5/WDco0Dw+/0uQyYAAA==",
+  "/images/trips/manali-chandratal.jpg": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoKAAwAA4BaJZACdAEOtWT4AAD+6hf3YWktwb7JNEZjIff54vv+qQM5ZjEVlNxD8DMAAA==",
+  "/images/trips/manali-to-zanskar.jpg": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoMAAYAA4BaJYgCdH8AE70aCwAA/vMwcZtqPz/NBalEdl9lJynSc0rfi75vcl2PwQ4AAA==",
+  "/images/trips/naggar-parashar.jpg": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoLAAwAA4BaJZACdAEf2+tr0WEAAP7Q1PXCYSIGkKc3LSMGu0nj+z5gPlXyqtQS5lWVsHezSnPIf5h3AAA=",
+  "/images/trips/sangla-chitkul-kalpa.jpg": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAACwAQCdASoMAAYAA4BaJZQAAuXvXaUAAP5Yh2SgcT3ja1LGrzqtAgawQPTguGF5Xdo/tylK/8DccooAAAA=",
+  "/images/trips/spiti-circuit.jpg": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAACwAQCdASoMAAoAA4BaJYwCdADbV5nwAP5g6SgAJ18wVXwTjKgXmJ3Z5NB3fkpUHZ/mWz1pRDm4nEuiKownSoHuUAA=",
+  "/images/trips/zanskar-padum-circuit.jpg": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAAAwAgCdASoMAAgAA4BaJZACdGuAAqxjikTgAAD9rth9h1UfMscSkNJm1NRLqFo1L8syy12QlnpaIRDEkAA=",
+  "/images/village-children-smiling.jpg": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAQCdASoMAAgAA4BaJYwCw7EOzpztNAAA/u7wF1eULPF/Bwuvmls4TdfA6siG3VyLD8OjmWbakAAA",
+  "/images/village-snow-peaks-view.jpg": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoMAAkAA4BaJQBOgB+FkwMfmAAA/u/yGhO264F7WKViLXu6ACTkH0JdMr6XCKhQrZmruzrG4hD+EAAA",
 };
 
 
