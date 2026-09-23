@@ -4,12 +4,12 @@ import Link from "next/link";
 import { LOGO_LIGHT } from "@/lib/images";
 import { SITE } from "@/lib/site-config";
 
-// app/page.tsx is the only route that exists, so every quick link is an
-// in-page anchor. /our-story and /faq were 404s.
 const QUICK_LINKS = [
-  { label: "Trips", href: "/#itineraries" },
-  { label: "Trip Types", href: "/#trip-types" },
-  { label: "Our Story", href: "/#story" },
+  { label: "Trips", href: "/trips" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Solo group trips", href: "/group-trips-for-solo-travellers" },
+  { label: "Private trips", href: "/private-trips" },
+  { label: "About", href: "/about" },
   // Reviews link returns with real reviews (lib/social-proof.ts).
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#plan" },

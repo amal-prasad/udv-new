@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LOGO_LIGHT } from "@/lib/images";
@@ -9,14 +10,11 @@ import { cn } from "@/lib/utils";
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 
-// Every link here is an in-page anchor on purpose: app/page.tsx is the only
-// route this site has, so /our-story and /faq would both 404.
 const NAV_LINKS = [
-  { label: "Trips", href: "#itineraries" },
-  { label: "Trip Types", href: "#trip-types" },
-  { label: "Our Story", href: "#story" },
-  // Reviews link returns with real reviews (lib/social-proof.ts).
-  { label: "FAQ", href: "#faq" },
+  { label: "Trips", href: "/trips" },
+  { label: "Destinations", href: "/destinations" },
+  { label: "Solo group trips", href: "/group-trips-for-solo-travellers" },
+  { label: "About", href: "/about" },
 ];
 
 const CTA_CLASS =
@@ -26,6 +24,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.8);
@@ -84,8 +83,9 @@ export function Navbar() {
             href="/"
             aria-label="Untouch Destination — home"
             onClick={(e) => {
-              e.preventDefault();
               if (open) closeMenu();
+              if (pathname !== "/") return;
+              e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="relative z-10 shrink-0 transition-opacity hover:opacity-80"
@@ -114,7 +114,7 @@ export function Navbar() {
           </ul>
 
           <div className="hidden md:block">
-            <Link href="#plan" className={cn(CTA_CLASS, "px-5 py-2.5 text-sm")}>
+            <Link href="/#plan" className={cn(CTA_CLASS, "px-5 py-2.5 text-sm")}>
               Plan your trip
             </Link>
           </div>
@@ -184,7 +184,7 @@ export function Navbar() {
                 }}
               >
                 <Link
-                  href="#plan"
+                  href="/#plan"
                   onClick={closeMenu}
                   className={cn(CTA_CLASS, "mt-4 block px-6 py-3 text-base")}
                 >

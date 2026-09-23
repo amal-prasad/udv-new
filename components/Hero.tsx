@@ -94,7 +94,7 @@ export function Hero() {
             See upcoming trips
           </Link>
           <Link
-            href="#plan"
+            href="/private-trips"
             className="rounded-full border border-paper/70 bg-ink/25 px-7 py-3.5 text-sm font-medium text-paper transition-colors hover:border-paper hover:bg-ink/45"
           >
             Plan a custom trip
