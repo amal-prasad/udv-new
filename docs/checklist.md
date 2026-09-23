@@ -50,7 +50,7 @@
 - [ ] `/seo geo` on two trip pages
 
 ## Phase 6 — Verify
-- [ ] `next build` all static + metadata
-- [ ] drift compare, technical, page
-- [ ] `docs/seo/offsite-checklist.md`
+- [x] `next build` all static + metadata
+- [x] drift compare, technical, page (`docs/seo/06-verify.md`)
+- [x] `docs/seo/offsite-checklist.md`
 - [ ] `/seo google setup` after Search Console

@@ -50,3 +50,10 @@
 - `/about`, `/private-trips`, `/group-trips-for-solo-travellers` (1413daa).
 - Homepage modal → links to trip pages; nav/footer → routes; hero "Plan a custom trip" → `/private-trips` (ee47fb8). Sign-off asked in owner-todo.
 - Sitemap 20 URLs (2259d58). `next build` green, 26 static pages; og:image on every page.
+
+## 2026-09-23 — Phase 6: verify
+- Live deploy checked: all new routes 200, itinerary text in HTML, sitemap 20 URLs.
+- Drift compare + Lighthouse → `docs/seo/06-verify.md`. Trip page perf 83 / SEO 100; home 54 (was 48), LCP 4.6 s (was 6.9 s).
+- Page hero image `loading=eager` + `fetchPriority=high` (711eeb6).
+- `docs/seo/offsite-checklist.md`: domain migration (one env var: `NEXT_PUBLIC_SITE_URL`), Search Console, Bing, GBP, citations, links.
+- Waiting on owner: legal text, address, prices/dates, reviews, FAQ copy, loader design call, page sign-off, domain + Google account.
