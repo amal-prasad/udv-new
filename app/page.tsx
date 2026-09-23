@@ -13,6 +13,11 @@ import { FaqPreview } from "@/components/FaqPreview";
 import { WhatsAppCta, FloatingWhatsApp } from "@/components/WhatsAppCta";
 import { Footer } from "@/components/Footer";
 import CircularGallery from "@/components/CircularGallery";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const galleryItems = [
   { image: "/images/himalayan-valley-river.jpg", text: "Journey" },

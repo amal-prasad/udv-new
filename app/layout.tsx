@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { cn } from "@/lib/utils";
+import { SITE } from "@/lib/site-config";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -20,10 +21,25 @@ const inter = Inter({
   display: "swap",
 });
 
+const DESCRIPTION =
+  "Small-group trips across Himachal & Uttarakhand for solo travellers from Delhi & Chandigarh: Spiti, Kinnaur, Zanskar, Jibhi, Kumaon, plus private trips.";
+
 export const metadata: Metadata = {
-  title: "Untouch Destination — small-group trips across Himachal & Uttarakhand",
-  description:
-    "Strangers get on the bus. Friends get off. Small-group and custom trips across Himachal, Uttarakhand and the roads less mapped.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: "Small-Group Trips in Himachal & Uttarakhand | Untouch Destination",
+    template: `%s | ${SITE.name}`,
+  },
+  description: DESCRIPTION,
+  applicationName: SITE.name,
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    locale: "en_IN",
+    url: "/",
+    description: DESCRIPTION,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
