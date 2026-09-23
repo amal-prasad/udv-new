@@ -27,7 +27,8 @@ export function PageHero({
         src={photo}
         alt={alt}
         fill
-        preload
+        loading="eager"
+        fetchPriority="high"
         sizes="100vw"
         placeholder="blur"
         blurDataURL={blurFor(photo)}
