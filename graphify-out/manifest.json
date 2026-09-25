@@ -1,0 +1,866 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1790241905.0344114,
+    "seen": 1790242493.184659,
+    "ast_hash": "86b324fdeb1818613a1b7f85d9b60d78",
+    "semantic_hash": "86b324fdeb1818613a1b7f85d9b60d78"
+  },
+  ".tokensave/config.json": {
+    "mtime": 1789381162.8851018,
+    "seen": 1790242493.184659,
+    "ast_hash": "fcbfe74c173213a95075ebd385407bf5",
+    "semantic_hash": "fcbfe74c173213a95075ebd385407bf5"
+  },
+  "EscapeSection.tsx": {
+    "mtime": 1789383309.634093,
+    "seen": 1790242493.184659,
+    "ast_hash": "ba6720f72edaf8537294a4eeae28506f",
+    "semantic_hash": "ba6720f72edaf8537294a4eeae28506f"
+  },
+  "LoadingScreen.tsx": {
+    "mtime": 1789383310.7934687,
+    "seen": 1790242493.184659,
+    "ast_hash": "a47ab0f375aa8865fc311a9bce4785dd",
+    "semantic_hash": "a47ab0f375aa8865fc311a9bce4785dd"
+  },
+  "app/about/page.tsx": {
+    "mtime": 1790149650.6170623,
+    "seen": 1790242493.184659,
+    "ast_hash": "b4825738e82d5e00d50507e255b765d2",
+    "semantic_hash": "b4825738e82d5e00d50507e255b765d2"
+  },
+  "app/destinations/[slug]/page.tsx": {
+    "mtime": 1790149757.5212007,
+    "seen": 1790242493.184659,
+    "ast_hash": "3c5ccf4553c1ab9bd11195575fba0756",
+    "semantic_hash": "3c5ccf4553c1ab9bd11195575fba0756"
+  },
+  "app/destinations/page.tsx": {
+    "mtime": 1790149609.000514,
+    "seen": 1790242493.184659,
+    "ast_hash": "dee3379faf8aa744058b637311b0b04d",
+    "semantic_hash": "dee3379faf8aa744058b637311b0b04d"
+  },
+  "app/group-trips-for-solo-travellers/page.tsx": {
+    "mtime": 1790149624.1820388,
+    "seen": 1790242493.184659,
+    "ast_hash": "8bae204ac121a65056b96c42d14ba6c3",
+    "semantic_hash": "8bae204ac121a65056b96c42d14ba6c3"
+  },
+  "app/layout.tsx": {
+    "mtime": 1790148491.7354574,
+    "seen": 1790242493.184659,
+    "ast_hash": "866d851081fc835fa3ab4469f2d39fd9",
+    "semantic_hash": "866d851081fc835fa3ab4469f2d39fd9"
+  },
+  "app/page.tsx": {
+    "mtime": 1790170847.515221,
+    "seen": 1790242493.184659,
+    "ast_hash": "f2b50cee3d5152c1ca5c429fca39c031",
+    "semantic_hash": "f2b50cee3d5152c1ca5c429fca39c031"
+  },
+  "app/private-trips/page.tsx": {
+    "mtime": 1790149650.59179,
+    "seen": 1790242493.184659,
+    "ast_hash": "06d9268e13786a4b1d05208af32c6a64",
+    "semantic_hash": "06d9268e13786a4b1d05208af32c6a64"
+  },
+  "app/robots.ts": {
+    "mtime": 1790148417.639541,
+    "seen": 1790242493.184659,
+    "ast_hash": "ed0a9f17c3ff757ec66e363bc7314cd3",
+    "semantic_hash": "ed0a9f17c3ff757ec66e363bc7314cd3"
+  },
+  "app/sitemap.ts": {
+    "mtime": 1790149683.3838332,
+    "seen": 1790242493.184659,
+    "ast_hash": "49a77ba41e71593d7ccf51dd72310c4e",
+    "semantic_hash": "49a77ba41e71593d7ccf51dd72310c4e"
+  },
+  "app/trips/[slug]/page.tsx": {
+    "mtime": 1790149554.510892,
+    "seen": 1790242493.184659,
+    "ast_hash": "a76fbf7aeefe26ecf255888ef2212d86",
+    "semantic_hash": "a76fbf7aeefe26ecf255888ef2212d86"
+  },
+  "app/trips/page.tsx": {
+    "mtime": 1790149584.1668086,
+    "seen": 1790242493.184659,
+    "ast_hash": "0ad1daa7d68af6cdb4ccba38f658b7e6",
+    "semantic_hash": "0ad1daa7d68af6cdb4ccba38f658b7e6"
+  },
+  "components.json": {
+    "mtime": 1789808367.3706093,
+    "seen": 1790242493.184659,
+    "ast_hash": "b358afb33252f89435410846c4e7d95a",
+    "semantic_hash": "b358afb33252f89435410846c4e7d95a"
+  },
+  "components/AboutOwner.tsx": {
+    "mtime": 1790170860.0937183,
+    "seen": 1790242493.184659,
+    "ast_hash": "9b51c08f6867310fad753fd46f36259c",
+    "semantic_hash": "9b51c08f6867310fad753fd46f36259c"
+  },
+  "components/AboutUntouch.tsx": {
+    "mtime": 1790170862.126286,
+    "seen": 1790242493.184659,
+    "ast_hash": "89ec7e2b92f583b59ad8cdf66850622a",
+    "semantic_hash": "89ec7e2b92f583b59ad8cdf66850622a"
+  },
+  "components/BlurHighlight.tsx": {
+    "mtime": 1789809380.6628149,
+    "seen": 1790242493.184659,
+    "ast_hash": "5c7b4de8f81fd7a923316a564079b987",
+    "semantic_hash": "5c7b4de8f81fd7a923316a564079b987"
+  },
+  "components/Breadcrumbs.tsx": {
+    "mtime": 1790149504.0811422,
+    "seen": 1790242493.184659,
+    "ast_hash": "f208cdb0cb845671d0fde8a3ffd89693",
+    "semantic_hash": "f208cdb0cb845671d0fde8a3ffd89693"
+  },
+  "components/CircularGallery.tsx": {
+    "mtime": 1790148559.3683045,
+    "seen": 1790242493.184659,
+    "ast_hash": "c7d7ebf27bb656740c87e6f0995c1476",
+    "semantic_hash": "c7d7ebf27bb656740c87e6f0995c1476"
+  },
+  "components/EscapeSection.tsx": {
+    "mtime": 1790147575.2909534,
+    "seen": 1790242493.184659,
+    "ast_hash": "32ed05e8ab9bce147d4eaa280948bfbd",
+    "semantic_hash": "32ed05e8ab9bce147d4eaa280948bfbd"
+  },
+  "components/FaqPreview.tsx": {
+    "mtime": 1789406555.112877,
+    "seen": 1790242493.184659,
+    "ast_hash": "5669e107643956c0409db73da3254055",
+    "semantic_hash": "5669e107643956c0409db73da3254055"
+  },
+  "components/FeaturedItineraries.tsx": {
+    "mtime": 1790149518.735151,
+    "seen": 1790242493.184659,
+    "ast_hash": "1f78b72ef83c5455c201c3f495a43a9b",
+    "semantic_hash": "1f78b72ef83c5455c201c3f495a43a9b"
+  },
+  "components/Footer.tsx": {
+    "mtime": 1790149671.9963634,
+    "seen": 1790242493.184659,
+    "ast_hash": "3e05ea90cbc9eb95a52b6cd5d2dff914",
+    "semantic_hash": "3e05ea90cbc9eb95a52b6cd5d2dff914"
+  },
+  "components/GalleryStrip.tsx": {
+    "mtime": 1790146762.8024049,
+    "seen": 1790242493.184659,
+    "ast_hash": "62b3d9dee370f1c38bb21c7f42a4bcc0",
+    "semantic_hash": "62b3d9dee370f1c38bb21c7f42a4bcc0"
+  },
+  "components/Globe.tsx": {
+    "mtime": 1789541003.9008176,
+    "seen": 1790242493.184659,
+    "ast_hash": "91cdbfa6c51f92f2aab13baf319c3e01",
+    "semantic_hash": "91cdbfa6c51f92f2aab13baf319c3e01"
+  },
+  "components/Hero.tsx": {
+    "mtime": 1790170849.5252304,
+    "seen": 1790242493.184659,
+    "ast_hash": "89900da361792292131813b37a877388",
+    "semantic_hash": "89900da361792292131813b37a877388"
+  },
+  "components/HyperText.tsx": {
+    "mtime": 1789495359.4346547,
+    "seen": 1790242493.184659,
+    "ast_hash": "285340b59ef4a12b9fdc261ffc7e1ccb",
+    "semantic_hash": "285340b59ef4a12b9fdc261ffc7e1ccb"
+  },
+  "components/JsonLd.tsx": {
+    "mtime": 1790148417.695381,
+    "seen": 1790242493.184659,
+    "ast_hash": "8b6761202cf9e6fb8f239c6b0c264d24",
+    "semantic_hash": "8b6761202cf9e6fb8f239c6b0c264d24"
+  },
+  "components/LoadingScreen.tsx": {
+    "mtime": 1790147740.084633,
+    "seen": 1790242493.184659,
+    "ast_hash": "12985c101f96caec5dee8998de3e455a",
+    "semantic_hash": "12985c101f96caec5dee8998de3e455a"
+  },
+  "components/MaskedHeading.tsx": {
+    "mtime": 1790147740.1258652,
+    "seen": 1790242493.184659,
+    "ast_hash": "b4cce8142070e3aada4a2c339a28b0b7",
+    "semantic_hash": "b4cce8142070e3aada4a2c339a28b0b7"
+  },
+  "components/Navbar.tsx": {
+    "mtime": 1790149671.9963634,
+    "seen": 1790242493.184659,
+    "ast_hash": "41bc3cc3400d728a4510fab5a27647d2",
+    "semantic_hash": "41bc3cc3400d728a4510fab5a27647d2"
+  },
+  "components/PageHero.tsx": {
+    "mtime": 1790164869.0566773,
+    "seen": 1790242493.184659,
+    "ast_hash": "195cd0990f55fdb4e440e39a487ab269",
+    "semantic_hash": "195cd0990f55fdb4e440e39a487ab269"
+  },
+  "components/ResponsibleTraveling.tsx": {
+    "mtime": 1790147126.3513703,
+    "seen": 1790242493.184659,
+    "ast_hash": "347222a9002c71303d80dcc76ac3f6ac",
+    "semantic_hash": "347222a9002c71303d80dcc76ac3f6ac"
+  },
+  "components/Reviews.tsx": {
+    "mtime": 1790146878.5481777,
+    "seen": 1790242493.184659,
+    "ast_hash": "54212af676eb67c5547d1c2d497fad4b",
+    "semantic_hash": "54212af676eb67c5547d1c2d497fad4b"
+  },
+  "components/SmoothScroll.tsx": {
+    "mtime": 1790148833.7928517,
+    "seen": 1790242493.184659,
+    "ast_hash": "b7a12c0983eadcbcf8da61305f81638e",
+    "semantic_hash": "b7a12c0983eadcbcf8da61305f81638e"
+  },
+  "components/StoryTeaser.tsx": {
+    "mtime": 1789454061.216835,
+    "seen": 1790242493.184659,
+    "ast_hash": "ab39a258cd2aa3bef75b82c410d85664",
+    "semantic_hash": "ab39a258cd2aa3bef75b82c410d85664"
+  },
+  "components/StrangerTrip.tsx": {
+    "mtime": 1789802969.0935192,
+    "seen": 1790242493.184659,
+    "ast_hash": "2c5a980a26e229242271dd34b8f9bb8f",
+    "semantic_hash": "2c5a980a26e229242271dd34b8f9bb8f"
+  },
+  "components/TripCard.tsx": {
+    "mtime": 1790149504.0551383,
+    "seen": 1790242493.184659,
+    "ast_hash": "c49ab08ff12f6b60242e06e02543531c",
+    "semantic_hash": "c49ab08ff12f6b60242e06e02543531c"
+  },
+  "components/TripTypes.tsx": {
+    "mtime": 1790170853.1454325,
+    "seen": 1790242493.184659,
+    "ast_hash": "91f257de52c5d361f79a9a8165c7fcdb",
+    "semantic_hash": "91f257de52c5d361f79a9a8165c7fcdb"
+  },
+  "components/TrustBar.tsx": {
+    "mtime": 1790146887.1598253,
+    "seen": 1790242493.184659,
+    "ast_hash": "9b61a6399e476777cabe19f0d2cb15a8",
+    "semantic_hash": "9b61a6399e476777cabe19f0d2cb15a8"
+  },
+  "components/WhatsAppCta.tsx": {
+    "mtime": 1790170858.0767877,
+    "seen": 1790242493.184659,
+    "ast_hash": "3f8bf463e7e3d06fa0a6f289a00641ac",
+    "semantic_hash": "3f8bf463e7e3d06fa0a6f289a00641ac"
+  },
+  "components/WhereUntouchFits.tsx": {
+    "mtime": 1789840597.9959111,
+    "seen": 1790242493.184659,
+    "ast_hash": "367a66ec9c5a7078a4e62825354198dd",
+    "semantic_hash": "367a66ec9c5a7078a4e62825354198dd"
+  },
+  "components/ui/button.tsx": {
+    "mtime": 1789808360.8081284,
+    "seen": 1790242493.184659,
+    "ast_hash": "2700bddde0ac66fc6f2fc1b56fcfdc2d",
+    "semantic_hash": "2700bddde0ac66fc6f2fc1b56fcfdc2d"
+  },
+  "data/destinations.ts": {
+    "mtime": 1790149404.6144226,
+    "seen": 1790242493.184659,
+    "ast_hash": "22ef4c28d2a8fcdb1de9f85809ebbd65",
+    "semantic_hash": "22ef4c28d2a8fcdb1de9f85809ebbd65"
+  },
+  "data/trips.ts": {
+    "mtime": 1790149351.9399352,
+    "seen": 1790242493.184659,
+    "ast_hash": "d892f1bc45463148b86a81b7603d848d",
+    "semantic_hash": "d892f1bc45463148b86a81b7603d848d"
+  },
+  "docs/seo/baseline-snapshot/signals.json": {
+    "mtime": 1790129805.2229278,
+    "seen": 1790242493.184659,
+    "ast_hash": "7e77e45d0e41c61c36bfc572e9246ec2",
+    "semantic_hash": "7e77e45d0e41c61c36bfc572e9246ec2"
+  },
+  "lib/images.ts": {
+    "mtime": 1790147575.2909534,
+    "seen": 1790242493.184659,
+    "ast_hash": "5e206f193a52227faae224a929dbfdb8",
+    "semantic_hash": "5e206f193a52227faae224a929dbfdb8"
+  },
+  "lib/seo.ts": {
+    "mtime": 1790149744.2189653,
+    "seen": 1790242493.184659,
+    "ast_hash": "e1ea466bf0c3935d7b6a85afca96693f",
+    "semantic_hash": "e1ea466bf0c3935d7b6a85afca96693f"
+  },
+  "lib/site-config.ts": {
+    "mtime": 1790146559.6717186,
+    "seen": 1790242493.184659,
+    "ast_hash": "b7ca0eaf3c68bf521f9315bc2b25f0fe",
+    "semantic_hash": "b7ca0eaf3c68bf521f9315bc2b25f0fe"
+  },
+  "lib/social-proof.ts": {
+    "mtime": 1790146878.5471594,
+    "seen": 1790242493.184659,
+    "ast_hash": "d451ee70cdd01b221dd64d89ba5f9d87",
+    "semantic_hash": "d451ee70cdd01b221dd64d89ba5f9d87"
+  },
+  "lib/use-media-query.ts": {
+    "mtime": 1790146706.617157,
+    "seen": 1790242493.184659,
+    "ast_hash": "68b4f00469e386f579527d0daf16f343",
+    "semantic_hash": "68b4f00469e386f579527d0daf16f343"
+  },
+  "lib/utils.ts": {
+    "mtime": 1789808361.3240259,
+    "seen": 1790242493.184659,
+    "ast_hash": "0482d21cfeab8cfcfe44f94927e45afb",
+    "semantic_hash": "0482d21cfeab8cfcfe44f94927e45afb"
+  },
+  "next.config.ts": {
+    "mtime": 1789450721.9608738,
+    "seen": 1790242493.184659,
+    "ast_hash": "e3ef9fa94bef60e5623f614dbfe5696e",
+    "semantic_hash": "e3ef9fa94bef60e5623f614dbfe5696e"
+  },
+  "package.json": {
+    "mtime": 1789808353.4551072,
+    "seen": 1790242493.184659,
+    "ast_hash": "89ee6ccc0b9214ea07e89f494840df18",
+    "semantic_hash": "89ee6ccc0b9214ea07e89f494840df18"
+  },
+  "postcss.config.mjs": {
+    "mtime": 1789384479.1551294,
+    "seen": 1790242493.184659,
+    "ast_hash": "f71b80f5685810aa6afdd8c6b4ca0b31",
+    "semantic_hash": "f71b80f5685810aa6afdd8c6b4ca0b31"
+  },
+  "scripts/gen-blur.js": {
+    "mtime": 1790147547.1242943,
+    "seen": 1790242493.184659,
+    "ast_hash": "c8ea429970debfc9e1a5d430612a9caa",
+    "semantic_hash": "c8ea429970debfc9e1a5d430612a9caa"
+  },
+  "tsconfig.json": {
+    "mtime": 1789407927.3446023,
+    "seen": 1790242493.184659,
+    "ast_hash": "1323fa36932b0150a12737784ebf15f8",
+    "semantic_hash": "1323fa36932b0150a12737784ebf15f8"
+  },
+  ".playwright-mcp/page-2026-09-14T11-28-19-389Z.yml": {
+    "mtime": 1789524498.2669978,
+    "seen": 1790242493.184659,
+    "ast_hash": "6415f8d160f6a1b010b425fbe0c8f98b",
+    "semantic_hash": "6415f8d160f6a1b010b425fbe0c8f98b"
+  },
+  ".playwright-mcp/page-2026-09-14T11-29-13-567Z.yml": {
+    "mtime": 1789524498.2685242,
+    "seen": 1790242493.184659,
+    "ast_hash": "6c1a848da853a177aaaf4193d0bad9e2",
+    "semantic_hash": "6c1a848da853a177aaaf4193d0bad9e2"
+  },
+  ".playwright-mcp/page-2026-09-14T11-30-18-995Z.yml": {
+    "mtime": 1789524498.2695343,
+    "seen": 1790242493.184659,
+    "ast_hash": "b9d21ff273990c02817a4d1291436576",
+    "semantic_hash": "b9d21ff273990c02817a4d1291436576"
+  },
+  ".playwright-mcp/page-2026-09-14T11-35-32-289Z.yml": {
+    "mtime": 1789524498.2705362,
+    "seen": 1790242493.184659,
+    "ast_hash": "ea19c4b09c7eaa6b740cf556a3a09eda",
+    "semantic_hash": "ea19c4b09c7eaa6b740cf556a3a09eda"
+  },
+  "AGENTS.md": {
+    "mtime": 1789450343.0757496,
+    "seen": 1790242493.184659,
+    "ast_hash": "01e8142356e15c3404e0d84c48187cd0",
+    "semantic_hash": "01e8142356e15c3404e0d84c48187cd0"
+  },
+  "CLAUDE.md": {
+    "mtime": 1790129882.7358842,
+    "seen": 1790242493.184659,
+    "ast_hash": "feb3385acf7d7aab3bac40676e14667e",
+    "semantic_hash": "feb3385acf7d7aab3bac40676e14667e"
+  },
+  "DESIGN.md": {
+    "mtime": 1789389451.1188564,
+    "seen": 1790242493.184659,
+    "ast_hash": "794e6b507f83b957c0ebde0747660936",
+    "semantic_hash": "794e6b507f83b957c0ebde0747660936"
+  },
+  "app/opengraph-image.alt.txt": {
+    "mtime": 1790148418.0957322,
+    "seen": 1790242493.184659,
+    "ast_hash": "23eada70bf340c1d220108d706c2ec07",
+    "semantic_hash": "23eada70bf340c1d220108d706c2ec07"
+  },
+  "docs/checklist.md": {
+    "mtime": 1790164950.2939558,
+    "seen": 1790242493.184659,
+    "ast_hash": "5ff46b096482d280cabc03374b9dd327",
+    "semantic_hash": "5ff46b096482d280cabc03374b9dd327"
+  },
+  "docs/intention.md": {
+    "mtime": 1790129882.6383226,
+    "seen": 1790242493.184659,
+    "ast_hash": "a0e2b7a64180b316ce130a5e4dbc595d",
+    "semantic_hash": "a0e2b7a64180b316ce130a5e4dbc595d"
+  },
+  "docs/owner-todo.md": {
+    "mtime": 1790164485.5116563,
+    "seen": 1790242493.184659,
+    "ast_hash": "cbe2d47bae2382b39d49c849d97a5eb7",
+    "semantic_hash": "cbe2d47bae2382b39d49c849d97a5eb7"
+  },
+  "docs/progress.md": {
+    "mtime": 1790164950.3824155,
+    "seen": 1790242493.184659,
+    "ast_hash": "9ff121a99d4bb4fab80f921e5329e830",
+    "semantic_hash": "9ff121a99d4bb4fab80f921e5329e830"
+  },
+  "docs/seo/00-baseline.md": {
+    "mtime": 1790131159.8735943,
+    "seen": 1790242493.184659,
+    "ast_hash": "5d7e62dbbea64d0168f19b8ade4e729a",
+    "semantic_hash": "5d7e62dbbea64d0168f19b8ade4e729a"
+  },
+  "docs/seo/01-strategy-draft.md": {
+    "mtime": 1790130894.686456,
+    "seen": 1790242493.184659,
+    "ast_hash": "9443c4fdf659cf28a66000b10e549b62",
+    "semantic_hash": "9443c4fdf659cf28a66000b10e549b62"
+  },
+  "docs/seo/01-strategy.md": {
+    "mtime": 1790131150.3305585,
+    "seen": 1790242493.184659,
+    "ast_hash": "c6c093e7d1b245c2011d66fb1218fcc7",
+    "semantic_hash": "c6c093e7d1b245c2011d66fb1218fcc7"
+  },
+  "docs/seo/06-verify.md": {
+    "mtime": 1790164940.7884498,
+    "seen": 1790242493.184659,
+    "ast_hash": "5c4a7568f4feb8232c25285c357e45c4",
+    "semantic_hash": "5c4a7568f4feb8232c25285c357e45c4"
+  },
+  "docs/seo/baseline-snapshot/home.html": {
+    "mtime": 1790129774.7546182,
+    "seen": 1790242493.184659,
+    "ast_hash": "c8a2d51d430da88ad87599e69b186f1c",
+    "semantic_hash": "c8a2d51d430da88ad87599e69b186f1c"
+  },
+  "docs/seo/clusters/himachal-group-trip.md": {
+    "mtime": 1790130626.6233945,
+    "seen": 1790242493.184659,
+    "ast_hash": "652eaca9f63e90d262f37c617010b844",
+    "semantic_hash": "652eaca9f63e90d262f37c617010b844"
+  },
+  "docs/seo/clusters/spiti-valley-trip.md": {
+    "mtime": 1790130593.0926037,
+    "seen": 1790242493.184659,
+    "ast_hash": "aa022643b5dde66b3a4dbd8849583e78",
+    "semantic_hash": "aa022643b5dde66b3a4dbd8849583e78"
+  },
+  "docs/seo/clusters/uttarakhand-offbeat-trip.md": {
+    "mtime": 1790130777.19606,
+    "seen": 1790242493.184659,
+    "ast_hash": "90514c85a9a53408465e1774b2efdf1e",
+    "semantic_hash": "90514c85a9a53408465e1774b2efdf1e"
+  },
+  "docs/seo/keyword-map.md": {
+    "mtime": 1790131117.5417376,
+    "seen": 1790242493.184659,
+    "ast_hash": "89f4d86f26040ccc383bd4802653ce53",
+    "semantic_hash": "89f4d86f26040ccc383bd4802653ce53"
+  },
+  "docs/seo/offsite-checklist.md": {
+    "mtime": 1790164627.2729053,
+    "seen": 1790242493.184659,
+    "ast_hash": "8725a4447facc1a33bd71a1795df7c4b",
+    "semantic_hash": "8725a4447facc1a33bd71a1795df7c4b"
+  },
+  "docs/seo/perf-baseline.md": {
+    "mtime": 1790130795.8582573,
+    "seen": 1790242493.184659,
+    "ast_hash": "734c264e6133b115eef40e0373c47f92",
+    "semantic_hash": "734c264e6133b115eef40e0373c47f92"
+  },
+  "untouch-destination-animation-spec.md": {
+    "mtime": 1789383305.4674351,
+    "seen": 1790242493.184659,
+    "ast_hash": "647b04bdf13f3339e2bbd93f555761bd",
+    "semantic_hash": "647b04bdf13f3339e2bbd93f555761bd"
+  },
+  "untouch_destination_itineraries.md": {
+    "mtime": 1789526559.065044,
+    "seen": 1790242493.184659,
+    "ast_hash": "e6c5761170cb6f775d7bc442c5007775",
+    "semantic_hash": "e6c5761170cb6f775d7bc442c5007775"
+  },
+  "app/icon.png": {
+    "mtime": 1789389793.3670297,
+    "seen": 1790242493.184659,
+    "ast_hash": "d299a164a08334559f9769ab3c232d0e",
+    "semantic_hash": "d299a164a08334559f9769ab3c232d0e"
+  },
+  "app/opengraph-image.jpg": {
+    "mtime": 1790148418.076,
+    "seen": 1790242493.184659,
+    "ast_hash": "6047b72a3095c8d45d36ef77f0f6e404",
+    "semantic_hash": "6047b72a3095c8d45d36ef77f0f6e404"
+  },
+  "hero.png": {
+    "mtime": 1789385425.3327844,
+    "seen": 1790242493.184659,
+    "ast_hash": "71c934f1ce73ee33f11532afca106f21",
+    "semantic_hash": "71c934f1ce73ee33f11532afca106f21"
+  },
+  "itin-grid.png": {
+    "mtime": 1789541752.380936,
+    "seen": 1790242493.184659,
+    "ast_hash": "d3c40d836613271561997a4018ac43d0",
+    "semantic_hash": "d3c40d836613271561997a4018ac43d0"
+  },
+  "public/images/all-peeps.png": {
+    "mtime": 1789453461.5527189,
+    "seen": 1790242493.184659,
+    "ast_hash": "c41248e485d01cfbe674024983a7fa04",
+    "semantic_hash": "c41248e485d01cfbe674024983a7fa04"
+  },
+  "public/images/craft-workshop-table.jpg": {
+    "mtime": 1790147482.748,
+    "seen": 1790242493.184659,
+    "ast_hash": "54a6b017e3bcf64a1ff17bc6c799adbe",
+    "semantic_hash": "54a6b017e3bcf64a1ff17bc6c799adbe"
+  },
+  "public/images/group-art-session-forest.jpg": {
+    "mtime": 1790147484.788,
+    "seen": 1790242493.184659,
+    "ast_hash": "c4f8a804b5f1190df6d01a1e755ab911",
+    "semantic_hash": "c4f8a804b5f1190df6d01a1e755ab911"
+  },
+  "public/images/group-selfie-prayer-flags.jpg": {
+    "mtime": 1790147485.495,
+    "seen": 1790242493.184659,
+    "ast_hash": "6f7c37cd08d9d57ccf1f2b9e9fe4bb97",
+    "semantic_hash": "6f7c37cd08d9d57ccf1f2b9e9fe4bb97"
+  },
+  "public/images/hillside-village-temple.jpg": {
+    "mtime": 1790147482.48,
+    "seen": 1790242493.184659,
+    "ast_hash": "1e01721c56eef10a40b8ce85eae38b48",
+    "semantic_hash": "1e01721c56eef10a40b8ce85eae38b48"
+  },
+  "public/images/himalayan-valley-river.jpg": {
+    "mtime": 1790147481.763,
+    "seen": 1790242493.184659,
+    "ast_hash": "b9ab2b173e185759cb3772824ba8a475",
+    "semantic_hash": "b9ab2b173e185759cb3772824ba8a475"
+  },
+  "public/images/jibhi.png": {
+    "mtime": 1789803966.763024,
+    "seen": 1790242493.184659,
+    "ast_hash": "10cb40a5e0570aff23971637052d3fec",
+    "semantic_hash": "10cb40a5e0570aff23971637052d3fec"
+  },
+  "public/images/logo.png": {
+    "mtime": 1789383538.105967,
+    "seen": 1790242493.184659,
+    "ast_hash": "4627a7f790a5dfeec9622e7014d2b357",
+    "semantic_hash": "4627a7f790a5dfeec9622e7014d2b357"
+  },
+  "public/images/monastery-prayer-flags.jpg": {
+    "mtime": 1790147482.001,
+    "seen": 1790242493.184659,
+    "ast_hash": "e841378aa644ea07cc7041bca23c8f3c",
+    "semantic_hash": "e841378aa644ea07cc7041bca23c8f3c"
+  },
+  "public/images/painting-in-the-forest.jpg": {
+    "mtime": 1790147484.267,
+    "seen": 1790242493.184659,
+    "ast_hash": "622a5e8e2769da597692529befa1ac6e",
+    "semantic_hash": "622a5e8e2769da597692529befa1ac6e"
+  },
+  "public/images/painting-session-by-river.jpg": {
+    "mtime": 1790147484.499,
+    "seen": 1790242493.184659,
+    "ast_hash": "aaf2e0c4f78430157c9b048d61159781",
+    "semantic_hash": "aaf2e0c4f78430157c9b048d61159781"
+  },
+  "public/images/peeps/all-peeps.png": {
+    "mtime": 1789388563.4035008,
+    "seen": 1790242493.184659,
+    "ast_hash": "af1bbf9eca49a4bc6b3e685bbcfed6e7",
+    "semantic_hash": "af1bbf9eca49a4bc6b3e685bbcfed6e7"
+  },
+  "public/images/peeps/open-peeps-sheet.png": {
+    "mtime": 1789389038.0176456,
+    "seen": 1790242493.184659,
+    "ast_hash": "ee23df8517f3c3e3efc4145658269c06",
+    "semantic_hash": "ee23df8517f3c3e3efc4145658269c06"
+  },
+  "public/images/snow-peaks-pine-valley.jpg": {
+    "mtime": 1790147485.864,
+    "seen": 1790242493.184659,
+    "ast_hash": "a4e773f855341b96b8646b8cc286d076",
+    "semantic_hash": "a4e773f855341b96b8646b8cc286d076"
+  },
+  "public/images/temple-below-mountain-wall.jpg": {
+    "mtime": 1790147483.007,
+    "seen": 1790242493.184659,
+    "ast_hash": "6d60e363b641e602c12d36f7a9115320",
+    "semantic_hash": "6d60e363b641e602c12d36f7a9115320"
+  },
+  "public/images/traveller-craft-workshop.jpg": {
+    "mtime": 1790147483.188,
+    "seen": 1790242493.184659,
+    "ast_hash": "ce44794db84fae902d7baf26e90c25c3",
+    "semantic_hash": "ce44794db84fae902d7baf26e90c25c3"
+  },
+  "public/images/traveller-himachali-cap.jpg": {
+    "mtime": 1790147483.419,
+    "seen": 1790242493.184659,
+    "ast_hash": "cc8732c465acd55ad30b50bd5bc8068c",
+    "semantic_hash": "cc8732c465acd55ad30b50bd5bc8068c"
+  },
+  "public/images/traveller-mountain-view.jpg": {
+    "mtime": 1790147483.705,
+    "seen": 1790242493.184659,
+    "ast_hash": "6d1cc2ff2aabe41140ebad19ee978262",
+    "semantic_hash": "6d1cc2ff2aabe41140ebad19ee978262"
+  },
+  "public/images/trips/darma-valley-darchula.jpg": {
+    "mtime": 1790147486.684,
+    "seen": 1790242493.184659,
+    "ast_hash": "4f0e58092e627afd9d174558d10897fa",
+    "semantic_hash": "4f0e58092e627afd9d174558d10897fa"
+  },
+  "public/images/trips/jibhi-shangarh.jpg": {
+    "mtime": 1790147486.067,
+    "seen": 1790242493.184659,
+    "ast_hash": "d087cec59ad61bf75a9c9e6d312e2cfa",
+    "semantic_hash": "d087cec59ad61bf75a9c9e6d312e2cfa"
+  },
+  "public/images/trips/kasar-devi-munsiyari-khaliya-top.jpg": {
+    "mtime": 1790147486.153,
+    "seen": 1790242493.184659,
+    "ast_hash": "907233b59765d6820cee207bc2949ad3",
+    "semantic_hash": "907233b59765d6820cee207bc2949ad3"
+  },
+  "public/images/trips/manali-chandratal.jpg": {
+    "mtime": 1790147486.24,
+    "seen": 1790242493.184659,
+    "ast_hash": "9bc616a399942e7c60b2f162ed173594",
+    "semantic_hash": "9bc616a399942e7c60b2f162ed173594"
+  },
+  "public/images/trips/manali-to-zanskar.jpg": {
+    "mtime": 1790147486.477,
+    "seen": 1790242493.184659,
+    "ast_hash": "ecb61d5fb1322db4ad90dfb7ed434a7f",
+    "semantic_hash": "ecb61d5fb1322db4ad90dfb7ed434a7f"
+  },
+  "public/images/trips/naggar-parashar.jpg": {
+    "mtime": 1790147486.904,
+    "seen": 1790242493.184659,
+    "ast_hash": "7fd2dfe85c99487102f31cc7aa281fa9",
+    "semantic_hash": "7fd2dfe85c99487102f31cc7aa281fa9"
+  },
+  "public/images/trips/sangla-chitkul-kalpa.jpg": {
+    "mtime": 1790147487.149,
+    "seen": 1790242493.184659,
+    "ast_hash": "ede1b7cde9ac166943313cf2e3e91e62",
+    "semantic_hash": "ede1b7cde9ac166943313cf2e3e91e62"
+  },
+  "public/images/trips/spiti-circuit.jpg": {
+    "mtime": 1790147487.289,
+    "seen": 1790242493.184659,
+    "ast_hash": "90c47b5fd3d07f503547cd3609dc73ea",
+    "semantic_hash": "90c47b5fd3d07f503547cd3609dc73ea"
+  },
+  "public/images/trips/zanskar-padum-circuit.jpg": {
+    "mtime": 1790147487.42,
+    "seen": 1790242493.184659,
+    "ast_hash": "a2d9334c0caea95a56c5b78ad929a95f",
+    "semantic_hash": "a2d9334c0caea95a56c5b78ad929a95f"
+  },
+  "public/images/village-children-smiling.jpg": {
+    "mtime": 1790147482.207,
+    "seen": 1790242493.184659,
+    "ast_hash": "3242779e4fc5fbd9019bf77ce049b57f",
+    "semantic_hash": "3242779e4fc5fbd9019bf77ce049b57f"
+  },
+  "public/images/village-snow-peaks-view.jpg": {
+    "mtime": 1790147483.943,
+    "seen": 1790242493.184659,
+    "ast_hash": "06b9448dc666991b920c04b7f764b105",
+    "semantic_hash": "06b9448dc666991b920c04b7f764b105"
+  },
+  "public/logo-mark-light.png": {
+    "mtime": 1789389038.194,
+    "seen": 1790242493.184659,
+    "ast_hash": "32b4bc23b2db341af82ef39f5b0b834d",
+    "semantic_hash": "32b4bc23b2db341af82ef39f5b0b834d"
+  },
+  "public/logo-mark.png": {
+    "mtime": 1789389038.171,
+    "seen": 1790242493.184659,
+    "ast_hash": "d299a164a08334559f9769ab3c232d0e",
+    "semantic_hash": "d299a164a08334559f9769ab3c232d0e"
+  },
+  "public/logo.png": {
+    "mtime": 1789384462.1238,
+    "seen": 1790242493.184659,
+    "ast_hash": "4627a7f790a5dfeec9622e7014d2b357",
+    "semantic_hash": "4627a7f790a5dfeec9622e7014d2b357"
+  },
+  "shot-escape.png": {
+    "mtime": 1789385481.6165972,
+    "seen": 1790242493.184659,
+    "ast_hash": "f09e2c5e6c561d9c62c5218a5d42cdb7",
+    "semantic_hash": "f09e2c5e6c561d9c62c5218a5d42cdb7"
+  },
+  "v-01-hero.png": {
+    "mtime": 1789450793.446454,
+    "seen": 1790242493.184659,
+    "ast_hash": "73c22e1bc6059652b21f773e0f6a0207",
+    "semantic_hash": "73c22e1bc6059652b21f773e0f6a0207"
+  },
+  "v-01b-hero.png": {
+    "mtime": 1789450875.500522,
+    "seen": 1790242493.184659,
+    "ast_hash": "07d6144d1d9b3fb0c52f559f10f6be31",
+    "semantic_hash": "07d6144d1d9b3fb0c52f559f10f6be31"
+  },
+  "v-02-escape.png": {
+    "mtime": 1789450995.5932653,
+    "seen": 1790242493.184659,
+    "ast_hash": "2eba2c56819b922bedb6b7175c585b32",
+    "semantic_hash": "2eba2c56819b922bedb6b7175c585b32"
+  },
+  "v-02b-escape.png": {
+    "mtime": 1789451398.1907952,
+    "seen": 1790242493.184659,
+    "ast_hash": "88069dcf6ac87f0ca3a0c27fb3129388",
+    "semantic_hash": "88069dcf6ac87f0ca3a0c27fb3129388"
+  },
+  "v-03-escape-top.png": {
+    "mtime": 1789451433.7815294,
+    "seen": 1790242493.184659,
+    "ast_hash": "4eb4d04c67b720e27520a057b19e92ff",
+    "semantic_hash": "4eb4d04c67b720e27520a057b19e92ff"
+  },
+  "v-04-triptypes.png": {
+    "mtime": 1789451477.5158243,
+    "seen": 1790242493.184659,
+    "ast_hash": "983153e72586f446b5ba3c22b8dd0860",
+    "semantic_hash": "983153e72586f446b5ba3c22b8dd0860"
+  },
+  "v-05-itineraries.png": {
+    "mtime": 1789451508.673108,
+    "seen": 1790242493.184659,
+    "ast_hash": "f5e063722e3160dafbdf9f8a6bcaf621",
+    "semantic_hash": "f5e063722e3160dafbdf9f8a6bcaf621"
+  },
+  "v-06-trustbar.png": {
+    "mtime": 1789451540.1152105,
+    "seen": 1790242493.184659,
+    "ast_hash": "9895f89f1b20189d50a71c3a5ee39af2",
+    "semantic_hash": "9895f89f1b20189d50a71c3a5ee39af2"
+  },
+  "v-07-stranger.png": {
+    "mtime": 1789451575.0345752,
+    "seen": 1790242493.184659,
+    "ast_hash": "28fe73fcca467314f0bf525501225f69",
+    "semantic_hash": "28fe73fcca467314f0bf525501225f69"
+  },
+  "v-07b-stranger.png": {
+    "mtime": 1789451700.429924,
+    "seen": 1790242493.184659,
+    "ast_hash": "962e9209402ba23e2b8696ba53154d4d",
+    "semantic_hash": "962e9209402ba23e2b8696ba53154d4d"
+  },
+  "v-08-stranger.png": {
+    "mtime": 1789451936.6363547,
+    "seen": 1790242493.184659,
+    "ast_hash": "0f797658ddd3a745330985729915a072",
+    "semantic_hash": "0f797658ddd3a745330985729915a072"
+  },
+  "v-09-gallery.png": {
+    "mtime": 1789451938.1732593,
+    "seen": 1790242493.184659,
+    "ast_hash": "bd3a90dca8ffb657322ff311f6bc6c58",
+    "semantic_hash": "bd3a90dca8ffb657322ff311f6bc6c58"
+  },
+  "v-10-story.png": {
+    "mtime": 1789451939.8701043,
+    "seen": 1790242493.184659,
+    "ast_hash": "35852cb4cbadcc6d690b5f6ea045b72b",
+    "semantic_hash": "35852cb4cbadcc6d690b5f6ea045b72b"
+  },
+  "v-11-reviews.png": {
+    "mtime": 1789451941.4459376,
+    "seen": 1790242493.184659,
+    "ast_hash": "d496835e3924bec7ece23b810fb33ab1",
+    "semantic_hash": "d496835e3924bec7ece23b810fb33ab1"
+  },
+  "v-12-plan.png": {
+    "mtime": 1789451942.8389156,
+    "seen": 1790242493.184659,
+    "ast_hash": "1305861fb83f93d0d0c3892b410d1676",
+    "semantic_hash": "1305861fb83f93d0d0c3892b410d1676"
+  },
+  "v-13-footer.png": {
+    "mtime": 1789452992.3424501,
+    "seen": 1790242493.184659,
+    "ast_hash": "20a7ace721d18d9e4bbefdd15435aa57",
+    "semantic_hash": "20a7ace721d18d9e4bbefdd15435aa57"
+  },
+  "v-after-gallery.png": {
+    "mtime": 1789454192.5626469,
+    "seen": 1790242493.184659,
+    "ast_hash": "d094334eb5b4f219ad629f66f6338c7d",
+    "semantic_hash": "d094334eb5b4f219ad629f66f6338c7d"
+  },
+  "v-after-hero.png": {
+    "mtime": 1789454140.5987134,
+    "seen": 1790242493.184659,
+    "ast_hash": "89576c49ee4206e27a107afd0c0338fb",
+    "semantic_hash": "89576c49ee4206e27a107afd0c0338fb"
+  },
+  "v-probe-noblur.png": {
+    "mtime": 1789451092.149763,
+    "seen": 1790242493.184659,
+    "ast_hash": "62a9e505ac69f7f868f740b1c0f3a94a",
+    "semantic_hash": "62a9e505ac69f7f868f740b1c0f3a94a"
+  },
+  "v-probe-nohdr.png": {
+    "mtime": 1789450913.0450914,
+    "seen": 1790242493.184659,
+    "ast_hash": "c2601612636d04f4dabcc216b8a805e5",
+    "semantic_hash": "c2601612636d04f4dabcc216b8a805e5"
+  },
+  "v-probe-nohdr2.png": {
+    "mtime": 1789451133.8097003,
+    "seen": 1790242493.184659,
+    "ast_hash": "9828b3f74df7dc793e90cc5a6ef149cb",
+    "semantic_hash": "9828b3f74df7dc793e90cc5a6ef149cb"
+  },
+  "v-probe-nonav.png": {
+    "mtime": 1789451183.617351,
+    "seen": 1790242493.184659,
+    "ast_hash": "0aff00aca47b1ce259e6b5f49618157a",
+    "semantic_hash": "0aff00aca47b1ce259e6b5f49618157a"
+  },
+  "Recording 2026-09-21 160830.mp4": {
+    "mtime": 1789987072.8274868,
+    "seen": 1790242493.184659,
+    "ast_hash": "c139b67b161b0d4994c1cba3180d5424",
+    "semantic_hash": "c139b67b161b0d4994c1cba3180d5424"
+  }
+}

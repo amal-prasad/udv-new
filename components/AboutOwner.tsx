@@ -6,7 +6,7 @@ import { HyperText } from "@/components/HyperText";
 
 const PARAGRAPHS = [
   {
-    text: "Our founder, Ravi, spent his childhood split between the modern metropolis of Delhi and his familial village in rural Haryana. From a young age he witnessed the vast diversity and multitude manifestations of our world.",
+    text: "Our founder, Ravi, spent his childhood split between the bursting metropolis of Delhi and his familial village in rural Haryana. From a young age he witnessed the vast diversity and multitude manifestations of our world.",
     highlight: ["vast diversity and multitude manifestations"],
   },
   {

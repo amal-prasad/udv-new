@@ -8,11 +8,11 @@ import { blurFor } from "@/lib/images";
 
 const PARAGRAPHS = [
   {
-    text: "Untouch Destination started with a curiosity about the world that demanded to be explored and is born out of a love for adventure, discovery and connection.",
-    highlight: ["love for adventure, discovery and connection"],
+    text: "Untouchdestination started with a curiosity about the world that demanded to be explored and was born out of a love for adventure, connection and discovery .",
+    highlight: ["love for adventure, connection and discovery"],
   },
   {
-    text: "We bring these essential values into each of our trips which are lovingly curated through connections that members of the Untouch community make with people or places as they travel.",
+    text: "We bring these essential values into each of our trips which are lovingly curated through connections that members of the Untouch community form with people or places during their own travels.",
     highlight: ["lovingly curated through connections"],
   },
   {
@@ -24,7 +24,7 @@ const PARAGRAPHS = [
     highlight: ["take us outside of our comfort zone", "beyond our wildest dreams"],
   },
   {
-    text: "The experiences that charm us range from questioning yourself when faced with the towering might of a Himalayan mountain, to sitting quietly with a local who has never been outside their village, to tasting the bursting flavours of a local dish you’ve never heard of before, to dancing at a festival thousands of years old.",
+    text: "The experiences that charm us range from questioning yourself when faced with the towering might of a Himalayan mountain, to sitting quietly with a local elder who has never been outside their village, to tasting the bursting flavours of a regional dish you’ve never heard of before, to dancing at a festival thousands of years old.",
     highlight: ["towering might of a Himalayan mountain", "festival thousands of years old"],
   },
   {

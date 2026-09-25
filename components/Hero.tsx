@@ -80,7 +80,7 @@ export function Hero() {
                 "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 6px 22px rgba(0,0,0,0.45))",
             }}
           >
-            Small-group trips across Himachal &amp; Uttarakhand for solo travellers
+            Open your heart to the world as we journey in to the wilderness
           </span>
         </h1>
         <p className="max-w-xl text-lg text-cloud md:text-xl">
@@ -102,30 +102,6 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <ScrollCue reduceMotion={reduceMotion} progress={scrollYProgress} />
     </section>
-  );
-}
-
-function ScrollCue({
-  reduceMotion,
-  progress,
-}: {
-  reduceMotion: boolean | null;
-  progress: ReturnType<typeof useScroll>["scrollYProgress"];
-}) {
-  // Tied to real scroll progress instead of an infinite blink — the line
-  // drains as you actually move down the page, so it reads as an instrument,
-  // not a tic. Fully visible and static at rest for motion-reduce / no-JS.
-  const lineScale = useTransform(progress, [0, 0.4], [1, 0]);
-  return (
-    <div className="absolute inset-x-0 bottom-10 z-10 flex justify-center">
-      <div className="h-12 w-px bg-paper/25">
-        <motion.div
-          className="h-full w-px origin-top bg-paper/80"
-          style={{ scaleY: reduceMotion ? 1 : lineScale }}
-        />
-      </div>
-    </div>
   );
 }

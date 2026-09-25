@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import { blurFor, TRIP_PHOTOS } from "@/lib/images";
@@ -13,35 +13,68 @@ import { HyperText } from "@/components/HyperText";
 type TripCard = {
   image: string;
   name: string;
-  description: string;
-  ctaLabel: string;
-  ctaHref: string;
+  description: React.ReactNode;
+  panelCtaLabel: string;
+  panelCtaHref: string;
 };
 
 const CARDS: TripCard[] = [
   {
     image: TRIP_PHOTOS[7],
-    name: "Slow travel",
-    description:
-      "Not a checklist, a pause. Our retreats are built around actually resting — long mornings, one place, no rush to squeeze in 'one more thing' before checkout.",
-    ctaLabel: "See retreats →",
-    ctaHref: "#itineraries",
+    name: "Group trips",
+    description: (
+      <div className="space-y-4">
+        <p>
+          <span className="text-[#E8562B] font-medium">Every Friday, we take groups of up to 12 people from Delhi deep into the mountains.</span> These energetic, adventure-filled trips are designed to disrupt your daily routine and connect you with people and land outside of the city.
+        </p>
+        <p>
+          These trips feature a range of activities including: <span className="text-[#E8562B] font-medium">mountain trekking, temple visits, cafe lounging, and evenings around the bonfire.</span>
+        </p>
+        <p>
+          Group trips are a fantastic opportunity to form lasting connections with your fellow travellers. We find that strangers get on the bus and friends get off.
+        </p>
+        <p>
+          You are welcome to join as an individual or with your friends.
+        </p>
+      </div>
+    ),
+    panelCtaLabel: "See upcoming trips →",
+    panelCtaHref: "/trips",
   },
   {
     image: TRIP_PHOTOS[9],
-    name: "Travel without a map",
-    description:
-      "No hour-by-hour itinerary. We pick the direction, the road decides the rest. For people who'd rather wander somewhere than tick it off a list.",
-    ctaLabel: "Go off the plan →",
-    ctaHref: "#itineraries",
+    name: "Experience trips",
+    description: (
+      <div className="space-y-4">
+        <p>
+          We believe that travel has the ability to uncover hidden treasures within ourselves. When you embark on an experience trip this is exactly what you do. You enter a journey of <span className="text-[#E8562B] font-medium">deep self-discovery and connection to world around you.</span>
+        </p>
+        <p>
+          Our experience trips allow you to <span className="text-[#E8562B] font-medium">truly immerse yourself in one unique destination.</span> Each trip will have a specialised focus and a relaxed pace, enabling you to ground yourself and guide your time intentionally.
+        </p>
+        <p>
+          We will provide destination specific workshops that give you the chance to satisfy your curiosity and unleash your creativity. The focus range from <span className="text-[#E8562B] font-medium">painting and woodwork to bird watching, guided foraging, and nature immersion.</span>
+        </p>
+        <p>
+          These trips can be organised on a group or individual basis according to your desire.
+        </p>
+      </div>
+    ),
+    panelCtaLabel: "See more →",
+    panelCtaHref: "#itineraries",
   },
   {
     image: TRIP_PHOTOS[4],
-    name: "Adventure",
-    description:
-      "Rafting, trekking, the stuff that gets your heart rate up. Built for people who want the trip to hurt a little, in the best way.",
-    ctaLabel: "Get moving →",
-    ctaHref: "#itineraries",
+    name: "Custom trips",
+    description: (
+      <div className="space-y-4">
+        <p>
+          If you already have a vision for your next adventure and you simply need help making it a reality, we are here to help. We will listen to your ideas and pair them with our extensive travel expertise to <span className="text-[#E8562B] font-medium">craft the journey of your dreams.</span>
+        </p>
+      </div>
+    ),
+    panelCtaLabel: "Plan your trip →",
+    panelCtaHref: "/private-trips",
   },
 ];
 
@@ -59,61 +92,70 @@ export function TripTypes() {
   // null until hydrated: SSR keeps all three variants, client keeps one.
   const isMd = useMediaQuery("(min-width: 768px)");
   const reduce = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const [selectedCard, setSelectedCard] = useState<TripCard | null>(null);
 
   return (
-    <section
-      id="trip-types"
-      className="w-full bg-paper px-4 pb-[10vh] pt-[20vh]"
-    >
-      <div className="mx-auto grid max-w-6xl gap-x-12 gap-y-8 md:grid-cols-[280px_1fr] md:items-start">
-        {/* Set against the opposite column, per DESIGN.md's rhythm rule —
-            not another centred h2 over a grid. */}
-        <div className="md:sticky md:top-[14vh]">
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-            <HyperText>Experience trips</HyperText>
-          </h2>
-          <p className="mt-4 max-w-[42ch] text-sm text-slate md:text-base">
-            Some trips are about how many places you can cover. Ours are about how deeply you can experience one. Trek a route, lose yourself in a festival, follow a camera through the mountains, or stay awhile in a village kitchen. Smaller, slower, and built around what you'll actually remember.
-          </p>
+    <>
+      <section
+        id="trip-types"
+        className="w-full bg-paper px-4 pb-[10vh] pt-[20vh]"
+      >
+        <div className="mx-auto grid max-w-6xl gap-x-12 gap-y-8 md:grid-cols-[280px_1fr] md:items-start">
+          {/* Set against the opposite column, per DESIGN.md's rhythm rule —
+              not another centred h2 over a grid. */}
+          <div className="md:sticky md:top-[14vh]">
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+              <HyperText>Our trips</HyperText>
+            </h2>
+            <p className="mt-4 max-w-[42ch] text-sm text-slate md:text-base">
+              We offer three distinct types of trips: Group Trips, Experience Trips, and Custom Trips. While each offers a unique feel, all embody our core values at heart: Adventure, Connection and Discovery.
+            </p>
+          </div>
+
+          <div>
+            {/* Below md: horizontal snap carousel, at every viewport height —
+                the sticky-pin mechanic needs the ~175vh runway below to scale
+                against, which is why it was making the section five phone
+                screens tall. Carousel replaces it entirely on mobile, motion
+                preference or not (see MobileTripCarousel for how reduced
+                motion is handled inside it). */}
+            {isMd !== true && (
+              <div className="md:hidden">
+                <MobileTripCarousel cards={CARDS} onReadMore={setSelectedCard} />
+              </div>
+            )}
+
+            {/* md and up, reduced motion: plain stacked cards, no pin/scale. */}
+            {isMd !== false && reduce !== false && (
+              <div className="hidden md:motion-reduce:flex md:flex-col md:gap-8">
+                {CARDS.map((card) => (
+                  <StaticCard key={card.name} card={card} onReadMore={setSelectedCard} />
+                ))}
+              </div>
+            )}
+
+            {/* md and up, motion-safe: the sticky-scale-blur mechanic, untouched. */}
+            {isMd !== false && reduce !== true && (
+              <div className="hidden md:motion-safe:flex md:flex-col">
+                {CARDS.map((card) => (
+                  <StickyTripCard key={card.name} card={card} onReadMore={setSelectedCard} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
+      </section>
 
-        <div>
-          {/* Below md: horizontal snap carousel, at every viewport height —
-              the sticky-pin mechanic needs the ~175vh runway below to scale
-              against, which is why it was making the section five phone
-              screens tall. Carousel replaces it entirely on mobile, motion
-              preference or not (see MobileTripCarousel for how reduced
-              motion is handled inside it). */}
-          {isMd !== true && (
-            <div className="md:hidden">
-              <MobileTripCarousel cards={CARDS} />
-            </div>
-          )}
-
-          {/* md and up, reduced motion: plain stacked cards, no pin/scale. */}
-          {isMd !== false && reduce !== false && (
-            <div className="hidden md:motion-reduce:flex md:flex-col md:gap-8">
-              {CARDS.map((card) => (
-                <StaticCard key={card.name} card={card} />
-              ))}
-            </div>
-          )}
-
-          {/* md and up, motion-safe: the sticky-scale-blur mechanic, untouched. */}
-          {isMd !== false && reduce !== true && (
-            <div className="hidden md:motion-safe:flex md:flex-col">
-              {CARDS.map((card) => (
-                <StickyTripCard key={card.name} card={card} />
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
+      <AnimatePresence>
+        {selectedCard && (
+          <SidePanel card={selectedCard} onClose={() => setSelectedCard(null)} />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
-function StaticCard({ card }: { card: TripCard }) {
+function StaticCard({ card, onReadMore }: { card: TripCard; onReadMore: (c: TripCard) => void }) {
   return (
     <div className="relative h-[70vh] w-full overflow-hidden rounded-4xl shadow-lift">
       <Image
@@ -126,12 +168,12 @@ function StaticCard({ card }: { card: TripCard }) {
         className="object-cover"
       />
       <div className="pointer-events-none absolute inset-0" style={SCRIM_STYLE} />
-      <CardCopy card={card} />
+      <CardCopy card={card} onReadMore={onReadMore} />
     </div>
   );
 }
 
-function CardCopy({ card }: { card: TripCard }) {
+function CardCopy({ card, onReadMore }: { card: TripCard; onReadMore: (c: TripCard) => void }) {
   // Only rendered at md and up now — the mobile carousel builds its own
   // title-on-photo / copy-below-photo split inline.
   return (
@@ -139,9 +181,14 @@ function CardCopy({ card }: { card: TripCard }) {
       <h3 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl">
         {card.name}
       </h3>
-      <p className="max-w-[60ch] text-sm text-cloud md:text-base">
-        {card.description}
-      </p>
+      <div>
+        <button
+          onClick={() => onReadMore(card)}
+          className="inline-flex items-center text-sm font-medium tracking-wide text-paper transition-colors hover:text-white underline underline-offset-4"
+        >
+          Read more &rarr;
+        </button>
+      </div>
     </div>
   );
 }
@@ -151,7 +198,7 @@ function CardCopy({ card }: { card: TripCard }) {
 // only JS is an IntersectionObserver that watches which card is centred so
 // we know which one to scale up. Cheaper and simpler than an embla/shadcn
 // carousel dependency for what's a three-item strip.
-function MobileTripCarousel({ cards }: { cards: TripCard[] }) {
+function MobileTripCarousel({ cards, onReadMore }: { cards: TripCard[]; onReadMore: (c: TripCard) => void }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -223,8 +270,15 @@ function MobileTripCarousel({ cards }: { cards: TripCard[] }) {
                 {card.name}
               </h3>
             </div>
-            <div className="flex flex-col items-start gap-3 px-1 pt-4">
-              <p className="text-sm text-slate">{card.description}</p>
+            <div className="mt-4 flex flex-col px-1">
+              <div>
+                <button
+                  onClick={() => onReadMore(card)}
+                  className="inline-flex items-center text-sm font-medium tracking-wide text-ink transition-colors hover:text-ink/70 underline underline-offset-4"
+                >
+                  Read more &rarr;
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -266,7 +320,7 @@ function MobileTripCarousel({ cards }: { cards: TripCard[] }) {
 // Nothing ever calls .set() on a derived value and no endpoint is an
 // unresolved sentinel like Infinity, so no NaN can reach a style — this is
 // what broke the section before (see git history for the old mechanic).
-function StickyTripCard({ card }: { card: TripCard }) {
+function StickyTripCard({ card, onReadMore }: { card: TripCard; onReadMore: (c: TripCard) => void }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // 0 when this card's wrapper reaches the top of the viewport (it starts
@@ -301,9 +355,65 @@ function StickyTripCard({ card }: { card: TripCard }) {
             className="object-cover"
           />
           <div className="pointer-events-none absolute inset-0" style={SCRIM_STYLE} />
-          <CardCopy card={card} />
+          <CardCopy card={card} onReadMore={onReadMore} />
         </div>
       </motion.div>
     </div>
+  );
+}
+
+function SidePanel({ card, onClose }: { card: TripCard; onClose: () => void }) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm"
+      />
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+        className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-paper p-6 shadow-2xl md:p-10 flex flex-col overflow-y-auto"
+      >
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-ink md:text-3xl">
+            {card.name}
+          </h2>
+          <button
+            onClick={onClose}
+            className="rounded-full p-2 -mr-2 text-slate hover:bg-slate/10 hover:text-ink transition-colors"
+            aria-label="Close panel"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="text-base text-slate leading-relaxed flex-1">
+          {card.description}
+        </div>
+        
+        <div className="mt-8 pt-8 border-t border-slate/20 shrink-0">
+          <a
+            href={card.panelCtaHref}
+            className="inline-flex w-full items-center justify-center rounded-full bg-ink px-6 py-4 text-sm font-medium tracking-wide text-paper transition-colors hover:bg-ink/80"
+          >
+            {card.panelCtaLabel}
+          </a>
+        </div>
+      </motion.div>
+    </>
   );
 }

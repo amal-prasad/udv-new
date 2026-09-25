@@ -19,11 +19,10 @@ export function WhatsAppCta() {
 
       <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
         <h2 className="font-display text-4xl font-semibold tracking-tight text-paper md:text-6xl">
-          Skip the form. <HyperText>Just message us.</HyperText>
+          Ready to book? <HyperText>Just send us a message</HyperText>
         </h2>
         <p className="max-w-md text-base text-cloud md:text-lg">
-          Tell us the dates you're picturing — we'll reply with real trip
-          options, not a PDF brochure.
+          Tell us what dates you’re planning and we will find the right trip for you
         </p>
         {/* The one CTA on the page that gets .sheen + shadow-glow — this is
             the close, it should be unmissable. */}

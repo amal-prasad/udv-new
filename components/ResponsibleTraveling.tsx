@@ -13,12 +13,12 @@ export function ResponsibleTraveling() {
     <section id="responsible" className="relative w-full overflow-hidden bg-night px-6 py-20 md:px-10 md:py-28">
       <div aria-hidden className="sun-wash pointer-events-none absolute inset-0" />
       <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-12 md:items-center md:gap-8">
-        
+
         <div className="flex flex-col gap-6 md:col-span-7">
           <h2 className="font-display text-3xl font-semibold tracking-tight text-paper md:text-5xl">
-            Responsible Traveling
+            Responsible Travel
           </h2>
-          <motion.div 
+          <motion.div
             className="flex flex-col gap-4 text-base text-cloud md:text-lg leading-relaxed"
             initial={reduceMotion ? undefined : "hidden"}
             whileInView={reduceMotion ? undefined : "visible"}
@@ -61,7 +61,7 @@ export function ResponsibleTraveling() {
         >
           <Image
             src={TRIP_PHOTOS[0]}
-            alt="Responsible Traveling"
+            alt="Responsible Travel"
             fill
             sizes="(min-width: 768px) 42vw, 100vw"
             placeholder="blur"

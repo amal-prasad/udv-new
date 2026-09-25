@@ -1,5 +1,4 @@
 import { Hero } from "@/components/Hero";
-import { EscapeSection } from "@/components/EscapeSection";
 import { TripTypes } from "@/components/TripTypes";
 import { FeaturedItineraries } from "@/components/FeaturedItineraries";
 import { TrustBar } from "@/components/TrustBar";
@@ -54,7 +53,6 @@ export default function Home() {
     <>
       <main>
         <Hero />
-        <EscapeSection />
         <TripTypes />
         <FeaturedItineraries />
         <TrustBar />
